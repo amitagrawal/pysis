@@ -14,7 +14,8 @@ def setup():
     # mkvirtualenv --no-site-packages pysis
     # pip install -r requirements/requirements.txt --download-cache=~/virtualenvs/download_cache
     
-    local('pip install -E pysis -r requirements/requirements.txt --download-cache=~/virtualenvs/download_cache')
+    #local('pip install -E pysis -r requirements/requirements.txt --download-cache=~/virtualenvs/download_cache')
+    pass
 
 def test():
     local('pylint ' +
