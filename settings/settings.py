@@ -90,6 +90,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'fullhistory.fullhistory.FullHistoryMiddleware',
 )
 
 ROOT_URLCONF = 'pysis.urls'
@@ -102,13 +104,33 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
+    'admin_tools.dashboard',                  
+    'grappelli',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.admin',
+    'django.contrib.databrowse',
+    'debug_toolbar',
+    'south',
+    'fullhistory',
 )
+
+FIXTURE_DIRS = (
+    os.path.join(PROJECT_ROOT, "fixtures"),
+)
+
+# Django-debug-toolbar settings
+INTERNAL_IPS = ('127.0.0.1', '127.0.1.1')
+DEBUG_TOOLBAR_CONFIG = {
+    'INTERCEPT_REDIRECTS': False,
+}
+
+# Grappelli
+ADMIN_TOOLS_INDEX_DASHBOARD = 'pysis.dashboard.CustomIndexDashboard'
+ADMIN_TOOLS_APP_INDEX_DASHBOARD = 'pysis.dashboard.CustomAppIndexDashboard'
 
 
 # All production settings like sensitive passwords go here.

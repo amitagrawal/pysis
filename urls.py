@@ -1,6 +1,9 @@
 from django.conf.urls.defaults import *
 
 from django.contrib import admin
+from django.contrib import databrowse
+from django.contrib.auth.decorators import login_required
+
 try:
     admin.autodiscover()
 except admin.sites.AlreadyRegistered:
@@ -16,4 +19,7 @@ urlpatterns = patterns('',
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     (r'^admin/', include(admin.site.urls)),
+    (r'^grappelli/', include('grappelli.urls')),
+    (r'^admin_tools/', include('admin_tools.urls')),
+    (r'^browse/(.*)', login_required(databrowse.site.root)),
 )

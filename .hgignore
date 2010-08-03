@@ -34,4 +34,5 @@ libs
 production_settings.py
 *.sqlite3
 *.db
-
+.project
+.pydevproject
