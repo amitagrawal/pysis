@@ -1,0 +1,28 @@
+{% block mainmenu %}
+
+	<hr class="noscreen" /> 
+
+	<!-- Menu --> 
+	<div id="menu" class="box"> 
+ 
+		<ul class="box f-right"> 
+			<li><a href="#"><span><strong>Visit Site &raquo;</strong></span></a></li> 
+		</ul> 
+
+		<ul class="box"> 
+
+			<li {% if 'profile' in request.path %} id="menu-active" {% endif %}>
+				<a href="{% url display_profile %}"><span>Profile</span></a>
+			</li>
+
+			<li>
+				<a href="#"><span>Attendance</span></a>
+			</li> 
+			 
+		</ul> 
+		
+	</div> <!-- /header --> 
+ 
+	<hr class="noscreen" />   
+
+{% endblock %}

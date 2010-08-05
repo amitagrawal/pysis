@@ -1,0 +1,28 @@
+<ul class="box">
+	<li {% if title == 'Basic Details' %} id="submenu-active" {% endif %}>
+      	<a href="{% url display_profile %}">Basic Details</a>
+	</li>
+	
+    <li {% if title == 'Personal Details' %} id="submenu-active" {% endif %}>
+      	<a href="{% url display_personal_details %}">Personal Details</a>
+	</li>
+	
+	<li {% if title == 'Family Details' %} id="submenu-active" {% endif %}>
+		<a href="{% url display_family_details %}">Family Details</a>
+	</li>
+	
+	<li {% if title == 'Contact Details' %} id="submenu-active" {% endif %}>
+		<a href="{% url display_contact_details %}">Contact Details</a>
+	</li>
+	
+	<li {% if title == 'Education Details' %} id="submenu-active" {% endif %}>
+		<a href="{% url display_education_details %}">Education Details</a>
+	</li>
+	
+	<li {% if title == 'Misc Details' %} id="submenu-active"" {% endif %}>
+		<a href="{% url display_misc_details %}">Misc Details</a>
+	</li>
+	
+</ul>
+
+

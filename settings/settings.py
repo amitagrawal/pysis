@@ -10,6 +10,8 @@ PROJECT_NAME = os.path.split(PROJECT_ROOT)[1]
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+APPLICATION_NAME = 'Student Information Systsem'
+
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
     ('Ramakrishna Mission Vidyalaya', 'info@rmv.ac.in'),
@@ -143,9 +145,11 @@ ADMIN_TOOLS_APP_INDEX_DASHBOARD = PROJECT_NAME + '.dashboard.CustomAppIndexDashb
 
 from django.contrib import messages
 MESSAGE_TAGS = { 
-    messages.DEBUG : 'notice',
-    messages.INFO : 'notice',
-    messages.SUCCESS : 'notice',
+    messages.DEBUG : 'info',
+    messages.INFO : 'info',
+    messages.SUCCESS : 'done',
+    messages.WARNING : 'warning',
+    messages.ERROR : 'error',
 }
 
 

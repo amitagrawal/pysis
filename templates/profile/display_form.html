@@ -1,35 +1,24 @@
 {% extends "base.html" %}
 
+{% block submenu %}
+	{% include "profile/submenu.html" %}
+{% endblock %}   
+
 {% block content %}
-
-{% include "profile/menu.html" %}
-
-<div class="block"> 
-<div class="content">
-<div class="inner"> 
 	 
-	<h2> {{ title }}</h2>
+	<h1> {{ title }}</h1>
+	
+	<p></p>
 	 
-	<table class="table">
+	<table>
 		{% for item in list %}
 			<tr> 
 				<td> <strong> {{ item.0 }} </strong> </td>
 				<td> <strong> {{ item.1|default:'' }} </strong> </td>
 			</tr> 
 		{% endfor %}
-
 	</table>
 	
-	<div class="group navform wat-cf">
-		<a href="{{request.path}}edit" class="button">
-			<img src="{{ MEDIA_URL}}images/icons/vcard_edit.png" alt="Edit" />Edit
-		</a>
-	</div>
-
-</div>
-</div>
-</div>
-
-
+	<a href="{{request.path}}edit"><p class="edit">Edit</p></a>
 
 {% endblock %}

@@ -1,3 +1,4 @@
+Version 3 	 2010-08-05 	 Added working version of profile app 
 Version 2 	 2010-08-03 	 Added some goodies 
 Version 1 	 2010-08-03 	 Added some goodies 
 Version 0 	 2010-08-03 	 Empty Project 

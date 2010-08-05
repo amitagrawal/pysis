@@ -1,0 +1,54 @@
+/* WRITE YOUR CSS CODE HERE */
+
+#aside ul li a {font-weight:bold;}
+
+/* tables */
+#content table {
+  border: none;
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+}
+
+#content table th {
+  padding: 10px;
+  font-weight: bold;
+  text-align: left;
+}
+
+#content table th.first {
+  width: 30px;
+}
+
+#content table th.last {
+  width: 200px;
+}
+
+#content table .checkbox {
+  margin-left: 10px;
+}
+
+#content table td {
+  padding: 10px;
+  border: none;
+  border-bottom:1px solid #F0F0EE;
+}
+
+#content table td.last {
+  text-align: right;
+}
+
+.edit, button{
+    width:150px;
+    height:37px;
+    line-height:37px;
+    border:none;
+    margin-top:20px;
+    background:url(../design/form_button.gif) no-repeat 0 0;
+    color:#fff;
+    cursor:pointer;
+    font-weight:bold;
+    text-align:center;
+}
+
+.edit a { color:#fff;}
