@@ -1,0 +1,22 @@
+{% block mainmenu %}
+
+{% if user.is_authenticated %}
+  <div id="main-navigation">
+    <ul class="wat-cf">
+      <li {% if 'profile' in request.path %} class="active" {% endif %}>
+      	<a href="/profile">Profile</a>
+	  </li>
+      <li {% if 'attendance' in request.path %} class="active" {% endif %}>
+      	<a href="/attendance">Attendance</a>
+	  </li>
+      <li {% if 'marks' in request.path %} class="active" {% endif %}>
+      	<a href="/marks">Marks</a>
+	  </li>
+      <li {% if 'email' in request.path %} class="active" {% endif %}>
+      	<a href="/email">Email</a>
+	  </li>
+    </ul>
+  </div>
+{% endif %}
+
+{% endblock %}

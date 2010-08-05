@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>{% block title %}{% endblock %}</title>
+  
+  <link rel="stylesheet" href="{{ MEDIA_URL}}stylesheets/base.css" type="text/css" media="screen" />
+  <link rel="stylesheet" id="current-theme" href="{{ MEDIA_URL}}stylesheets/themes/default/style.css" type="text/css" media="screen" />
+  <script type="text/javascript" charset="utf-8" src="{{ MEDIA_URL}}javascripts/jquery-1.3.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="{{ MEDIA_URL}}javascripts/jquery.scrollTo.js"></script>
+  <script type="text/javascript" charset="utf-8" src="{{ MEDIA_URL}}javascripts/jquery.localscroll.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <div id="header">
+      
+	  <h1><a href="/">Student Information System</a></h1>
+	  
+      <div id="user-navigation">
+        <ul class="wat-cf">
+          <li><a href="#">Settings</a></li>
+          <li><a class="logout" href="#">Logout</a></li>
+        </ul>
+      </div>
+	  
+	  {% block mainmenu %}
+	  	{% include "menu.html" %} 
+	  {% endblock %}
+	  
+    </div>
+
+	{% if messages %}
+		<div class="flash"> 
+		<br />
+		{% for message in messages %}
+			<div class="message {{ message.tags }}">
+				<p> {{ message }} </p>
+			</div>
+		{% endfor %}
+		</div>
+	{% endif %}
+	
+    <div id="wrapper" class="wat-cf">
+      <div id="main">
+      	
+      	{% block content %} {% endblock %}
+		
+	  </div>
+	</div>
+  </div>
+
+</body>
+</html>
+

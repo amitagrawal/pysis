@@ -4,6 +4,8 @@ from django.contrib import admin
 from django.contrib import databrowse
 from django.contrib.auth.decorators import login_required
 
+import profile
+
 try:
     admin.autodiscover()
 except admin.sites.AlreadyRegistered:
@@ -17,6 +19,8 @@ urlpatterns = patterns('',
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs'
     # to INSTALLED_APPS to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
+
+    (r'^profile/', include('profile.urls')),
 
     (r'^admin/', include(admin.site.urls)),
     (r'^grappelli/', include('grappelli.urls')),

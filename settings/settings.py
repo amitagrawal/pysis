@@ -5,6 +5,7 @@ import os.path
 SETTINGS_DIR = os.path.abspath(os.path.dirname(__file__))
 PROJECT_ROOT = os.path.split(SETTINGS_DIR)[0]
 PROJECT_PARENT = os.path.split(PROJECT_ROOT)[0]
+PROJECT_NAME = os.path.split(PROJECT_ROOT)[1]
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -82,6 +83,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.i18n',
     'django.core.context_processors.media',
     'django.core.context_processors.request',
+    'django.contrib.messages.context_processors.messages',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -89,12 +91,13 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'fullhistory.fullhistory.FullHistoryMiddleware',
 )
 
-ROOT_URLCONF = 'pysis.urls'
+ROOT_URLCONF = PROJECT_NAME + '.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -111,11 +114,15 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
+    'django.contrib.redirects',
     'django.contrib.admin',
     'django.contrib.databrowse',
     'debug_toolbar',
     'south',
     'fullhistory',
+    
+    # My apps
+    'profile',
 )
 
 FIXTURE_DIRS = (
@@ -129,8 +136,17 @@ DEBUG_TOOLBAR_CONFIG = {
 }
 
 # Grappelli
-ADMIN_TOOLS_INDEX_DASHBOARD = 'pysis.dashboard.CustomIndexDashboard'
-ADMIN_TOOLS_APP_INDEX_DASHBOARD = 'pysis.dashboard.CustomAppIndexDashboard'
+GRAPPELLI_ADMIN_HEADLINE = 'Student Information System'
+GRAPPELLI_ADMIN_TITLE = 'Student Information System'
+ADMIN_TOOLS_INDEX_DASHBOARD = PROJECT_NAME + '.dashboard.CustomIndexDashboard'
+ADMIN_TOOLS_APP_INDEX_DASHBOARD = PROJECT_NAME + '.dashboard.CustomAppIndexDashboard'
+
+from django.contrib import messages
+MESSAGE_TAGS = { 
+    messages.DEBUG : 'notice',
+    messages.INFO : 'notice',
+    messages.SUCCESS : 'notice',
+}
 
 
 # All production settings like sensitive passwords go here.
