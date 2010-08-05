@@ -12,23 +12,27 @@
 	<!--[if lte IE 6]><link rel="stylesheet" media="screen,projection" type="text/css" href="{{ MEDIA_URL}}css/main-ie6.css" /><![endif]--> <!-- MSIE6 --> 
 	<link rel="stylesheet" media="screen,projection" type="text/css" href="{{ MEDIA_URL}}css/style.css" /> <!-- GRAPHIC THEME --> 
 	<link rel="stylesheet" media="screen,projection" type="text/css" href="{{ MEDIA_URL}}css/mystyle.css" /> <!-- WRITE YOUR CSS CODE HERE --> 
-	<script type="text/javascript" src="{{ MEDIA_URL}}js/jquery.js"></script> 
-	<script type="text/javascript" src="{{ MEDIA_URL}}js/switcher.js"></script> 
-	<script type="text/javascript" src="{{ MEDIA_URL}}js/toggle.js"></script> 
-	<script type="text/javascript" src="{{ MEDIA_URL}}js/ui.core.js"></script> 
-	<script type="text/javascript" src="{{ MEDIA_URL}}js/ui.tabs.js"></script> 
-	<script type="text/javascript"> 
-	$(document).ready(function(){
-		$(".tabs > ul").tabs();
-	});
-	</script>
 	 
-	<title>{% block title %}{% endblock %}</title> 
+	<title>{% block title %} {{ settings.TITLE }} {% endblock %}</title> 
 </head> 
 
 <body>
 	
+	{% if site_wide_announcements %}
+	    <div id="site_wide_announcements">
+	        <ul>
+	            {% for announcement in site_wide_announcements %}
+	            <li>
+	                <a href="{{ announcement.get_absolute_url }}">{{ announcement }}</a> -
+	                <a href="{% url announcement_hide announcement.pk %}?next={{ request.path }}">Hide announcement</a>
+	            </li>
+	            {% endfor %}
+	        </ul>
+	    </div>
+	{% endif %}
+	
   <div id="main">
+  {% if user.is_authenticated %}	
   	 
 	<!-- Tray --> 
 	<div id="tray" class="box"> 
@@ -41,13 +45,16 @@
 				<a href="#" rel="2col" class="styleswitch ico-col2" title="Display two columns"><img src="{{ MEDIA_URL}}design/switcher-2col.gif" alt="2 Columns" /></a> 
 			</span> 
 
-			Project: <strong>{{ settings.APPLICATION_NAME }}</strong> 
+			<strong>{{ settings.TITLE }}</strong>
  
 		</p> 
  
 		<p class="f-right">
 			User: <strong><a href="#">{{ request.user }}</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-			<strong><a href="#" id="logout">Log out</a></strong>
+			{% if user.is_superuser %}
+				<strong><a href="/admin">Admin</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			{% endif %}
+			<strong><a href="{% url logout %}" id="logout">Log out</a></strong>
 		</p> 
  
 	</div> <!--  /tray --> 
@@ -60,18 +67,21 @@
 
 		<!-- Aside (Left Column) --> 
 		<div id="aside" class="box">
-		
-		<div class="padding box">
-			<!-- Create a new project --> 
-			<p id="btn-create" class="box"><a href="#"><span>Create a new project</span></a></p> 
-		</div> 			
 
 			{% block submenu %} 
 			{% endblock %}			
+
+			<div class="padding box">
+			<div class="empty_space">
+				<!-- Create a new project --> 
+				<p id="btn-create" class="box"><a href="#"><span>Create a new project</span></a></p> 
+			</div> 			
+			</div>
 			
 		</div> <!-- /aside -->
 		
 		<hr class="noscreen" /> 	
+  {% endif %}
 		  	
 		<!-- Content (Right Column) --> 
 		<div id="content" class="box"> 	
@@ -101,8 +111,21 @@
 		<p class="f-right"></p> 
  
 	</div> <!-- /footer --> 
- 
+
 </div> <!-- /main --> 
+
+	<script type="text/javascript" src="{{ MEDIA_URL}}js/jquery.js"></script> 
+	<script type="text/javascript" src="{{ MEDIA_URL}}js/switcher.js"></script> 
+	<script type="text/javascript" src="{{ MEDIA_URL}}js/toggle.js"></script> 
+	<script type="text/javascript" src="{{ MEDIA_URL}}js/ui.core.js"></script> 
+	<script type="text/javascript" src="{{ MEDIA_URL}}js/ui.tabs.js"></script> 
+	<script type="text/javascript"> 
+	$(document).ready(function(){
+		$(".tabs > ul").tabs();
+	});
+	</script>
+	
+	{% block extrajs %} {% endblock %}
  
 </body> 
 </html>				

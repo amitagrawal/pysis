@@ -26,4 +26,11 @@ urlpatterns = patterns('',
     (r'^grappelli/', include('grappelli.urls')),
     (r'^admin_tools/', include('admin_tools.urls')),
     (r'^browse/(.*)', login_required(databrowse.site.root)),
+    url(r'^announcements/', include('announcements.urls')),
+    
+    url(r'^accounts/$', 'django.contrib.auth.views.login',
+        {'template_name': 'account/login.html'} ,
+        name='login'),
+    url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', 
+        name='logout'),
 )

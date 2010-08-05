@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.contrib import messages
-
+from django.conf import settings
 
 from profile.models import ProfileBase 
 from profile.models import PersonalDetails
@@ -34,7 +34,8 @@ def generic_view(request, instance):
 
     template = "profile/display_form.html"
     data = { 'list' : profile.as_list(),
-             'title' : description_dict[instance]
+             'title' : description_dict[instance],
+             'settings' : settings,
            }
     return render_to_response(template, data, context_instance=RequestContext(request))
     
@@ -80,7 +81,8 @@ def generic_edit(request, instance, instance_form):
 
     template = "profile/edit_form.html"
     data = { 'form' : form,
-             'title' : description_dict[instance]
+             'title' : description_dict[instance],
+             'settings' : settings,
            }
     return render_to_response(template, data, context_instance=RequestContext(request))
     

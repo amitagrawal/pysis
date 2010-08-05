@@ -38,6 +38,8 @@
   text-align: right;
 }
 
+/* BUTTONS */
+
 .edit, button{
     width:150px;
     height:37px;
@@ -52,3 +54,22 @@
 }
 
 .edit a { color:#fff;}
+
+
+/* ANNOUNCEMENTS */
+
+#site_wide_announcements {
+    background: yellow;
+    padding: 10px;
+    text-align: center;
+}
+#site_wide_announcements ul {
+    padding: 0;
+    margin: 0;
+}
+
+/* Some empty space */
+.empty_space {
+	margin-top:50px;
+	margin-bottom:50px;
+}

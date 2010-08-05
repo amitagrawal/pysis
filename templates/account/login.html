@@ -1,26 +1,32 @@
 {% extends "base.html" %}
 
-{% block submenu %}
-	{% include "profile/submenu.html" %}
-{% endblock %} 
+{% block title %}{{ "User login" }}{% endblock %}
+{% block robots %}noindex,nofollow{% endblock %}
+
+{% block extrajs %}
+<script type="text/javascript">
+	$(function() {
+		$("input[type='text'], input[type='password']").addClass("text");
+		$("#id_username").focus();
+	});
+</script>
+{% endblock %}
 
 {% block content %}
 
-	<h1> Edit {{ title }} </h1>
-	 
-	<form action="{{ request.path_info }}" method="post">
+	<form method="post">
 		{% csrf_token %}
-
+		
 		{% if form.non_field_errors %}
 			<div class="msg error">
 				{{ form.non_field_errors|join:' ' }}
 			</div>
 		{% endif %}
-				
+		
 		<table>
 		    {% for field in form %}
 			<tr>
-				<td class="va-top"> <label> {{ field.label }} </label>	</td>
+				<td> <label> <strong> {{ field.label }} </strong> </label>	</td>
 	            
 				<td> {{ field }} </td> 
 				
@@ -37,8 +43,8 @@
 		    {% endfor %}
 		</table>
 
-	        <button type="submit"> Save </button>
+	        <button type="submit"> Login </button>
 	</form> 
 
-{% endblock %}
 
+{% endblock %}

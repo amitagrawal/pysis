@@ -10,7 +10,9 @@ PROJECT_NAME = os.path.split(PROJECT_ROOT)[1]
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-APPLICATION_NAME = 'Student Information Systsem'
+APPLICATION_NAME = 'Student Information System'
+ORGANIZATION = 'Ramakrishna Mission Vidyalaya'
+TITLE = '%s | %s' % (APPLICATION_NAME, ORGANIZATION) 
 
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
@@ -86,6 +88,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'django.core.context_processors.request',
     'django.contrib.messages.context_processors.messages',
+    'announcements.context_processors.site_wide_announcements',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -122,6 +125,7 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'south',
     'fullhistory',
+    'announcements',
     
     # My apps
     'profile',
@@ -138,8 +142,8 @@ DEBUG_TOOLBAR_CONFIG = {
 }
 
 # Grappelli
-GRAPPELLI_ADMIN_HEADLINE = 'Student Information System'
-GRAPPELLI_ADMIN_TITLE = 'Student Information System'
+GRAPPELLI_ADMIN_HEADLINE = APPLICATION_NAME
+GRAPPELLI_ADMIN_TITLE = APPLICATION_NAME
 ADMIN_TOOLS_INDEX_DASHBOARD = PROJECT_NAME + '.dashboard.CustomIndexDashboard'
 ADMIN_TOOLS_APP_INDEX_DASHBOARD = PROJECT_NAME + '.dashboard.CustomAppIndexDashboard'
 
@@ -152,6 +156,18 @@ MESSAGE_TAGS = {
     messages.ERROR : 'error',
 }
 
+MAIN_MENU = [
+    
+    # (Name, URL)
+    ('Profile', '/profile/'),
+    ('Attendance', '/attendance/'),
+    ('Marks', '/marks/'),
+    ('Knowledge Base', 'http://kb.rmv.ac.in'),
+    ('Institutional Repository', 'http://ir.rmv.ac.in'),
+]
+
+LOGIN_URL = '/accounts'
+LOGIN_REDIRECT_URL = '/'
 
 # All production settings like sensitive passwords go here.
 # Don't forget to exclude this file from version control

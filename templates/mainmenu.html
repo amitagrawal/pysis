@@ -6,19 +6,15 @@
 	<div id="menu" class="box"> 
  
 		<ul class="box f-right"> 
-			<li><a href="#"><span><strong>Visit Site &raquo;</strong></span></a></li> 
+			<li><a href="http://mail.rmv.ac.in"><span><strong>Email &raquo;</strong></span></a></li> 
 		</ul> 
 
 		<ul class="box"> 
-
-			<li {% if 'profile' in request.path %} id="menu-active" {% endif %}>
-				<a href="{% url display_profile %}"><span>Profile</span></a>
-			</li>
-
-			<li>
-				<a href="#"><span>Attendance</span></a>
-			</li> 
-			 
+			{% for item in settings.MAIN_MENU %}
+				<li {% if item.1 in request.path %} id="menu-active" {% endif %}>
+					<a href="{{ item.1 }}"><span> {{ item.0 }} </span></a>
+				</li>
+			{% endfor %}
 		</ul> 
 		
 	</div> <!-- /header --> 
