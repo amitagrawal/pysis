@@ -6,7 +6,13 @@
 
 {% block content %}
 
-	<h1> Edit {{ title }} </h1>
+	{% for name, url in settings.PROFILE_MENU %}
+		{% if url in request.path %}
+			<h1> Edit {{ name }}</h1>
+		{% endif %}
+	{% endfor %}
+	
+	<p></p>
 	 
 	<form action="{{ request.path_info }}" method="post">
 		{% csrf_token %}

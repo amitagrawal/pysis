@@ -1,0 +1,14 @@
+
+html, body, #main { height: 100%; }
+body > #main { height: auto; min-height: 100%; }
+
+#footer {
+ clear: both;
+ position: relative;
+ z-index: 10;
+ height: 1em;
+ margin-top: -1em;
+}
+
+#main { padding-bottom: 1em; }
+

@@ -6,7 +6,7 @@ GENDER_CHOICES = (
     ('F', 'Female'),
     )
 
-CASTE_CHOICES = (
+RESERVATION_CATEGORY_CHOICES = (
     ('OC', 'OC'),
     ('OBC', 'OBC'),
     ('BC', 'BC'),
@@ -33,16 +33,15 @@ class Course(models.Model):
         return self.course_name
 
 
-class ProfileBase(models.Model):
+class GeneralDetails(models.Model):
     user = models.ForeignKey(User, unique=True)
 
     course = models.ForeignKey(Course, null=True, blank=True)
     year_of_joining = models.IntegerField(null=True, blank=True)
 
     class Meta:
-        db_table = 'profile_base'
-        verbose_name = 'Profile'
-        verbose_name_plural = 'Profiles'
+        verbose_name = 'General Details'
+        verbose_name_plural = 'GeneralDetails'
         
     def __unicode__(self):
         #return '%s - %s' % (self.user.username, self.user.first_name)
@@ -51,7 +50,7 @@ class ProfileBase(models.Model):
     def as_list(self):
         result = []
 
-        result.append(('Name', self.user.first_name + self.user.last_name))        
+        result.append(('Name', self.user.first_name + ' ' + self.user.last_name))        
         result.append(('Register Number', self.user.username))
         result.append(('Course', self.course))
         result.append(('Year of Joining', self.year_of_joining))
@@ -65,11 +64,10 @@ class PersonalDetails(models.Model):
                               choices=GENDER_CHOICES,
                               default='M')
     blood_group = models.CharField(max_length=4, choices=BLOOD_GROUP_CHOICES,null=True, blank=True)
-    date_of_birth = models.DateField(help_text="What is your date of birth as per records",null=True, blank=True)
+    date_of_birth = models.DateField(help_text="What is your date of birth as per records?",null=True, blank=True)
     actual_date_of_birth = models.DateField(help_text="When do you celebrate your birthday?",null=True, blank=True)
 
     class Meta:
-        db_table = 'profile_personal_details'
         verbose_name = 'Personal Details'
         verbose_name_plural = 'Personal Details'
         
@@ -94,12 +92,15 @@ class FamilyDetails(models.Model):
     father_name = models.CharField(max_length=100, null=True, blank=True)
     father_profession = models.CharField(max_length=100, null=True, blank=True)
     family_income = models.IntegerField(null=True, blank=True)
-    caste = models.CharField(max_length=10,
-                             choices=CASTE_CHOICES,
+    religion = models.CharField(max_length=30,
                              null=True, blank=True)
+    caste = models.CharField(max_length=30,
+                             null=True, blank=True)
+    reservation_category = models.CharField(max_length=10,
+                                            choices=RESERVATION_CATEGORY_CHOICES,
+                                            null=True, blank=True)
 
     class Meta:
-        db_table = 'profile_family_details'
         verbose_name = 'Family Details'
         verbose_name_plural = 'Family Details'
         
@@ -113,7 +114,9 @@ class FamilyDetails(models.Model):
         result.append(("Father's Name", self.father_name))
         result.append(("Father's Profession", self.father_profession))
         result.append(('Family Income', self.family_income))
+        result.append(('Religion', self.religion))
         result.append(('Caste', self.caste))
+        result.append(('Reservation Category', self.reservation_category))
         
         return result
     
@@ -129,7 +132,6 @@ class ContactDetails(models.Model):
     permanent_address = models.TextField(null=True, blank=True)
 
     class Meta:
-        db_table = 'profile_contact_details'
         verbose_name = 'Contact Details'
         verbose_name_plural = 'Contact Details'
         
@@ -172,7 +174,6 @@ class EducationDetails(models.Model):
     #history_of_arrears = models.TextField(null=True, blank=True)
 
     class Meta:
-        db_table = 'profile_education_details'
         verbose_name = 'Education Details'
         verbose_name_plural = 'Education Details'
         
@@ -211,7 +212,6 @@ class MiscDetails(models.Model):
     personal_website = models.URLField(null=True, blank=True, verify_exists=False)
 
     class Meta:
-        db_table = 'profile_extra_curricular_activities'
         verbose_name = 'Extra Curricular Activities'
         verbose_name_plural = 'Extra Curricular Activities'
         

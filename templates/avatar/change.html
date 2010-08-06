@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% load avatar_tags %}
+
+{% block title %}
+	{{ title }}
+{% endblock %} 
+
+{% block submenu %}
+	{% include "profile/submenu.html" %}
+{% endblock %}   
+
+{% block content %}
+    <h2> Your current photo: </h2>
+    	{% avatar user 200 %}
+		
+		<a href="{% url avatar_delete %}"><p class="edit">Delete</p></a>
+		
+	<br/>
+	<hr />
+	
+    {% if avatars %}
+		<h2> Change your primary photo: </h2>
+
+		<form action="{{ request.path_info }}" method="post">
+			{% csrf_token %}
+	
+			<div style="list-style:none;">
+           {{ primary_avatar_form.as_ul }}
+		   </div>
+	
+		    <button type="submit"> Save </button>
+		</form> 
+	 
+		<br/> <br/>
+		<hr />
+		
+    {% endif %}
+	
+	
+	<h2> Upload a new photo: </h2>
+	
+    <form enctype="multipart/form-data" method="POST" action="{{ request.path_info }}">
+    	{% csrf_token %}
+        <input type="file" name="avatar" value="Avatar Image" />
+		<br />
+		<button type="submit"> Upload </button>
+    </form>
+	
+{% endblock %}

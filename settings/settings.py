@@ -1,6 +1,7 @@
 # Django settings for pysis project.
 
 import os.path
+import posixpath
 
 SETTINGS_DIR = os.path.abspath(os.path.dirname(__file__))
 PROJECT_ROOT = os.path.split(SETTINGS_DIR)[0]
@@ -12,7 +13,7 @@ TEMPLATE_DEBUG = DEBUG
 
 APPLICATION_NAME = 'Student Information System'
 ORGANIZATION = 'Ramakrishna Mission Vidyalaya'
-TITLE = '%s | %s' % (APPLICATION_NAME, ORGANIZATION) 
+TITLE = '%s | %s' % (APPLICATION_NAME, ORGANIZATION)
 
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
@@ -89,6 +90,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
     'django.contrib.messages.context_processors.messages',
     'announcements.context_processors.site_wide_announcements',
+    'pysis.context_processors.settings',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -112,7 +114,7 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
-    'admin_tools.dashboard',                  
+    'admin_tools.dashboard',
     'grappelli',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -126,7 +128,8 @@ INSTALLED_APPS = (
     'south',
     'fullhistory',
     'announcements',
-    
+    'avatar',
+
     # My apps
     'profile',
 )
@@ -148,7 +151,7 @@ ADMIN_TOOLS_INDEX_DASHBOARD = PROJECT_NAME + '.dashboard.CustomIndexDashboard'
 ADMIN_TOOLS_APP_INDEX_DASHBOARD = PROJECT_NAME + '.dashboard.CustomAppIndexDashboard'
 
 from django.contrib import messages
-MESSAGE_TAGS = { 
+MESSAGE_TAGS = {
     messages.DEBUG : 'info',
     messages.INFO : 'info',
     messages.SUCCESS : 'done',
@@ -157,17 +160,38 @@ MESSAGE_TAGS = {
 }
 
 MAIN_MENU = [
-    
+
     # (Name, URL)
     ('Profile', '/profile/'),
     ('Attendance', '/attendance/'),
     ('Marks', '/marks/'),
+    ('Library', '/library/'),
     ('Knowledge Base', 'http://kb.rmv.ac.in'),
     ('Institutional Repository', 'http://ir.rmv.ac.in'),
 ]
 
+PROFILE_MENU = [
+                
+    # (Name, URL)
+    ('General Details', '/profile/general/'),
+    ('Personal Details', '/profile/personal/'),
+    ('Family Details', '/profile/family/'),
+    ('Contact Details', '/profile/contact/'),
+    ('Education Details', '/profile/education/'),
+    ('Misc Details', '/profile/misc/'),
+                
+]
+
 LOGIN_URL = '/accounts'
 LOGIN_REDIRECT_URL = '/'
+
+# Avatar
+AUTO_GENERATE_AVATAR_SIZES = (80, 160, 200)
+AVATAR_GRAVATAR_BACKUP = False
+AVATAR_DEFAULT_URL = posixpath.join(MEDIA_URL, 'images', 'user.png')
+
+import version
+VERSION = version.version
 
 # All production settings like sensitive passwords go here.
 # Don't forget to exclude this file from version control

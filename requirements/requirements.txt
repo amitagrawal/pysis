@@ -1,6 +1,5 @@
 
 Django==1.2.1
-
 South==0.7.1
 
 # For Admin Interface
@@ -10,9 +9,8 @@ fullhistory==0.3.0-final
 # -e svn+http://django-grappelli.googlecode.com/svn/trunk/grappeli/#egg=grappelli
 -e hg+http://bitbucket.org/fetzig/grappelli-admin-tools@4583eb7c9163d62fd4779eb098745a82a72e3ec8#egg=django_admin_tools-tip
 
-
-
 django-staticfiles==0.2.0
+PIL
 
 # For Developers
 ipython==0.10

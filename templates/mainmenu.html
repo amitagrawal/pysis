@@ -10,9 +10,9 @@
 		</ul> 
 
 		<ul class="box"> 
-			{% for item in settings.MAIN_MENU %}
-				<li {% if item.1 in request.path %} id="menu-active" {% endif %}>
-					<a href="{{ item.1 }}"><span> {{ item.0 }} </span></a>
+			{% for name, url in settings.MAIN_MENU %}
+				<li {% if url in request.path %} id="menu-active" {% endif %}>
+					<a href="{{ url }}"><span> {{ name }} </span></a>
 				</li>
 			{% endfor %}
 		</ul> 

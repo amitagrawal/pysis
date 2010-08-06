@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% load avatar_tags %}
+
+{% block title %}
+	{{ title }}
+{% endblock %} 
+
+{% block submenu %}
+	{% include "profile/submenu.html" %}
+{% endblock %}   
+
+{% block content %}
+    <h2>Please select the photos that you would like to delete.</h2>
+	
+    {% if not avatars %}
+        <p>You have no photos to delete.  Please <a href="{% url avatar_change %}">upload one</a> now.</p>
+    {% else %}
+		<form action="{{ request.path_info }}" method="post" next="{% url avatar_change %}">
+			{% csrf_token %}
+	
+			<div style="list-style:none;">
+           {{ delete_avatar_form.as_ul }}
+		   </div>
+	
+		    <button type="submit"> Delete </button>
+		</form> 
+    {% endif %}
+{% endblock %}

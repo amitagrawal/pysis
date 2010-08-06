@@ -4,7 +4,7 @@ import fullhistory
 from fullhistory.admin import FullHistoryAdmin
 
 from profile.models import Course 
-from profile.models import ProfileBase 
+from profile.models import GeneralDetails 
 from profile.models import PersonalDetails 
 from profile.models import FamilyDetails 
 from profile.models import ContactDetails 
@@ -20,7 +20,7 @@ class DefaultAdmin(FullHistoryAdmin):
     pass
 
 register(Course, DefaultAdmin)
-register(ProfileBase, DefaultAdmin)
+register(GeneralDetails, DefaultAdmin)
 register(PersonalDetails, DefaultAdmin)
 register(FamilyDetails, DefaultAdmin)
 register(ContactDetails, DefaultAdmin)

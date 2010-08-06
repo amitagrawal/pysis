@@ -36,3 +36,4 @@ production_settings.py
 *.db
 .project
 .pydevproject
+media/avatars

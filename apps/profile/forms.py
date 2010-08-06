@@ -1,15 +1,15 @@
 from django import forms
 
-from profile.models import ProfileBase 
+from profile.models import GeneralDetails 
 from profile.models import PersonalDetails
 from profile.models import FamilyDetails 
 from profile.models import ContactDetails 
 from profile.models import EducationDetails 
 from profile.models import MiscDetails 
 
-class ProfileBaseForm(forms.ModelForm):
+class GeneralDetailsForm(forms.ModelForm):
     class Meta:
-        model = ProfileBase
+        model = GeneralDetails
         exclude = ('user')
 
 class PersonalDetailsForm(forms.ModelForm):

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% load avatar_tags %}
+
+{% block submenu %}
+	{% include "profile/submenu.html" %}
+{% endblock %}   
+
+{% block content %}
+
+	{% for name, url in settings.PROFILE_MENU %}
+		{% if url in request.path %}
+			<h1> {{ name }}</h1>
+		{% endif %}
+	{% endfor %}
+	
+	<p></p>
+	
+	<div class="col50"> 
+		<table>
+			{% for name, value in list %}
+				<tr> 
+					<td> <strong> {{ name }} </strong> </td>
+					<td> <strong> {{ value|default:'' }} </strong> </td>
+				</tr> 
+			{% endfor %}
+		</table>
+		
+		<a href="{{request.path}}edit"><p class="edit">Edit</p></a>
+	</div> <!-- /col50 --> 
+ 
+	<div class="col50 f-right">
+		<div class="t-center">
+			{% avatar user 200 %}
+		</div> <!-- /t-center -->
+	</div> <!-- /col50 -->
+
+{% endblock %}
