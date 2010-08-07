@@ -24,19 +24,6 @@
 
 <body>
 	
-	{% if site_wide_announcements %}
-	    <div id="site_wide_announcements">
-	        <ul>
-	            {% for announcement in site_wide_announcements %}
-	            <li>
-	                <a href="{{ announcement.get_absolute_url }}">{{ announcement }}</a> -
-	                <a href="{% url announcement_hide announcement.pk %}?next={{ request.path }}">Hide announcement</a>
-	            </li>
-	            {% endfor %}
-	        </ul>
-	    </div>
-	{% endif %}
-	
   <div id="main">
   {% if user.is_authenticated %}	
   	 
@@ -84,6 +71,17 @@
 		  	
 		<!-- Content (Right Column) --> 
 		<div id="content" class="box"> 	
+		
+
+			{% if announcements %}
+				{% for announcement in announcements %}
+			    	<div class="msg {{ announcement.message_level }}">
+			        	{{ announcement.body|safe }} -
+			            <a href="{% url announcement_acknowledge announcement.pk%}?return_url={{ request.path }}">Hide this</a>
+			        </div>
+					<br />
+			    {% endfor %}
+			{% endif %}
 		
 			{% if messages %}
 				{% for message in messages %}
