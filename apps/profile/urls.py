@@ -1,9 +1,13 @@
 from django.conf.urls.defaults import *
 from django.views.generic.simple import direct_to_template
+from django.views.generic import list_detail
 from django.conf import settings
+
 
 from profile.views import generic_display
 from profile.views import generic_edit
+from profile.views import display_all_students
+from profile.views import display_profile
 
 from profile.models import GeneralDetails 
 from profile.models import PersonalDetails
@@ -19,9 +23,11 @@ from profile.forms import ContactDetailsForm
 from profile.forms import EducationDetailsForm 
 from profile.forms import MiscDetailsForm  
 
-
 urlpatterns = patterns('',
 
+    (r'^$', display_all_students),
+    
+    # My Profile
     url(r'^general/$', 
         generic_display, {'instance':GeneralDetails},
         name='display_general_details'),
@@ -41,6 +47,7 @@ urlpatterns = patterns('',
         generic_display, {'instance':MiscDetails},
         name='display_misc_details'),
     
+    # Edit my Profile
     url(r'^general/edit/$', 
         generic_edit, {'instance':GeneralDetails, 'instance_form':GeneralDetailsForm},
         name='edit_general_details'),
@@ -59,5 +66,9 @@ urlpatterns = patterns('',
     url(r'^misc/edit/$', 
         generic_edit, {'instance':MiscDetails, 'instance_form':MiscDetailsForm},
         name='edit_misc_details'),
+
+    (r'^search/all/$', display_all_students),
+    (r'^display/(?P<username>.*)/$', display_profile),
+
     
 )    

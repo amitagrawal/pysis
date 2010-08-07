@@ -38,6 +38,11 @@
   text-align: right;
 }
 
+/* list */
+#content ul li {
+	background: none;
+}
+
 /* BUTTONS */
 
 .edit, button{
@@ -59,6 +64,7 @@
 
 img {
 	padding:10px;
+	vertical-align: middle;
 }
 
 /* ANNOUNCEMENTS */
@@ -83,4 +89,24 @@ img {
 #menu ul li a {
 	font-weight:bold;
 	color:#666;
+}
+
+/* Tray */
+#tray a{
+	text-decoration: none;
+}
+
+#main-title {
+	font-size: 17px;
+}
+
+/* Profile Listing */
+#search_preview {
+	color: #303030;
+	text-decoration: none;
+}
+
+/* Paginator */
+.endless_loading {
+	text-align: center;
 }

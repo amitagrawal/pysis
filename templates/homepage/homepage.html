@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL}}css/homepage/common.css" />
+        <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL}}css/homepage/index.css" />
+        <style type="text/css">
+            body {
+                background: #2c4762;
+            }
+            
+            #signup-box {
+                margin-top: 50px;
+                margin-right: 50px;
+            }
+            
+            #title {
+	        	background: #1f354c;
+	            text-align: center;
+	            font-size: 50px;
+	            color: #fff;
+				padding: 40px;
+            }
+            
+            #intro {
+                font-size: 33px;
+                color: #ccc;
+                margin: 50px;
+            }
+			
+			#signup-form-error {
+				font-size: 16px;
+				padding: 20px;
+				color: #Red;
+			}
+            
+            #signup-submit {
+                width: 150px;
+                height: 40px;
+                line-height: 40px;
+                background: #2c4762;
+                color: #fff;
+                cursor: pointer;
+                font-weight: bold;
+            }
+			.label {
+				padding-left: 20px;
+				font-weight: bold;
+				font-size: 16px;
+			}
+        </style>
+		<title>Student Information System </title>
+    </head>
+    <body>
+        <h1 id="title">Student Information System </h1>
+        <table style="width:100%;">
+            <tr>
+                <td style="vertical-align:middle; text-align:center;">
+                    <p id="intro">
+                        Everything you want to know... 
+                        <br/>
+                        Just a few clicks away!
+                    </p>
+                </td>
+                <td>
+                    <div id="signup-box">
+                        <h2>Get Inside</h2> <br/>
+
+                            {% if form.non_field_errors %}
+                            <div id="signup-form-error">
+                                {{ form.non_field_errors|join:' ' }}
+                            </div>
+                            {% endif %}
+
+                        <form id="signup-form" method="post">
+                        {% csrf_token %}
+                            <ul>
+                                <li>
+                                    <label for="signup-username">
+                                      <p class="label">  Register Number </p>
+                                    </label>
+                                    <input  id="id_username" class="field" name="username" type="text" />
+                                </li>
+                                <li>
+                                    <label for="signup-password">
+                                        <p class="label"> Password </p>
+                                    </label>
+                                    <input id="id_password" class="field" name="password" type="password" />
+                                </li>
+                                <li>
+                                    <br/>
+                                </li>
+                                <li>
+                                    <input value="Sign in" id="signup-submit" type="submit" />
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

@@ -12,6 +12,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 APPLICATION_NAME = 'Student Information System'
+APPLICATION_SHORT_NAME = 'PySIS'
 ORGANIZATION = 'Ramakrishna Mission Vidyalaya'
 TITLE = '%s | %s' % (APPLICATION_NAME, ORGANIZATION)
 
@@ -27,7 +28,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'sqlite.db',                      # Or path to database file if using sqlite3.
+        'NAME': os.path.join(PROJECT_ROOT,'sqlite.db'),                      # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -61,6 +62,7 @@ USE_L10N = True
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
+#MEDIA_ROOT = PROJECT_ROOT
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -90,7 +92,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
     'django.contrib.messages.context_processors.messages',
     'announcements.context_processors.site_wide_announcements',
-    'pysis.context_processors.settings',
+    PROJECT_NAME + '.misc.context_processors.settings',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -104,7 +106,7 @@ MIDDLEWARE_CLASSES = (
     'fullhistory.fullhistory.FullHistoryMiddleware',
 )
 
-ROOT_URLCONF = PROJECT_NAME + '.urls'
+ROOT_URLCONF = PROJECT_NAME + '.urls.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -123,12 +125,15 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.redirects',
     'django.contrib.admin',
+    'django.contrib.admindocs',
     'django.contrib.databrowse',
     'debug_toolbar',
     'south',
     'fullhistory',
     'announcements',
     'avatar',
+    'compressor',
+    'endless_pagination',
 
     # My apps
     'profile',
@@ -147,8 +152,8 @@ DEBUG_TOOLBAR_CONFIG = {
 # Grappelli
 GRAPPELLI_ADMIN_HEADLINE = APPLICATION_NAME
 GRAPPELLI_ADMIN_TITLE = APPLICATION_NAME
-ADMIN_TOOLS_INDEX_DASHBOARD = PROJECT_NAME + '.dashboard.CustomIndexDashboard'
-ADMIN_TOOLS_APP_INDEX_DASHBOARD = PROJECT_NAME + '.dashboard.CustomAppIndexDashboard'
+ADMIN_TOOLS_INDEX_DASHBOARD = PROJECT_NAME + '.misc.dashboard.CustomIndexDashboard'
+ADMIN_TOOLS_APP_INDEX_DASHBOARD = PROJECT_NAME + '.misc.dashboard.CustomAppIndexDashboard'
 
 from django.contrib import messages
 MESSAGE_TAGS = {
@@ -171,7 +176,7 @@ MAIN_MENU = [
 ]
 
 PROFILE_MENU = [
-                
+
     # (Name, URL)
     ('General Details', '/profile/general/'),
     ('Personal Details', '/profile/personal/'),
@@ -179,19 +184,24 @@ PROFILE_MENU = [
     ('Contact Details', '/profile/contact/'),
     ('Education Details', '/profile/education/'),
     ('Misc Details', '/profile/misc/'),
-                
+
 ]
 
-LOGIN_URL = '/accounts'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/'
+LOGIN_REDIRECT_URL = '/profile'
 
 # Avatar
-AUTO_GENERATE_AVATAR_SIZES = (80, 160, 200)
+AUTO_GENERATE_AVATAR_SIZES = (80, 100, 200)
 AVATAR_GRAVATAR_BACKUP = False
 AVATAR_DEFAULT_URL = posixpath.join(MEDIA_URL, 'images', 'user.png')
 
-import version
-VERSION = version.version
+# Django-Compressor
+COMPRESS = True
+
+# Pagination
+ENDLESS_PAGINATION_PER_PAGE = 5
+ENDLESS_PAGINATION_LOADING = '<img src="/media/images/loader.gif" alt="loading" />'
+
 
 # All production settings like sensitive passwords go here.
 # Don't forget to exclude this file from version control

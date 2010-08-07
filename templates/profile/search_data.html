@@ -1,0 +1,38 @@
+{% load endless %}
+{% load avatar_tags %}
+
+{% lazy_paginate objects %}
+
+{% for name, register_number, course in objects %}
+
+	<a id="search_preview" href="/profile/display/{{ register_number }}">
+		<h2 class="tit"> {{ name }} </h2>
+		<div class="col50">
+			<table>
+			<tr>
+				<td> Register Number </td>
+				<td> {{ register_number }} </td>
+			</tr>
+			
+			<tr>			
+				<td> Course </td>
+				<td> {{ course }} </td>
+			</tr>
+			</table>
+		</div> <!-- /col50 --> 
+		
+		<div class="col50 f-right">
+			<div class="t-center">
+				{% avatar register_number 100 %}
+			</div> <!-- /t-center -->
+		</div> <!-- /col50 -->
+		
+		<div class="fix"></div> 
+		
+		<p></p>
+		<hr />
+		<p></p>
+	</a>
+{% endfor %}	
+	
+{% show_more %}	
