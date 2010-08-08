@@ -4,19 +4,21 @@
 
 	<!-- Menu --> 
 	<div id="menu" class="box"> 
- 
+
 		<ul class="box f-right"> 
-			<li><a href="http://mail.rmv.ac.in"><span><strong>Email &raquo;</strong></span></a></li> 
+			{% for name, url in settings.MAIN_MENU_RIGHT %}
+				<li><a href="{{ url }}"><span><strong>{{ name }}</strong></span></a></li> 
+			{% endfor %}
 		</ul> 
 
 		<ul class="box"> 
-			{% for name, url in settings.MAIN_MENU %}
+			{% for name, url in settings.MAIN_MENU_LEFT %}
 				<li {% if url in request.path %} id="menu-active" {% endif %}>
 					<a href="{{ url }}"><span> {{ name }} </span></a>
 				</li>
 			{% endfor %}
-		</ul> 
-		
+		</ul>
+
 	</div> <!-- /header --> 
  
 	<hr class="noscreen" />   

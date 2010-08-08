@@ -3,6 +3,8 @@
 import os.path
 import posixpath
 
+from pysis_settings import *
+
 SETTINGS_DIR = os.path.abspath(os.path.dirname(__file__))
 PROJECT_ROOT = os.path.split(SETTINGS_DIR)[0]
 PROJECT_PARENT = os.path.split(PROJECT_ROOT)[0]
@@ -134,11 +136,11 @@ INSTALLED_APPS = (
     'avatar',
     'compressor',
     'endless_pagination',
-    'notification',
     'announcements',
 
     # My apps
-    'profile',
+    'myprofile',
+    'students',
 )
 
 FIXTURE_DIRS = (
@@ -157,52 +159,18 @@ GRAPPELLI_ADMIN_TITLE = APPLICATION_NAME
 ADMIN_TOOLS_INDEX_DASHBOARD = PROJECT_NAME + '.misc.dashboard.CustomIndexDashboard'
 ADMIN_TOOLS_APP_INDEX_DASHBOARD = PROJECT_NAME + '.misc.dashboard.CustomAppIndexDashboard'
 
-from django.contrib import messages
-MESSAGE_TAGS = {
-    messages.DEBUG : 'info',
-    messages.INFO : 'info',
-    messages.SUCCESS : 'done',
-    messages.WARNING : 'warning',
-    messages.ERROR : 'error',
-}
-
-MAIN_MENU = [
-
-    # (Name, URL)
-    ('Profile', '/profile/'),
-    ('Attendance', '/attendance/'),
-    ('Marks', '/marks/'),
-    ('Library', '/library/'),
-    ('Knowledge Base', 'http://kb.rmv.ac.in'),
-    ('Institutional Repository', 'http://ir.rmv.ac.in'),
-]
-
-PROFILE_MENU = [
-
-    # (Name, URL)
-    ('General Details', '/profile/general/'),
-    ('Personal Details', '/profile/personal/'),
-    ('Family Details', '/profile/family/'),
-    ('Contact Details', '/profile/contact/'),
-    ('Education Details', '/profile/education/'),
-    ('Misc Details', '/profile/misc/'),
-
-]
-
-LOGIN_URL = '/'
-LOGIN_REDIRECT_URL = '/profile'
 
 # Avatar
 AUTO_GENERATE_AVATAR_SIZES = (80, 100, 200)
 AVATAR_GRAVATAR_BACKUP = False
-AVATAR_DEFAULT_URL = posixpath.join(MEDIA_URL, 'images', 'user.png')
+AVATAR_DEFAULT_URL = '%s/images/user.png' % MEDIA_URL
 
 # Django-Compressor
 COMPRESS = True
 
 # Pagination
-ENDLESS_PAGINATION_PER_PAGE = 5
-ENDLESS_PAGINATION_LOADING = '<img src="/media/images/loader.gif" alt="loading" />'
+ENDLESS_PAGINATION_PER_PAGE = 10
+ENDLESS_PAGINATION_LOADING = '<img src="%s/images/loader.gif" alt="loading" />' % MEDIA_URL
 
 
 # All production settings like sensitive passwords go here.

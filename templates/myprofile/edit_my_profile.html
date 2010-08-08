@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block submenu %}
+    {% include "myprofile/submenu.html" %}
+{% endblock %}
+
+{% block content %}
+
+    {% for name, url in settings.MY_PROFILE_MENU %}
+        {% if url in request.path %}
+            <h1> Edit {{ name }}</h1>
+        {% endif %}
+    {% endfor %}
+
+    <p></p>
+
+    <form action="{{ request.path_info }}" method="post">
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+            <div class="msg error">
+                {{ form.non_field_errors|join:' ' }}
+            </div>
+        {% endif %}
+
+        <table>
+            {% for field in form %}
+            <tr>
+                <td class="va-top"> <label> {{ field.label|title }} </label>  </td>
+
+                <td> {{ field }} </td>
+
+                <td>
+                    {% if field.errors %}
+                        <div class="msg error">
+                        {{ field.errors|join:' ' }}
+                        </div>
+                    {% else %}
+                        {{ field.help_text }}
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+            <button type="submit"> Save </button>
+    </form>
+
+{% endblock %}
+

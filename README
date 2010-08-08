@@ -9,13 +9,13 @@ Available Modules:
 
 * Student Profiles
 * Knowledge Base
-* Information Repository (Work-in-progress)
+* Institutional Repository (Work-in-progress)
 
 
 Installation
 ===============
 
-This software is developed with Django and Python, so technically it should run on all supported platforms. But I tested it only on Ubuntu Linux.
+This software is developed with Django and Python, so technically it should run on all supported platforms. But I tested it only on Linux, specifically Ubuntu 10.04.
 
 Prerequisites
 ------------------

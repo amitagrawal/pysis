@@ -2,7 +2,7 @@
 
 <ul class="box" id="submenu">
 	
-	{% for name, url in settings.PROFILE_MENU %}
+	{% for name, url in settings.MY_PROFILE_MENU %}
 		<li> <a href="{{ url }}"> {{ name }} </a>
 		</li>
 	{% endfor %}
@@ -11,7 +11,12 @@
 	<div class="empty_space">
 		<p id="btn-create" class="box">
 			<a href="{% url avatar_change %}"><span>Change Profile Photo</span></a>
+		</p>
+
+		<p id="btn-create" class="box">
+			<a href="{% url password_change %}"><span>Change Password</span></a>
 		</p> 
+		 
 	</div>
 	</div>
 	

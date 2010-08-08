@@ -32,18 +32,19 @@
  
 		<p class="f-left box"> 
  
- 			<!-- Switcher --> 
+ 			<!-- Switcher  
 			<span class="f-left" id="switcher"> 
 				<a href="#" rel="1col" class="styleswitch ico-col1" title="Display one column"><img src="{{ MEDIA_URL }}design/switcher-1col.gif" alt="1 Column" /></a> 
 				<a href="#" rel="2col" class="styleswitch ico-col2" title="Display two columns"><img src="{{ MEDIA_URL }}design/switcher-2col.gif" alt="2 Columns" /></a> 
 			</span> 
+			-->
 
 			<strong><a id="main-title" href="/"> {{ settings.TITLE }}</strong> </a>
  
 		</p> 
  
 		<p class="f-right">
-			<strong><a href="#">{{ request.user.first_name }} {{ request.user.last_name }} ({{ request.user.username }})</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+			<strong><a href="{{ settings.MY_PROFILE_LANDING_URL }}">{{ request.user.first_name }} {{ request.user.last_name }} ({{ request.user.username }})</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 			{% if user.is_superuser %}
 				<strong><a href="/admin">Admin</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			{% endif %}

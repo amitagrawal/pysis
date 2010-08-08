@@ -1,0 +1,26 @@
+<h2 class="t-center"> Students </h2>
+
+<ul class="box" id="submenu">
+	
+	{% for name, url in settings.STUDENTS_PROFILE_MENU %}
+		<li> <a href="{{ url }}"> {{ name }} </a>
+		</li>
+	{% endfor %}
+	
+</ul>
+
+<div class="empty_space"></div>
+
+<!-- Search --> 
+<form action="{% url search_profiles %}" method="get" id="search">
+    <fieldset>
+        <legend>
+            Search
+        </legend>
+        <p>
+            <input type="text" size="17" name="q" class="input-text" />&nbsp;<input type="submit" value="Submit" class="input-submit-02" />
+        </p>
+    </fieldset>
+</form>
+
+

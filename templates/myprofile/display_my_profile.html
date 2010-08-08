@@ -3,12 +3,12 @@
 {% load avatar_tags %}
 
 {% block submenu %}
-	{% include "profile/submenu.html" %}
+	{% include "myprofile/submenu.html" %}
 {% endblock %}   
 
 {% block content %}
 
-	{% for name, url in settings.PROFILE_MENU %}
+	{% for name, url in settings.MY_PROFILE_MENU %}
 		{% if url in request.path %}
 			<h1> {{ name }}</h1>
 		{% endif %}
@@ -18,22 +18,20 @@
 	
 	<div class="col50"> 
 		<table>
-			{% for name, value in list %}
+			{% for name, value in objects %}
 				<tr> 
-					<td> <strong> {{ name }} </strong> </td>
-					<td> <strong> {{ value|default:'' }} </strong> </td>
+					<td> <strong> {{ name|title }} </strong> </td>
+					<td> <strong> {{ value|default:''|linebreaksbr  }} </strong> </td>
 				</tr> 
 			{% endfor %}
 		</table>
 		
-		{% if edit %}
-			<a href="{{request.path}}edit"><p class="edit">Edit</p></a>
-		{% endif %}
+		<a href="{{request.path}}edit"><p class="edit">Edit</p></a>
 	</div> <!-- /col50 --> 
  
 	<div class="col50 f-right">
 		<div class="t-center">
-			{% avatar user 200 %}
+			{% avatar request.user 200 %}
 		</div> <!-- /t-center -->
 	</div> <!-- /col50 -->
 

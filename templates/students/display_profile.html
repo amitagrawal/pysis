@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% load avatar_tags %}
+
+{% block submenu %}
+	{% include "students/submenu.html" %}
+{% endblock %}   
+
+{% block content %}
+
+	<h1> Profile of {{ profile.full_name }}</h1>
+	
+	<p></p>
+	
+	<div class="col50"> 
+		<table>
+			{% for name, value in profile.search_fullview %}
+				{% if value %}
+					<tr> 
+						<td> <strong> {{ name|title }} </strong> </td>
+						<td> <strong> {{ value|default:''  }} </strong> </td>
+					</tr>
+				{% endif %} 
+			{% endfor %}
+		</table>
+		
+	</div> <!-- /col50 --> 
+ 
+	<div class="col50 f-right">
+		<div class="t-center">
+			{% avatar profile.register_number 200 %}
+		</div> <!-- /t-center -->
+	</div> <!-- /col50 -->
+
+{% endblock %}
