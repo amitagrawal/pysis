@@ -10,6 +10,8 @@ MESSAGE_TAGS = {
     messages.ERROR : 'error',
 }
 
+GOOGLE_ANALYTICS_ID = "'UA-15662130-6'"
+
 MY_PROFILE_LANDING_URL = '/myprofile/general/'
 STUDENTS_LANDING_URL = '/students/search/?q=all'
 

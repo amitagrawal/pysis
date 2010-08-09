@@ -1,3 +1,4 @@
+Version 17 	 2010-08-09 	 Changing landing page to profile edit page 
 Version 16 	 2010-08-09 	 Chaning PhoneNumber from Int to String 
 Version 15 	 2010-08-09 	 Daemonize fcgi 
 Version 14 	 2010-08-09 	 Added 400.html 500.html 
