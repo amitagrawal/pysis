@@ -1,14 +1,6 @@
 #!/usr/bin/env python
 
-import os
-import sys
-from os.path import abspath, dirname, join
-sys.path.insert(0, abspath(join(dirname(__file__), "../")))
-sys.path.insert(0, abspath(join(dirname(__file__), "../../")))
-os.environ["DJANGO_SETTINGS_MODULE"] = "settings.settings"
-
-from django.conf import settings
-sys.path.insert(0, join(settings.PROJECT_ROOT, "apps"))
+import pysis.scripts.bootstrap_django
 
 import csv
 from django.contrib.auth.models import User

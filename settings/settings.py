@@ -1,14 +1,17 @@
 # Django settings for pysis project.
 
+import sys
 import os.path
 import posixpath
 
-from pysis_settings import *
+from pysis.settings.pysis_settings import *
 
 SETTINGS_DIR = os.path.abspath(os.path.dirname(__file__))
 PROJECT_ROOT = os.path.split(SETTINGS_DIR)[0]
 PROJECT_PARENT = os.path.split(PROJECT_ROOT)[0]
 PROJECT_NAME = os.path.split(PROJECT_ROOT)[1]
+
+sys.path.insert(0, os.path.join(PROJECT_ROOT, "apps"))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -94,7 +97,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
     'django.contrib.messages.context_processors.messages',
     #'announcements.context_processors.announcements',
-    PROJECT_NAME + '.misc.context_processors.settings',
+    'generic_app.context_processors.settings',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -139,6 +142,7 @@ INSTALLED_APPS = (
     #'announcements',
 
     # My apps
+    'generic_app',
     'myprofile',
     'students',
 )
@@ -146,6 +150,17 @@ INSTALLED_APPS = (
 FIXTURE_DIRS = (
     os.path.join(PROJECT_ROOT, "fixtures"),
 )
+
+DATE_INPUT_FORMATS = (
+'%d-%m-%Y', '%d-%m-%y', '%Y-%m-%d', '%y-%m-%d', '%m-%d-%Y', '%m-%d-%Y',
+'%d/%m/%Y', '%d/%m/%y', '%Y/%m/%d', '%y/%m/%d', '%m/%d/%Y', '%m/%d/%y',
+'%d %m %Y', '%d %m %y', '%Y %m %d', '%y %m %d', '%m %d %Y', '%m %d %y',
+'%d.%m.%Y', '%d.%m.%y', '%Y.%m.%d', '%y.%m.%d', '%m.%d.%Y', '%m.%d.%y',
+
+'%b %d %Y', '%b %d, %Y', '%d %b %Y', '%d %b, %Y',
+'%B %d %Y', '%B %d, %Y', '%d %B %Y', '%d %B, %Y',
+)
+
 
 # Django-debug-toolbar settings
 INTERNAL_IPS = ('127.0.0.1', '127.0.1.1')
@@ -156,8 +171,8 @@ DEBUG_TOOLBAR_CONFIG = {
 # Grappelli
 GRAPPELLI_ADMIN_HEADLINE = APPLICATION_NAME
 GRAPPELLI_ADMIN_TITLE = APPLICATION_NAME
-ADMIN_TOOLS_INDEX_DASHBOARD = PROJECT_NAME + '.misc.dashboard.CustomIndexDashboard'
-ADMIN_TOOLS_APP_INDEX_DASHBOARD = PROJECT_NAME + '.misc.dashboard.CustomAppIndexDashboard'
+ADMIN_TOOLS_INDEX_DASHBOARD = 'generic_app.dashboard.CustomIndexDashboard'
+ADMIN_TOOLS_APP_INDEX_DASHBOARD = 'generic_app.dashboard.CustomAppIndexDashboard'
 
 
 # Avatar
@@ -176,6 +191,6 @@ ENDLESS_PAGINATION_LOADING = '<img src="%s/images/loader.gif" alt="loading" />' 
 # All production settings like sensitive passwords go here.
 # Don't forget to exclude this file from version control
 try:
-    from production_settings import *
+    from pysis.settings.production_settings import *
 except ImportError:
     pass

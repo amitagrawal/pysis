@@ -43,7 +43,11 @@ Steps
 
 #. Install requirements ::
 
-    cd /path_to_pysis_project_source
-    pip install -r misc/requirements.txt
+    cd /path_to_pysis_project_src_root
+    pip install -r requirements/requirements.txt
+
+#. Add pysis to python path. Verify that this command won't throw any error ::
+
+    >>> import pysis
 
 

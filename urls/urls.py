@@ -8,7 +8,7 @@ from django.contrib.auth.views import password_change
 from django.core.urlresolvers import reverse
 from django.conf import settings
 
-from misc.common_views import logoutuser, password_change_done
+from generic_app.views import logoutuser
 import myprofile
 
 try:
@@ -16,6 +16,11 @@ try:
 except admin.sites.AlreadyRegistered:
     # This try-except is required to make nose doctest happy
     pass
+
+@login_required
+def password_change_done(request):
+    messages.success(request, 'Successfully changed your password.')
+    return redirect(settings.MY_PROFILE_LANDING_URL)
 
 urlpatterns = patterns('',
     # Example:

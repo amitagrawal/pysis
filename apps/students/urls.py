@@ -10,7 +10,7 @@ from students.views import search_profiles, display_profile
 urlpatterns = patterns('',
 
     (r'^$',
-     lambda request: HttpResponseRedirect('/students/search/')),
+     lambda request: HttpResponseRedirect(settings.STUDENTS_LANDING_URL)),
 
     url(r'^search/$', search_profiles,
         name='search_profiles'),
