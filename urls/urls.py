@@ -26,10 +26,10 @@ urlpatterns = patterns('',
         name='login'),
     url(r'^logout/$', logoutuser,
         name='logout'),
-    url(r'^password_change/$', 
+    url(r'^password_change/$',
         password_change, {'post_change_redirect' : '/password_change_done'},
         name='password_change'),
-    url(r'^password_change_done/$', 
+    url(r'^password_change_done/$',
         password_change_done,
         name='password_change_done'),
 
@@ -38,12 +38,12 @@ urlpatterns = patterns('',
     (r'^grappelli/', include('grappelli.urls')),
     (r'^admin_tools/', include('admin_tools.urls')),
     (r'^browse/(.*)', login_required(databrowse.site.root)),
-    (r'^announcements/', include('announcements.urls')),
+    #(r'^announcements/', include('announcements.urls')),
 
     (r'^myprofile/photo/', include('avatar.urls')),
     (r'^myprofile/', include('myprofile.urls')),
-    
-    (r'^students/', include('students.urls')),    
+
+    (r'^students/', include('students.urls')),
 
     ('^attendance/$', direct_to_template, {'template': 'coming_soon.html'}),
     ('^marks/$', direct_to_template, {'template': 'coming_soon.html'}),

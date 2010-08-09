@@ -1,163 +1,165 @@
 {% load compress %}
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
-<head> 
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
-	<meta http-equiv="content-language" content="en" /> 
-	<meta name="robots" content="noindex,nofollow" /> 
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="content-language" content="en" />
+    <meta name="robots" content="noindex,nofollow" />
 
-	{% compress css %}
-	<link rel="stylesheet" media="screen,projection" type="text/css" href="{{ MEDIA_URL }}css/reset.css" /> <!-- RESET --> 
-	<link rel="stylesheet" media="screen,projection" type="text/css" href="{{ MEDIA_URL }}css/main.css" /> <!-- MAIN STYLE SHEET --> 
-	<link rel="stylesheet" media="screen,projection" type="text/css" href="{{ MEDIA_URL }}css/2col.css" title="2col" /> <!-- DEFAULT: 2 COLUMNS --> 
-	<link rel="alternate stylesheet" media="screen,projection" type="text/css" href="{{ MEDIA_URL }}css/1col.css" title="1col" /> <!-- ALTERNATE: 1 COLUMN --> 
-	<!--[if lte IE 6]><link rel="stylesheet" media="screen,projection" type="text/css" href="{{ MEDIA_URL }}css/main-ie6.css" /><![endif]--> <!-- MSIE6 --> 
-	<link rel="stylesheet" media="screen,projection" type="text/css" href="{{ MEDIA_URL }}css/style.css" /> <!-- GRAPHIC THEME --> 
-	<link rel="stylesheet" media="screen,projection" type="text/css" href="{{ MEDIA_URL }}css/mystyle.css" /> <!-- WRITE YOUR CSS CODE HERE -->
-	<link rel="stylesheet" media="screen,projection" type="text/css" href="{{ MEDIA_URL }}css/footer.css" />  
-	{% endcompress %}
-	 
-	<title>{% block title %} {{ settings.TITLE }} {% endblock %}</title> 
-</head> 
+    {% compress css %}
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ MEDIA_URL }}css/reset.css" /> <!-- RESET -->
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ MEDIA_URL }}css/main.css" /> <!-- MAIN STYLE SHEET -->
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ MEDIA_URL }}css/2col.css" title="2col" /> <!-- DEFAULT: 2 COLUMNS -->
+    <link rel="alternate stylesheet" media="screen,projection" type="text/css" href="{{ MEDIA_URL }}css/1col.css" title="1col" /> <!-- ALTERNATE: 1 COLUMN -->
+    <!--[if lte IE 6]><link rel="stylesheet" media="screen,projection" type="text/css" href="{{ MEDIA_URL }}css/main-ie6.css" /><![endif]--> <!-- MSIE6 -->
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ MEDIA_URL }}css/style.css" /> <!-- GRAPHIC THEME -->
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ MEDIA_URL }}css/mystyle.css" /> <!-- WRITE YOUR CSS CODE HERE -->
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ MEDIA_URL }}css/footer.css" />
+    {% endcompress %}
+
+    <title>{% block title %} {{ settings.TITLE }} {% endblock %}</title>
+</head>
 
 <body>
-	
+
   <div id="main">
-  {% if user.is_authenticated %}	
-  	 
-	<!-- Tray --> 
-	<div id="tray" class="box"> 
- 
-		<p class="f-left box"> 
- 
- 			<!-- Switcher  
-			<span class="f-left" id="switcher"> 
-				<a href="#" rel="1col" class="styleswitch ico-col1" title="Display one column"><img src="{{ MEDIA_URL }}design/switcher-1col.gif" alt="1 Column" /></a> 
-				<a href="#" rel="2col" class="styleswitch ico-col2" title="Display two columns"><img src="{{ MEDIA_URL }}design/switcher-2col.gif" alt="2 Columns" /></a> 
-			</span> 
-			-->
+  {% if user.is_authenticated %}
 
-			<strong><a id="main-title" href="/"> {{ settings.TITLE }}</strong> </a>
- 
-		</p> 
- 
-		<p class="f-right">
-			<strong><a href="{{ settings.MY_PROFILE_LANDING_URL }}">{{ request.user.first_name }} {{ request.user.last_name }} ({{ request.user.username }})</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-			{% if user.is_superuser %}
-				<strong><a href="/admin">Admin</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			{% endif %}
-			<strong><a href="{% url logout %}" id="logout">Log out</a></strong>
-		</p> 
- 
-	</div> <!--  /tray --> 
- 
-	{% block mainmenu %}
-		{% include "mainmenu.html" %} 
-	{% endblock %}
-	
-	<div id="cols" class="box">
+    <!-- Tray -->
+    <div id="tray" class="box">
 
-		<!-- Aside (Left Column) --> 
-		<div id="aside" class="box">
+        <p class="f-left box">
 
-			{% block submenu %} 
-			{% endblock %}			
+            <!-- Switcher
+            <span class="f-left" id="switcher">
+                <a href="#" rel="1col" class="styleswitch ico-col1" title="Display one column"><img src="{{ MEDIA_URL }}design/switcher-1col.gif" alt="1 Column" /></a>
+                <a href="#" rel="2col" class="styleswitch ico-col2" title="Display two columns"><img src="{{ MEDIA_URL }}design/switcher-2col.gif" alt="2 Columns" /></a>
+            </span>
+            -->
 
-		</div> <!-- /aside -->
-		
-		<hr class="noscreen" /> 	
+            <strong><a id="main-title" href="/"> {{ settings.TITLE }}</strong> </a>
+
+        </p>
+
+        <p class="f-right">
+            <strong><a href="{{ settings.MY_PROFILE_LANDING_URL }}">{{ request.user.first_name }} {{ request.user.last_name }} ({{ request.user.username }})</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {% if user.is_superuser %}
+                <strong><a href="/admin">Admin</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {% endif %}
+            <strong><a href="{% url logout %}" id="logout">Log out</a></strong>
+        </p>
+
+    </div> <!--  /tray -->
+
+    {% block mainmenu %}
+        {% include "mainmenu.html" %}
+    {% endblock %}
+
+    <div id="cols" class="box">
+
+        <!-- Aside (Left Column) -->
+        <div id="aside" class="box">
+
+            {% block submenu %}
+            {% endblock %}
+
+        </div> <!-- /aside -->
+
+        <hr class="noscreen" />
   {% endif %}
-		  	
-		<!-- Content (Right Column) --> 
-		<div id="content" class="box"> 	
-		
 
-			{% if announcements %}
-				{% for announcement in announcements %}
-			    	<div class="msg {{ announcement.message_level }}">
-			        	{{ announcement.body|safe }} -
-			            <a href="{% url announcement_acknowledge announcement.pk%}?return_url={{ request.path }}">Hide this</a>
-			        </div>
-					<br />
-			    {% endfor %}
-			{% endif %}
-		
-			{% if messages %}
-				{% for message in messages %}
-					<div class="msg {{ message.tags }}">
-						{{ message }}
-					</div>
-				{% endfor %}
-			{% endif %}
-			<p> </p>
-		
-			{% block content %} 
-			{% endblock %}
-			
-		</div> <!-- /content --> 
-	
-	</div> <!-- /cols --> 
-	
-	<hr class="noscreen" /> 
+        <!-- Content (Right Column) -->
+        <div id="content" class="box">
+
+
+            {% comment %}
+            {% if announcements %}
+                {% for announcement in announcements %}
+                    <div class="msg {{ announcement.message_level }}">
+                        {{ announcement.body|safe }} -
+                        <a href="{% url announcement_acknowledge announcement.pk%}?return_url={{ request.path }}">Hide this</a>
+                    </div>
+                    <br />
+                {% endfor %}
+            {% endif %}
+            {% endcomment %}
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="msg {{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <p> </p>
+
+            {% block content %}
+            {% endblock %}
+
+        </div> <!-- /content -->
+
+    </div> <!-- /cols -->
+
+    <hr class="noscreen" />
 
 </div> <!-- /main -->
 
-	<!-- Footer --> 
-	<div id="footer" class="box"> 
- 
-		<p class="f-left"> © {{settings.ORGANIZATION}}</p> 
-		<p class="f-right"> Powered by <a href="http://www.djangoproject.com">Django</a>. 
-							Running {{ settings.APPLICATION_SHORT_NAME }} version {{ settings.VERSION }}
-		</p> 
- 
-	</div> <!-- /footer --> 
- 
+    <!-- Footer -->
+    <div id="footer" class="box">
+
+        <p class="f-left"> © {{settings.ORGANIZATION}}</p>
+        <p class="f-right"> Powered by <a href="http://www.djangoproject.com">Django</a>.
+                            Running {{ settings.APPLICATION_SHORT_NAME }} version {{ settings.VERSION }}
+        </p>
+
+    </div> <!-- /footer -->
 
 
-	{% if settings.DEBUG %}
-		<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.js"></script> 
-	{% else %}	
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-	{% endif %}
 
-	{% compress js %}
-	<script type="text/javascript" src="{{ MEDIA_URL }}js/switcher.js"></script> 
-	<script type="text/javascript" src="{{ MEDIA_URL }}js/toggle.js"></script> 
-	<script type="text/javascript" src="{{ MEDIA_URL }}js/ui.core.js"></script> 
-	<script type="text/javascript" src="{{ MEDIA_URL }}js/ui.tabs.js"></script>
-	<script type="text/javascript" src="{{ MEDIA_URL }}js/endless.js"></script>
-	<script type="text/javascript" src="{{ MEDIA_URL }}js/endless_on_scroll.js"></script> 	 
+    {% if settings.DEBUG %}
+        <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.js"></script>
+    {% else %}
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    {% endif %}
 
- 	<script type="text/javascript"> 
-	$(document).ready(function(){
-		$(".tabs > ul").tabs();
-	});
-	</script>
+    {% compress js %}
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/switcher.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/toggle.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/ui.core.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/ui.tabs.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/endless.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/endless_on_scroll.js"></script>
 
-	<script type="text/javascript"> 
-	function setActive() {
-		liObj = document.getElementById('submenu').getElementsByTagName('li');
-  		for(i=0;i<liObj.length;i++) {
-			aObj = liObj[i].getElementsByTagName('a')[0]
-    		if(document.location.href.indexOf(aObj.href)>=0) {
-      			liObj[i].id='submenu-active';
-    		}
-  		}
-	}
-	</script>
-		
-	<script type="text/javascript"> 
-		window.onload = setActive;
-	</script>
-	
-	{% block extrajs %} {% endblock %}
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $(".tabs > ul").tabs();
+    });
+    </script>
 
-	{% endcompress %}
- 
-</body> 
-</html>				
-			
+    <script type="text/javascript">
+    function setActive() {
+        liObj = document.getElementById('submenu').getElementsByTagName('li');
+        for(i=0;i<liObj.length;i++) {
+            aObj = liObj[i].getElementsByTagName('a')[0]
+            if(document.location.href.indexOf(aObj.href)>=0) {
+                liObj[i].id='submenu-active';
+            }
+        }
+    }
+    </script>
 
-	
+    <script type="text/javascript">
+        window.onload = setActive;
+    </script>
+
+    {% block extrajs %} {% endblock %}
+
+    {% endcompress %}
+
+</body>
+</html>
+
+
+

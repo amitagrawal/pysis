@@ -1,7 +1,7 @@
 {% load endless %}
 {% load avatar_tags %}
 
-{% lazy_paginate objects %}
+{% paginate objects %}
 
 {% for profile in objects %}
 	<a id="search_preview" href="{% url display_profile profile.register_number %}">
@@ -21,7 +21,7 @@
 		
 		<div class="col50 f-right">
 			<div class="t-center">
-				{% avatar profile.register_number 100 %}
+				{% avatar profile.user 100 %}
 			</div> <!-- /t-center -->
 		</div> <!-- /col50 -->
 		
@@ -31,6 +31,11 @@
 		<hr />
 		<p></p>
 	</a>
+{% empty %}
+	<br />
+	<div class="msg error">
+		No Results Found.
+	</div>
 {% endfor %}	
 	
 {% show_more %}	

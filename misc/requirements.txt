@@ -1,19 +1,25 @@
 
 Django==1.2.1
 South==0.7.1
+MySQL-python==1.2.3
+PIL==1.1.7
+
+django-avatar==1.0.5
+django-compressor==0.5.3
+django-endless-pagination==0.6
+django-notification==0.1.5
 
 # For Admin Interface
 fullhistory==0.3.0-final
-# There is no setup.py in grappelli repo.
-# For now checkout this repo directly to site-packages.
-# -e svn+http://django-grappelli.googlecode.com/svn/trunk/grappeli/#egg=grappelli
--e hg+http://bitbucket.org/fetzig/grappelli-admin-tools@4583eb7c9163d62fd4779eb098745a82a72e3ec8#egg=django_admin_tools-tip
+feedparser==4.1
 
-django-staticfiles==0.2.0
-PIL
+ -e svn+http://django-grappelli.googlecode.com/svn/trunk@1093#egg=django_grappelli-2.0-py2.6-dev_r1093
+-e hg+http://bitbucket.org/fetzig/grappelli-admin-tools/@4583eb7c9163d62fd4779eb098745a82a72e3ec8#egg=django_admin_tools-tip
+
 
 # For Developers
 ipython==0.10
+docutils==0.7
 django-debug-toolbar==0.8.3
 Fabric==0.9.1
 pylint==0.21.1
@@ -22,7 +28,9 @@ djangosanetesting==0.5.6
 
 ## The following requirements were added by pip --freeze:
 distribute==0.6.10
+slimmer==0.1.30
 logilab-astng==0.20.1
 logilab-common==0.50.3
 pycrypto==2.2
 wsgiref==0.1.2
+BeautifulSoup==3.1.0.1

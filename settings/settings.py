@@ -93,7 +93,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'django.core.context_processors.request',
     'django.contrib.messages.context_processors.messages',
-    'announcements.context_processors.announcements',
+    #'announcements.context_processors.announcements',
     PROJECT_NAME + '.misc.context_processors.settings',
 )
 
@@ -106,7 +106,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'fullhistory.fullhistory.FullHistoryMiddleware',
-    'announcements.middleware.AnnouncementsMiddleware',
+    #'announcements.middleware.AnnouncementsMiddleware',
 )
 
 ROOT_URLCONF = PROJECT_NAME + '.urls.urls'
@@ -136,7 +136,7 @@ INSTALLED_APPS = (
     'avatar',
     'compressor',
     'endless_pagination',
-    'announcements',
+    #'announcements',
 
     # My apps
     'myprofile',

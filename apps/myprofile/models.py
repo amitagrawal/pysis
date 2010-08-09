@@ -159,7 +159,7 @@ class Profile(models.Model):
         slice = []
 
         for field in fields_list:
-            slice.append((field, self.__getattribute__(field)))
+            slice.append((field.replace('_', ' '), self.__getattribute__(field)))
 
         return slice
 

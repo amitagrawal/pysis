@@ -31,6 +31,18 @@ Prerequisites
 Steps
 -----------------
 
-#. Install a new virtualenv
-#. Install requirements
+#. Install virtualenv and pip ::
+
+    sudo apt-get install python-virtualenv python-pip
+
+#. Create a new virtualenv ::
+
+    virtualenv --no-site-packages pysis
+    source pysis/bin/activate
+
+#. Install requirements ::
+
+    cd /path_to_pysis_project_source
+    pip install -r misc/requirements.txt
+
 
