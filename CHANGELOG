@@ -1,3 +1,4 @@
+Version 15 	 2010-08-09 	 Daemonize fcgi 
 Version 14 	 2010-08-09 	 Added 400.html 500.html 
 Version 13 	 2010-08-09 	 Started using south 
 Version 12 	 2010-08-09 	 Temporarily disabled announcements app 

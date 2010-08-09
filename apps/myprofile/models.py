@@ -109,9 +109,9 @@ class Profile(models.Model):
     personal_email_id = models.EmailField(max_length=75, null=True, blank=True)
     personal_email_id2 = models.EmailField(max_length=75, null=True, blank=True)
     vidyalaya_email_id = models.EmailField(max_length=75, null=True, blank=True)
-    personal_contact_number = models.IntegerField(null=True, blank=True)
-    personal_contact_number2 = models.IntegerField(null=True, blank=True)
-    emergency_contact_number = models.IntegerField(null=True, blank=True)
+    personal_contact_number = models.CharField(max_length=20, null=True, blank=True)
+    personal_contact_number2 = models.CharField(max_length=20, null=True, blank=True)
+    emergency_contact_number = models.CharField(max_length=20, null=True, blank=True)
     present_address = models.TextField(null=True, blank=True)
     permanent_address = models.TextField(null=True, blank=True)
 
