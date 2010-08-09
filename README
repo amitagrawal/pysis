@@ -33,12 +33,13 @@ Steps
 
 #. Install virtualenv and pip ::
 
-    sudo apt-get install python-virtualenv python-pip
+    sudo apt-get install python-pip
+    sudo pip install virtualenv
 
 #. Create a new virtualenv ::
 
-    virtualenv --no-site-packages pysis
-    source pysis/bin/activate
+    virtualenv --no-site-packages pysis_env
+    source pysis_env/bin/activate
 
 #. Install requirements ::
 
