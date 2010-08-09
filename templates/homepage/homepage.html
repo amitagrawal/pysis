@@ -7,32 +7,32 @@
             body {
                 background: #2c4762;
             }
-            
+
             #signup-box {
                 margin-top: 50px;
                 margin-right: 50px;
             }
-            
+
             #title {
-	        	background: #1f354c;
-	            text-align: center;
-	            font-size: 50px;
-	            color: #fff;
-				padding: 40px;
+                background: #1f354c;
+                text-align: center;
+                font-size: 50px;
+                color: #fff;
+                padding: 40px;
             }
-            
+
             #intro {
                 font-size: 33px;
                 color: #ccc;
                 margin: 50px;
             }
-			
-			#signup-form-error {
-				font-size: 16px;
-				padding: 20px;
-				color: #Red;
-			}
-            
+
+            #signup-form-error {
+                font-size: 16px;
+                padding: 20px;
+                color: #Red;
+            }
+
             #signup-submit {
                 width: 150px;
                 height: 40px;
@@ -42,13 +42,13 @@
                 cursor: pointer;
                 font-weight: bold;
             }
-			.label {
-				padding-left: 20px;
-				font-weight: bold;
-				font-size: 16px;
-			}
+            .label {
+                padding-left: 20px;
+                font-weight: bold;
+                font-size: 16px;
+            }
         </style>
-		<title>Student Information System </title>
+        <title>Student Information System </title>
     </head>
     <body>
         <h1 id="title">Student Information System </h1>
@@ -56,7 +56,7 @@
             <tr>
                 <td style="vertical-align:middle; text-align:center;">
                     <p id="intro">
-                        Everything you want to know... 
+                        Everything you want to know...
                         <br/>
                         Just a few clicks away!
                     </p>
@@ -98,5 +98,25 @@
                 </td>
             </tr>
         </table>
+
+
+        <!-- Google Analytics -->
+        {% if settings.GOOGLE_ANALYTICS_ID %}
+            <script type="text/javascript">
+
+              var _gaq = _gaq || [];
+              _gaq.push(['_setAccount', {{ settings.GOOGLE_ANALYTICS_ID|safe }}]);
+              _gaq.push(['_trackPageview']);
+
+              (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+              })();
+
+            </script>
+        {% endif %}
+        <!-- Google Analytics -->
+
     </body>
 </html>
