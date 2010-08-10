@@ -14,6 +14,7 @@ GENDER_CHOICES = (
 RESERVATION_CATEGORY_CHOICES = (
     ('OC', 'OC'),
     ('OBC', 'OBC'),
+    ('MBC', 'MBC'),
     ('BC', 'BC'),
     ('SC', 'SC'),
     ('ST', 'ST'),

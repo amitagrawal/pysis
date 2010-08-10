@@ -1,0 +1,6 @@
+.. -*- restructuredtext -*-
+
+Students Profiles
+=================
+This app allows students and faculty to search, browse and view individual student profiles.
+Only public information is shown.

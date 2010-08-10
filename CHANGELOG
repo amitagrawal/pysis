@@ -1,3 +1,4 @@
+Version 23 	 2010-08-10 	 Added django_extensions app. Using django to serve media when DEBUG=True 
 Version 22 	 2010-08-10 	 Adding favicon support 
 Version 21 	 2010-08-10 	 Small changes 
 Version 20 	 2010-08-10 	 Lot of internal cleanup 
