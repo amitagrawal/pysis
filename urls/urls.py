@@ -2,11 +2,13 @@ from django.conf.urls.defaults import *
 
 from django.contrib import admin
 from django.contrib import databrowse
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.generic.simple import direct_to_template
 from django.contrib.auth.views import password_change
 from django.core.urlresolvers import reverse
 from django.conf import settings
+from django.shortcuts import redirect
 
 from generic_app.views import logoutuser
 import myprofile

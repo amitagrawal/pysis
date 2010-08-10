@@ -23,7 +23,7 @@ def create_default_courses():
         ['BIT', 'BSc IT', 3, 'UG'],
         ['BCM', 'BCom', 3, 'UG'],
         ]
-    
+
     for code, name, duration, level in course_list:
         try:
             c = Course(code=code, name=name, duration=duration, level=level)
@@ -31,8 +31,8 @@ def create_default_courses():
             print 'Created %s' % name
         except IntegrityError:
             print '%s already exists' % name
-        
-     
+
+
 def get_names(name):
     name = name.replace('.', ' ') # Remove Dot
     parts = name.split() # Remove extra whitespace and split into words
@@ -54,31 +54,31 @@ def create_users():
     for register_number, name in students:
         register_number = register_number.lower()
         first_name, last_name = get_names(name)
-        
-        # First two letters of register_number represents year 
+
+        # First two letters of register_number represents year
         year_of_joining = register_number[:2].replace('m', '0')
         year_of_joining = int(year_of_joining) + 2000
-        
+
         course_code =  register_number[2:5]
         course = Course.objects.get(code__iexact=course_code)
-    
+
         try:
-            user = User(username=register_number, 
-                        password=PASSWD, 
-                        first_name=first_name, 
+            user = User(username=register_number,
+                        password=PASSWD,
+                        first_name=first_name,
                         last_name=last_name)
             user.save()
-    
-            profile = Profile(user=user, 
+
+            profile = Profile(user=user,
                               course=course,
                               year_of_joining=year_of_joining)
             profile.save()
-    
+
             print 'Created %s' % register_number
-    
+
         except Exception as e:
             print 'Error while creating %s : %s' % (register_number, str(e))
-            
+
 
 if __name__ == '__main__':
     create_default_courses()

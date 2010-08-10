@@ -43,6 +43,8 @@ class Course(models.Model):
     level = models.CharField(max_length=4,
                              choices=COURSE_LEVELS,
                              default='UG')
+    
+    objects = models.Manager()
 
     def __unicode__(self):
         return self.name

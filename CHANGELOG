@@ -1,3 +1,4 @@
+Version 25 	 2010-08-10 	 Minor changes to profile 
 Version 24 	 2010-08-10 	 Fixing DoesNotExist bug in scripts/create_users.py 
 Version 23 	 2010-08-10 	 Added django_extensions app. Using django to serve media when DEBUG=True 
 Version 22 	 2010-08-10 	 Adding favicon support 
