@@ -57,3 +57,10 @@ urlpatterns = patterns('',
     ('^marks/$', direct_to_template, {'template': 'coming_soon.html'}),
     ('^library/$', direct_to_template, {'template': 'coming_soon.html'}),
 )
+
+
+if settings.DEBUG:
+    urlpatterns += patterns('',
+        (r'^media/(?P<path>.*)$', 'django.views.static.serve',
+        {'document_root': settings.MEDIA_ROOT}),
+    )

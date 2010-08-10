@@ -139,6 +139,7 @@ INSTALLED_APPS = (
     'avatar',
     'compressor',
     'endless_pagination',
+    'django_extensions',
     #'announcements',
 
     # My apps
