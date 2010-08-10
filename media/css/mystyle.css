@@ -98,3 +98,8 @@ img {
 .endless_loading {
 	text-align: center;
 }
+
+/* Search box in side menu */
+#aside #search fieldset .input-text {
+	width: 120px;
+}

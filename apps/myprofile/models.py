@@ -37,13 +37,15 @@ COURSE_LEVELS = (
     )
 
 class Course(models.Model):
-    course_name = models.CharField(max_length=30, unique=True)
-    course_level = models.CharField(max_length=4,
-                                    choices=COURSE_LEVELS,
-                                    default='UG')
+    code = models.CharField(max_length=10, unique=True)
+    name = models.CharField(max_length=50, unique=True)
+    duration = models.IntegerField(help_text='Duration of the course in years')
+    level = models.CharField(max_length=4,
+                             choices=COURSE_LEVELS,
+                             default='UG')
 
     def __unicode__(self):
-        return self.course_name
+        return self.name
 
 
 class Profile(models.Model):
