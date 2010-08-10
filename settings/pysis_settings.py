@@ -1,5 +1,8 @@
 # These are settings specific to PySIS project
 
+import pysis.version
+VERSION = pysis.version.version
+
 # We need this to match our css classes
 from django.contrib import messages
 MESSAGE_TAGS = {
