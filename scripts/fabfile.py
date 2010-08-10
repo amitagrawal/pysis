@@ -8,10 +8,10 @@ from django.conf import settings
 env.hosts = [os.environ['MYSERVER']]
 
 def test():
-    local('pylint ' +
-          '--reports=n ' +
-          '--disable=C,R,W ' +
-          settings.PROJECT_ROOT, capture=False)
+    #local('pylint ' +
+          #'--reports=n ' +
+          #'--disable=C,R,W ' +
+          #settings.PROJECT_ROOT, capture=False)
 
     local('nosetests -v -d ' +
            '--with-doctest ' +

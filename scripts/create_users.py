@@ -38,9 +38,8 @@ for register_number, name in students:
 
     try:
         user = User(username=register_number, password=PASSWD, first_name=first_name, last_name=last_name)
-        user.save()
-
         profile = Profile.objects.get_or_create(user=user)
+        user.save()
 
         print 'Created %s' % register_number
 
