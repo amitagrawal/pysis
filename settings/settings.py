@@ -141,6 +141,7 @@ INSTALLED_APPS = (
     'endless_pagination',
     'django_extensions',
     #'announcements',
+    'test_utils',
 
     # My apps
     'generic_app',

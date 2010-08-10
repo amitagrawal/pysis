@@ -1,3 +1,4 @@
+Version 27 	 2010-08-10 	 Adding pysis version to the footer 
 Version 26 	 2010-08-10 	 Testing related changes 
 Version 25 	 2010-08-10 	 Minor changes to profile 
 Version 24 	 2010-08-10 	 Fixing DoesNotExist bug in scripts/create_users.py 

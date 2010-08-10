@@ -3,7 +3,7 @@ from django.conf.urls.defaults import *
 from django.contrib import admin
 from django.contrib import databrowse
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.views.generic.simple import direct_to_template
 from django.contrib.auth.views import password_change
 from django.core.urlresolvers import reverse
@@ -47,7 +47,7 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     (r'^grappelli/', include('grappelli.urls')),
     (r'^admin_tools/', include('admin_tools.urls')),
-    (r'^browse/(.*)', login_required(databrowse.site.root)),
+    #(r'^browse/(.*)', login_required(databrowse.site.root)),
     #(r'^announcements/', include('announcements.urls')),
 
     (r'^myprofile/photo/', include('avatar.urls')),

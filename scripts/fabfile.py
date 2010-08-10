@@ -11,12 +11,12 @@ env.hosts = [os.environ['MYSERVER']]
 def test():
     # use test settings, not actual settings
     os.environ['DJANGO_SETTINGS_MODULE'] = 'pysis.settings.test_settings'
-    os.environ['PYTHONPATH'] = '%s/apps' %  settings.PROJECT_ROOT
+    os.environ['PYTHONPATH'] = '.:..:%s/apps' %  settings.PROJECT_ROOT
         
-    local('pylint ' +
-          '--reports=n ' +
-          '--disable=C,R,W ' +
-          settings.PROJECT_ROOT, capture=False)
+#    local('pylint ' +
+#          '--reports=n ' +
+#          '--disable=C,R,W ' +
+#          settings.PROJECT_ROOT, capture=False)
 
     local('nosetests -v -d ' +
            '--with-doctest ' +
