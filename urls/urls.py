@@ -38,6 +38,9 @@ urlpatterns = patterns('',
         password_change_done,
         name='password_change_done'),
 
+    (r'^favicon\.ico$', 'django.views.generic.simple.redirect_to',
+                        {'url': '%s/images/favicon.ico' % settings.MEDIA_URL}),
+
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/', include(admin.site.urls)),
     (r'^grappelli/', include('grappelli.urls')),
