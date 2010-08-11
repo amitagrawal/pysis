@@ -1,14 +1,10 @@
 from djangosanetesting.cases import HttpTestCase
 from django.conf import settings
 
+from myprofile.tests.common import create_user
+
 username = '09mca001'
 password = 'p'
-
-def create_user():
-    from django.contrib.auth.models import User
-    User.objects.create_user(username=username,
-                             password=password,
-                             email='a@a.com')
 
 
 class TestSanity(HttpTestCase):

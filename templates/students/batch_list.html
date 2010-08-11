@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block submenu %}
+	{% include "students/submenu.html" %}
+{% endblock %}   
+
+{% block content %}
+
+	<h1> Browse by Batch </h1>
+
+	<ul>
+	{% for batch in batches %}
+		<li>
+		<a href="{% url display_batch batch.course.code batch.year %}"> {{batch.name }} </a>
+		</li>
+	{% empty %}
+	aaa
+	{% endfor %}
+	</ul>	
+{% endblock %}

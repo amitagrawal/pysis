@@ -1,5 +1,6 @@
 
-import pysis.scripts.bootstrap_django
+from pysis.scripts import bootstrap_django
+bootstrap_django.main()
 
 import os
 import sys
@@ -14,11 +15,11 @@ def test():
     os.environ['PYTHONPATH'] = '.:..:%s/apps' %  settings.PROJECT_ROOT
 
     local('pylint ' +
-          # E1101 is a very useful message. 
-          # But I have to disable it because 
+          # E1101 is a very useful message.
+          # But I have to disable it because
           # pylint can not understand django's dynamic structure.
           # Should enable it back when pylint becomes more django friendly in future.
-          '-d E1101 ' + 
+          '-d E1101 ' +
           '--reports=n ' +
           '--disable=C,R,W ' +
           settings.PROJECT_ROOT, capture=False)

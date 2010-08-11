@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
-import pysis.scripts.bootstrap_django
+from pysis.scripts import bootstrap_django
+bootstrap_django.main()
 
 import csv
 from django.db.utils import IntegrityError

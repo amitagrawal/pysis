@@ -2,15 +2,19 @@
 
 """
 
-try:
-    from pysis.settings import settings
-except ImportError:
+def main():
     try:
-        from pysis import settings
+        from pysis.settings import settings
     except ImportError:
-        import sys
-        sys.stderr.write('Can not find settings module. \n Aborting...')
-        sys.exit(1)
+        try:
+            from pysis import settings
+        except ImportError:
+            import sys
+            sys.stderr.write('Can not find settings module. \n Aborting...')
+            sys.exit(1)
 
-from django.core.management import setup_environ
-setup_environ(settings)
+    from django.core.management import setup_environ
+    setup_environ(settings)
+
+if __name__ == '__main__':
+    main()

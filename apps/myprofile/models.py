@@ -48,6 +48,20 @@ class Course(models.Model):
 
     def __unicode__(self):
         return self.name
+    
+class Batch(models.Model):
+    code = models.CharField(max_length=5, unique=True,
+                            help_text='First 5 characters of register number')
+    course = models.ForeignKey(Course, null=True, blank=True)
+    year = models.IntegerField()
+    name = models.CharField(max_length=50, unique=True)
+    
+    def __unicode__(self):
+        return self.name
+    
+    class Meta:
+        ordering = ["-year"]
+        verbose_name_plural = "Batches"
 
 
 class Profile(models.Model):
@@ -84,8 +98,8 @@ class Profile(models.Model):
             return '%s %s' % (month, day)
 
     # GeneralDetails
-    course = models.ForeignKey(Course, null=True, blank=True)
-    year_of_joining = models.DecimalField(max_digits=4, decimal_places=0, null=True, blank=True)
+    course = models.ForeignKey(Course)
+    year_of_joining = models.DecimalField(max_digits=4, decimal_places=0)
 
 
     # PersonalDetails

@@ -159,22 +159,6 @@
     });
     </script>
 
-    <script type="text/javascript">
-    function setActive() {
-        liObj = document.getElementById('submenu').getElementsByTagName('li');
-        for(i=0;i<liObj.length;i++) {
-            aObj = liObj[i].getElementsByTagName('a')[0]
-            if(document.location.href.indexOf(aObj.href)>=0) {
-                liObj[i].id='submenu-active';
-            }
-        }
-    }
-    </script>
-
-    <script type="text/javascript">
-        window.onload = setActive;
-    </script>
-
     {% block extrajs %} {% endblock %}
 
     {% endcompress %}

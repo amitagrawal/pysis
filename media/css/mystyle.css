@@ -1,6 +1,9 @@
 /* WRITE YOUR CSS CODE HERE */
 
-#aside ul li a {font-weight:bold;}
+#aside ul li a {
+	font-weight:bold;
+	border-bottom: none;
+}
 
 /* tables */
 #content table {

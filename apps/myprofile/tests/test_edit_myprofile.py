@@ -3,14 +3,14 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 
 from common import create_user, username, password
-from myprofile.models import Profile
+from myprofile.models import Profile, Course
 
 
-general_details_url = '/myprofile/general/edit/'
-general_details = [
-    # year_of_joining, msg, success?
-    ['2009', 'updated successfully', 1],
-    ['abcd', 'Enter a number', 0],
+contact_details_url = '/myprofile/contact/edit/'
+contact_details = [
+    # personal_email_id, personal_contact_number, msg, success?
+    ['abcd@abc.com', '99999999999', 'updated successfully', 1],
+    ['aaaaa', 'abcd', 'Enter a valid e-mail address', 0],
 ]
 
 personal_details_url = '/myprofile/personal/edit/'
@@ -29,18 +29,20 @@ class TestMyProfileEdit(HttpTestCase):
         self.host = 'localhost'
         self.port = 8000
 
-    def test_general_details(self):
+    def test_contact_details(self):
         user = create_user()
         assert self.client.login(username=username, password=password)
-
-        for year, msg, success in general_details:
-            res = self.client.post(general_details_url,
-                                   {'year_of_joining':year},
+        
+        for personal_email_id, personal_contact_number, msg, success in contact_details:
+            res = self.client.post(contact_details_url,
+                                   {'personal_email_id' : personal_email_id,
+                                    'personal_contact_number' : personal_contact_number,
+                                   },
                                    follow=True)
 
             assert msg in res.content
             if success:
-                assert int(year) == Profile.objects.get(user=user).year_of_joining
+                assert personal_contact_number == Profile.objects.get(user=user).personal_contact_number
 
     def test_personal_details(self):
         user = create_user()
@@ -49,8 +51,8 @@ class TestMyProfileEdit(HttpTestCase):
         for gender, date_of_birth, actual_date_of_birth, msg, success in personal_details:
             res = self.client.post(personal_details_url,
                                    {'gender':gender,
-                                    'date_of_birth':date_of_birth,
-                                    'actual_date_of_birth':actual_date_of_birth,
+                                    'date_of_birth' : date_of_birth,
+                                    'actual_date_of_birth' : actual_date_of_birth,
                                    },
                                    follow=True)
 

@@ -4,6 +4,7 @@ import fullhistory
 from fullhistory.admin import FullHistoryAdmin
 
 from myprofile.models import Course 
+from myprofile.models import Batch
 from myprofile.models import Profile 
 
 def register(model, modelAdmin):
@@ -15,4 +16,5 @@ class DefaultAdmin(FullHistoryAdmin):
     pass
 
 register(Course, DefaultAdmin)
+register(Batch, DefaultAdmin)
 register(Profile, DefaultAdmin)

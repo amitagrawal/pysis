@@ -21,7 +21,7 @@ class TestPasswordChange(HttpTestCase):
     def test_password_change(self):
         user = create_user()
         assert self.client.login(username=username, password=password)
-
+        
         for old, new, msg, success in passwords:
             res = self.client.post(password_change_url,
                                    {'old_password':old,

@@ -1,0 +1,166 @@
+[
+    {
+     "pk": 1,
+     "model": "myprofile.course",
+     "fields": {
+                "duration": 3,
+                "code": "MCA",
+                "name": "MCA",
+                "level": "PG"
+               }
+    },
+
+    {"pk": 2,
+     "model": "myprofile.course",
+     "fields": {
+                "duration": 3,
+                "code": "BCA",
+                "name": "BCA",
+                "level": "UG"
+               }
+    },
+
+    {"pk": 3,
+     "model": "myprofile.course",
+     "fields": {
+                "duration": 3,
+                "code": "BSB",
+                "name": "BSc Computer Science",
+                "level": "UG"
+               }
+    },
+
+    {"pk": 4,
+     "model": "myprofile.course",
+     "fields": {"duration": 3,
+                "code": "BIT",
+                "name": "BSc IT",
+                "level": "UG"
+               }
+    },
+
+
+
+    {"pk": 2,
+     "model": "myprofile.batch",
+     "fields": {
+                "course": 1,
+                "code": "08mca",
+                "name": "MCA 2008-2011 Batch",
+                "year": 2008
+               }
+    },
+
+    {"pk": 3,
+     "model": "myprofile.batch",
+     "fields": {
+                "course": 1,
+                "code": "09mca",
+                "name": "MCA 2009-2012 Batch",
+                "year": 2009
+               }
+    },
+
+    {"pk": 4,
+     "model": "myprofile.batch",
+     "fields": {
+                "course": 1,
+                "code": "10mca",
+                "name": "MCA 2010-2013 Batch",
+                "year": 2010
+               }
+    },
+
+    {"pk": 5,
+     "model": "myprofile.batch",
+     "fields": {
+                "course": 2,
+                "code": "08bca",
+                "name": "BCA 2008-2011 Batch",
+                "year": 2008
+               }
+    },
+
+    {"pk": 6,
+     "model": "myprofile.batch",
+     "fields": {
+                "course": 2,
+                "code": "09bca",
+                "name": "BCA 2009-2012 Batch",
+                "year": 2009
+               }
+    },
+
+    {"pk": 7,
+     "model": "myprofile.batch",
+     "fields": {
+                "course": 2,
+                "code": "10bca",
+                "name": "BCA 2010-2013 Batch",
+                "year": 2010
+               }
+    },
+
+    {"pk": 8,
+     "model": "myprofile.batch",
+     "fields": {
+                "course": 3,
+                "code": "08bsb",
+                "name": "BSc Computer Science 2008-2011 Batch",
+                "year": 2008
+               }
+    },
+
+    {"pk": 9,
+     "model": "myprofile.batch",
+     "fields": {
+                "course": 3,
+                "code": "09bsb",
+                "name": "BSc Computer Science 2009-2012 Batch",
+                "year": 2009
+               }
+    },
+
+    {"pk": 10,
+     "model": "myprofile.batch",
+     "fields": {
+                "course": 3,
+                "code": "10bsb",
+                "name": "BSc Computer Science 2010-2013 Batch",
+                "year": 2010
+               }
+    },
+
+    {"pk": 11,
+     "model": "myprofile.batch",
+     "fields": {
+                "course": 3,
+                "code": "08bit",
+                "name": "BSc IT 2008-2011 Batch",
+                "year": 2008
+               }
+    },
+
+    {"pk": 12,
+     "model": "myprofile.batch",
+     "fields": {
+                "course": 3,
+                "code": "09bit",
+                "name": "BSc IT 2009-2012 Batch",
+                "year": 2009
+               }
+    },
+
+    {"pk": 13,
+     "model": "myprofile.batch",
+     "fields": {
+                "course": 3,
+                "code": "10bit",
+                "name": "BSc IT 2010-2013 Batch",
+                "year": 2010
+               }
+    }
+
+
+]
+

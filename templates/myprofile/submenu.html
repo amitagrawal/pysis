@@ -3,7 +3,8 @@
 <ul class="box" id="submenu">
 	
 	{% for name, url in settings.MY_PROFILE_MENU %}
-		<li> <a href="{{ url }}"> {{ name }} </a>
+		<li {% if url in request.path %} id="submenu-active" {% endif %}> 
+			<a href="{{ url }}"> {{ name }} </a>
 		</li>
 	{% endfor %}
 

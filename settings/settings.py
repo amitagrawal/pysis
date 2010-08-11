@@ -186,7 +186,7 @@ AVATAR_DEFAULT_URL = '%s/images/user.png' % MEDIA_URL
 COMPRESS = True
 
 # Pagination
-ENDLESS_PAGINATION_PER_PAGE = 10
+ENDLESS_PAGINATION_PER_PAGE = 5
 ENDLESS_PAGINATION_LOADING = '<img src="%s/images/loader.gif" alt="loading" />' % MEDIA_URL
 
 

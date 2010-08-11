@@ -16,7 +16,7 @@ MESSAGE_TAGS = {
 GOOGLE_ANALYTICS_ID = "'UA-15662130-6'"
 
 MY_PROFILE_LANDING_URL = '/myprofile/general/'
-STUDENTS_LANDING_URL = '/students/search/?q=all'
+STUDENTS_LANDING_URL = '/students/browse/myclassmates/'
 
 LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = MY_PROFILE_LANDING_URL
@@ -54,10 +54,13 @@ MY_PROFILE_MENU = [
 STUDENTS_PROFILE_MENU = [
 
     # (Name, URL)
-    ('My Classmates', '/students/search/?q=myclassmates'),
-    ('My Seniors', '/students/search/?q=myseniors'),
-    ('My Juniors', '/students/search/?q=myjuniors'),
-    ('All Students', STUDENTS_LANDING_URL),
+    ('My Classmates', '/students/browse/myclassmates/'),
+    ('My Seniors', '/students/browse/myseniors/'),
+    ('My Juniors', '/students/browse/myjuniors/'),
+    ('', ''),
+    ('Browse by Batch', '/students/browse/'),
+    ('', ''),
+    ('All Students', '/students/search/?q=all'),
 ]
 
 

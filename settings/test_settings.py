@@ -33,10 +33,17 @@ URLS_TO_TEST = [
     '/myprofile/photo/delete',
     
     '/students/search/?q=all',
-    '/students/search/?q=myclassmates',
-    '/students/search/?q=myjuniors',
-    '/students/search/?q=myseniors',
+    '/students/search/?q=ram',
     '/students/search/?q=somejunk',
+    
+    '/students/browse',
+    '/students/browse/MCA',
+    '/students/browse/MCA/2009',
+    
+    '/students/browse/myclassmates',
+    '/students/browse/myjuniors',
+    '/students/browse/myseniors',
+    '/students/browse/somejunk',
     
     '/students/display/09mca001',
     
