@@ -1,6 +1,5 @@
 from django.conf import settings
 from django import forms
-from django.forms import ModelForm
 
 from myprofile.models import Profile
 
