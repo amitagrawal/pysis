@@ -41,10 +41,9 @@
 /* list */
 #content ul li {
 	background: none;
-}
+} 
 
 /* BUTTONS */
-
 .edit, button{
     width:150px;
     height:37px;
@@ -58,10 +57,9 @@
     text-align:center;
 }
 
-.edit a { color:#fff;}
+.edit a { color:#fff;} 
 
 /* Images */
-
 img {
 	padding:10px;
 	vertical-align: middle;
@@ -77,6 +75,11 @@ img {
 #menu ul li a {
 	font-weight:bold;
 	color:#666;
+} 
+
+#menu ul li a span {
+	/* Fix for ugly underline in Firefox */
+	padding:7px 15px 8px 8px;
 }
 
 /* Tray */
@@ -89,10 +92,6 @@ img {
 }
 
 /* Profile Listing */
-#search_preview {
-	color: #303030;
-	text-decoration: none;
-}
 
 /* Paginator */
 .endless_loading {

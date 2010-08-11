@@ -4,10 +4,14 @@
 {% lazy_paginate objects %}
 
 {% for profile in objects %}
-    <a id="search_preview" href="{% url display_profile profile.register_number %}">
-        <h2 class="tit"> {{ profile.full_name }} </h2>
-        <div class="col50">
-            <table>
+    <a href="{% url display_profile profile.register_number %}">
+       <h2 class="tit"> {{ profile.full_name }} </h2>
+	</a>
+
+	<table style="border:inset;" >
+	<tr>
+	<td style="vertical-align:middle;">
+            <table style="border-bottom: none;">
                 {% for name, value in profile.search_preview %}
                     {% if value %}
                         <tr>
@@ -17,22 +21,16 @@
                     {% endif %}
                 {% endfor %}
             </table>
-        </div> <!-- /col50 -->
+	</td>
+	<td style="vertical-align:middle; text-align:center;">
+		<a href="{% url display_profile profile.register_number %}">
+        	{% avatar profile.user 150 %}
+		</a>
+	</td>
+	</tr>
+	</table>
 
-        <div class="col50 f-right">
-            <div class="t-center">
-                {% avatar profile.user 100 %}
-            </div> <!-- /t-center -->
-        </div> <!-- /col50 -->
-
-        <div class="fix"></div>
-
-        <p></p>
-        <hr />
-        <p></p>
-    </a>
 {% empty %}
-    <br />
     <div class="msg error">
         No Results Found.
     </div>

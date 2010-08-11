@@ -1,3 +1,4 @@
+Version 30 	 2010-08-11 	 Added lot of functional test cases 
 Version 29 	 2010-08-11 	 Disabling L10N so that DATE_INPUT_FORMATS can be used in ModelForm Date Fields 
 Version 28 	 2010-08-10 	 Added Sanity test cases 
 Version 27 	 2010-08-10 	 Adding pysis version to the footer 
