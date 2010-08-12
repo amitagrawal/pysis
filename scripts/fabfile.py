@@ -41,7 +41,9 @@ def deploy(skip_tests='no'):
     local('hg push %s' % master_repo, capture=False)
 
     run('hg fetch -R %s %s' % (remote_repo, master_repo))
+    run('source %s/activate && pip install -r %s/requirements/requirements.txt -q' % (remote_env, remote_repo))
     run('%s/python %s/manage.py migrate myprofile' % (remote_env, remote_repo))
+    run('source %s/activate && fab -f %s/scripts/fabfile.py test ' % (remote_env, remote_repo))
     run('source %s/activate && %s/scripts/restart_webserver.sh' % (remote_env, remote_repo))
 
 
