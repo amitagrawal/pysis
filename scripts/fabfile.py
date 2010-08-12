@@ -7,7 +7,7 @@ import sys
 from fabric.api import env, local, run
 from django.conf import settings
 
-env.hosts = [os.environ['MYSERVER']]
+env.hosts = [os.environ.get('MYSERVER')]
 
 def test():
     # use test settings, not actual settings
