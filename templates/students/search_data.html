@@ -8,10 +8,10 @@
        <h2 class="tit"> {{ profile.full_name }} </h2>
 	</a>
 
-	<table style="border:inset;" >
+	<table >
 	<tr>
-	<td style="vertical-align:middle;">
-            <table style="border-bottom: none;">
+	<td style="vertical-align:middle; width: 65%;">
+            <table style="border:solid 1px #F0F0EE; ">
                 {% for name, value in profile.search_preview %}
                     {% if value %}
                         <tr>
@@ -22,7 +22,7 @@
                 {% endfor %}
             </table>
 	</td>
-	<td style="vertical-align:middle; text-align:center;">
+	<td style="vertical-align:middle; text-align:center; width: 35%;">
 		<a href="{% url display_profile profile.register_number %}">
         	{% avatar profile.user 150 %}
 		</a>

@@ -8,6 +8,13 @@
 		</li>
 	{% endfor %}
 	
+	{% if request.path not in settings.STUDENTS_PROFILE_MENU_URLS %}
+		<br />
+		<li id="submenu-active"> 
+			<a href="{{ request.path }}"> {{ title|truncatewords:4 }} </a>
+		</li>	
+	{% endif %}
+	
 </ul>
 
 <div class="empty_space"></div>

@@ -63,6 +63,7 @@ STUDENTS_PROFILE_MENU = [
     ('All Students', '/students/search/?q=all'),
 ]
 
+STUDENTS_PROFILE_MENU_URLS =  [x[1] for x in STUDENTS_PROFILE_MENU]
 
 # These fields determine who can see what.
 # For the complete list of available fields, see myprofile.views.Profile

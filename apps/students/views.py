@@ -101,6 +101,7 @@ def display_profile(request,
     profile = get_object_or_404(Profile, user=user)
 
     context = { 'profile' : profile,
+                'title' : 'Profile of %s' % profile.full_name
               }
     if extra_context is not None:
         context.update(extra_context)
