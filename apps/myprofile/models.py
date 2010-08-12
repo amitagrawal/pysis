@@ -98,8 +98,8 @@ class Profile(models.Model):
             return '%s %s' % (month, day)
 
     # GeneralDetails
-    course = models.ForeignKey(Course)
-    year_of_joining = models.DecimalField(max_digits=4, decimal_places=0)
+    course = models.ForeignKey(Course, null=True, blank=True)
+    year_of_joining = models.DecimalField(max_digits=4, decimal_places=0, null=True, blank=True)
 
 
     # PersonalDetails

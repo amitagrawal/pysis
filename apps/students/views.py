@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from endless_pagination.decorators import page_template
@@ -59,17 +60,18 @@ def display_batch(request,
                   extra_context=None):
 
     myprofile = Profile.objects.get(user=request.user)
-
-    if course == 'myclassmates':
-        course = myprofile.course.code
-        joining_year = myprofile.year_of_joining
-    elif course == 'myseniors':
-        course = myprofile.course.code
-        joining_year = myprofile.year_of_joining - 1
-    elif course == 'myjuniors':
-        course = myprofile.course.code
-        joining_year = myprofile.year_of_joining + 1
-
+    
+    if myprofile.course and myprofile.year_of_joining:
+        if course == 'myclassmates':
+            course = myprofile.course.code
+            joining_year = myprofile.year_of_joining
+        elif course == 'myseniors':
+            course = myprofile.course.code
+            joining_year = myprofile.year_of_joining - 1
+        elif course == 'myjuniors':
+            course = myprofile.course.code
+            joining_year = myprofile.year_of_joining + 1
+                
     profiles = Profile.objects.all()
 
     if course:
@@ -78,10 +80,12 @@ def display_batch(request,
     if joining_year:
         profiles = profiles.filter(year_of_joining__exact=joining_year)
 
-    batch = Batch.objects.get(year__exact=joining_year,
-                              course__code__iexact=course)
-    title = 'Students of %s' % batch.name
-    
+
+    if course.startswith('my'):
+        title = ''
+    else:
+        title = 'Students of %s %s course' % (joining_year, course)        
+
     context = { 'objects' : profiles,
                 'title' : title }
     if extra_context is not None:
