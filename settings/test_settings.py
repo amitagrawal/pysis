@@ -29,8 +29,8 @@ URLS_TO_TEST = [
     '/myprofile/education/edit',
     '/myprofile/misc/edit',
     
-    '/myprofile/photo/change',
-    '/myprofile/photo/delete',
+    '/myprofile/avatar/change',
+    '/myprofile/avatar/delete',
     
     '/students/search/?q=all',
     '/students/search/?q=ram',

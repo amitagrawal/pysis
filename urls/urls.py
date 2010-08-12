@@ -50,7 +50,7 @@ urlpatterns = patterns('',
     #(r'^browse/(.*)', login_required(databrowse.site.root)),
     #(r'^announcements/', include('announcements.urls')),
 
-    (r'^myprofile/photo/', include('avatar.urls')),
+    (r'^myprofile/avatar/', include('avatar.urls')),
     (r'^myprofile/', include('myprofile.urls')),
 
     (r'^students/', include('students.urls')),

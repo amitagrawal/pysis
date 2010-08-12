@@ -3,7 +3,7 @@
 {% load avatar_tags %}
 
 {% block title %}
-	{{ title }}
+	Your Avatars
 {% endblock %} 
 
 {% block submenu %}
@@ -11,16 +11,24 @@
 {% endblock %}   
 
 {% block content %}
-    <h2> Your current photo: </h2>
-    	{% avatar user 200 %}
-		
-		<a href="{% url avatar_delete %}"><p class="edit">Delete</p></a>
-		
-	<br/>
-	<hr />
+
+	<h1> Your Primary Avatar </h1>
+
+	<table>
+	<tr>
+		<td style="vertical-align: middle;">
+		    {% avatar user %}
+		</td>
 	
+		<td style="vertical-align: middle;">
+			<a href="{% url avatar_add %}" style="text-decoration:none;"><p class="edit"> Add a new avatar </p></a>
+			<a href="{% url avatar_delete %}" style="text-decoration:none;"><p class="edit"> Delete avatar </p></a>
+		</td>
+	</tr>		
+	</table>	
+			
     {% if avatars %}
-		<h2> Change your primary photo: </h2>
+		<h2> Change your primary avatar: </h2>
 
 		<form action="{{ request.path_info }}" method="post">
 			{% csrf_token %}
@@ -31,20 +39,6 @@
 	
 		    <button type="submit"> Save </button>
 		</form> 
-	 
-		<br/> <br/>
-		<hr />
-		
     {% endif %}
-	
-	
-	<h2> Upload a new photo: </h2>
-	
-    <form enctype="multipart/form-data" method="POST" action="{{ request.path_info }}">
-    	{% csrf_token %}
-        <input type="file" name="avatar" value="Avatar Image" />
-		<br />
-		<button type="submit"> Upload </button>
-    </form>
-	
+
 {% endblock %}

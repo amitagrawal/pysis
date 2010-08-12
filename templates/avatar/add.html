@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% load avatar_tags %}
+
+{% block title %}
+	Upload a New Avatar
+{% endblock %} 
+
+{% block submenu %}
+	{% include "myprofile/submenu.html" %}
+{% endblock %}   
+
+{% block content %}
+
+	<h1> Upload a New Avatar </h1>
+	<br />
+	
+    <form enctype="multipart/form-data" method="POST" action="{% url avatar_add %}?next={{ settings.MY_PROFILE_LANDING_URL }}" >
+    	{% csrf_token %}
+
+		{% for field in upload_avatar_form%}
+		
+			{% if field.errors %}
+				<div class="msg error">
+				{{ field.errors|join:' ' }}
+				</div>
+			{% endif %}
+
+			{{ field }}
+		{% endfor %}
+
+		<button type="submit"> Upload </button>
+    </form>
+
+{% endblock %}	

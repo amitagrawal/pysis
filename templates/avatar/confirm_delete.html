@@ -3,7 +3,7 @@
 {% load avatar_tags %}
 
 {% block title %}
-	{{ title }}
+	Delete Avatars
 {% endblock %} 
 
 {% block submenu %}
@@ -11,10 +11,12 @@
 {% endblock %}   
 
 {% block content %}
-    <h2>Please select the photos that you would like to delete.</h2>
+
+<h1> Delete Avatars </h1>
+    <h2>Please select the avatars that you would like to delete.</h2>
 	
     {% if not avatars %}
-        <p>You have no photos to delete.  Please <a href="{% url avatar_change %}">upload one</a> now.</p>
+        <p>You have no avatars to delete.  Please <a href="{% url avatar_change %}">upload one</a> now.</p>
     {% else %}
 		<form action="{{ request.path_info }}" method="post" next="{% url avatar_change %}">
 			{% csrf_token %}
