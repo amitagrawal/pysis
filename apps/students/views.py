@@ -26,7 +26,7 @@ def search_profiles(request,
                    )[:100]
 
     context = { 'objects' : profiles,
-                'search_query' : search_query,
+                'title' : 'Search Results for %s' % search_query,
               }
     if extra_context is not None:
         context.update(extra_context)
@@ -78,7 +78,12 @@ def display_batch(request,
     if joining_year:
         profiles = profiles.filter(year_of_joining__exact=joining_year)
 
-    context = { 'objects' : profiles }
+    batch = Batch.objects.get(year__exact=joining_year,
+                              course__code__iexact=course)
+    title = 'Students of %s' % batch.name
+    
+    context = { 'objects' : profiles,
+                'title' : title }
     if extra_context is not None:
         context.update(extra_context)
 

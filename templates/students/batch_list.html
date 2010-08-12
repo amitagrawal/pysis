@@ -7,14 +7,18 @@
 {% block content %}
 
 	<h1> Browse by Batch </h1>
-
-	<ul>
-	{% for batch in batches %}
-		<li>
-		<a href="{% url display_batch batch.course.code batch.year %}"> {{batch.name }} </a>
-		</li>
-	{% empty %}
-	aaa
+	
+	{% regroup batches by course.name as course_list %}
+	
+	{% for course in course_list %}
+	<h3> <a href="#" class="toggleLink"> {{ course.grouper }} </a> </h3>
+	<ul class="toggle">
+		{% for item in course.list %}
+			<li style="padding-bottom: 10px; font-size:larger;">
+				<a href="{% url display_batch item.course.code item.year %}"> {{ item.name }} </a>
+			</li>
+		{% endfor %}
+	</ul>
 	{% endfor %}
-	</ul>	
+	
 {% endblock %}

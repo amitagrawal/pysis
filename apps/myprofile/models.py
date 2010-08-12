@@ -60,7 +60,7 @@ class Batch(models.Model):
         return self.name
     
     class Meta:
-        ordering = ["-year"]
+        ordering = ["course", "-year"]
         verbose_name_plural = "Batches"
 
 

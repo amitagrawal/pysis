@@ -159,9 +159,25 @@
     });
     </script>
 
+	<script>
+	//jquery.toggle.list.js
+	jQuery(document).ready(function() {
+	  // hide all of the elements with a class of 'toggle'
+	  jQuery('.toggle').hide();
+	
+	  // clicking .toggleLink element will show the
+	  // child elements with the class of .toggle
+	  jQuery('a.toggleLink').click(function() {
+	    jQuery(this).parent().next('.toggle').toggle('slow');
+	    return false;
+	  });
+	});
+    </script>	
+
     {% block extrajs %} {% endblock %}
 
     {% endcompress %}
+
 
 </body>
 </html>
