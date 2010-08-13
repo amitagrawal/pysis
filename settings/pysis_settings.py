@@ -18,8 +18,9 @@ GOOGLE_ANALYTICS_ID = "'UA-15662130-6'"
 MY_PROFILE_LANDING_URL = '/myprofile/general/'
 STUDENTS_LANDING_URL = '/students/browse/myclassmates/'
 
-LOGIN_URL = '/'
+LOGIN_URL = '/openid/login/'
 LOGIN_REDIRECT_URL = MY_PROFILE_LANDING_URL
+PASSWORD_CHANGE_URL = 'https://www.google.com/accounts/EditPasswd'
 
 MAIN_MENU_LEFT = [
 

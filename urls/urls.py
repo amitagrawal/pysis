@@ -9,6 +9,7 @@ from django.contrib.auth.views import password_change
 from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.shortcuts import redirect
+from django.http import HttpResponseRedirect
 
 from generic_app.views import logoutuser
 import myprofile
@@ -18,11 +19,6 @@ try:
 except admin.sites.AlreadyRegistered:
     # This try-except is required to make nose doctest happy
     pass
-
-@login_required
-def password_change_done(request):
-    messages.success(request, 'Successfully changed your password.')
-    return redirect(settings.MY_PROFILE_LANDING_URL)
 
 urlpatterns = patterns('',
     # Example:
@@ -34,15 +30,13 @@ urlpatterns = patterns('',
     url(r'^logout/$', logoutuser,
         name='logout'),
     url(r'^password_change/$',
-        password_change, {'post_change_redirect' : '/password_change_done'},
+        lambda request: HttpResponseRedirect(settings.PASSWORD_CHANGE_URL),
         name='password_change'),
-    url(r'^password_change_done/$',
-        password_change_done,
-        name='password_change_done'),
-
+        
     (r'^favicon\.ico$', 'django.views.generic.simple.redirect_to',
                         {'url': '%s/images/favicon.ico' % settings.MEDIA_URL}),
 
+    (r'^openid/', include('django_openid_auth.urls')),
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/', include(admin.site.urls)),
     (r'^grappelli/', include('grappelli.urls')),

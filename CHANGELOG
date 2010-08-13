@@ -1,3 +1,4 @@
+Version 41 	 2010-08-13 	 Changing django-avatar version in requirements 
 Version 40 	 2010-08-12 	 Upgraded django-avatar app to 1.1a5 
 Version 39 	 2010-08-12 	 Making Course and Year of Joining in profile as optional 
 Version 38 	 2010-08-12 	 Minor cosmetic changes in submenu 

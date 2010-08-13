@@ -17,6 +17,9 @@ feedparser==4.1
  -e svn+http://django-grappelli.googlecode.com/svn/trunk@1093#egg=django_grappelli-2.0-py2.6-dev_r1093
 -e hg+http://bitbucket.org/fetzig/grappelli-admin-tools/@4583eb7c9163d62fd4779eb098745a82a72e3ec8#egg=django_admin_tools-tip
 
+# For openid
+-e git+http://github.com/adieu/python-openid.git/@1423472e9a2f0d2ee8aa594a64dcd4824a266448#egg=python_openid-2.2.4-py2.6-dev
+-e hg+http://bitbucket.org/dkmurthy/django-openid-auth@38ab365490878c0d0b3b50713c8cfe1b98e4f822#egg=django_openid_auth-tip
 
 # For Developers
 ipython==0.10

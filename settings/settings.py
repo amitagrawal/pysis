@@ -112,6 +112,11 @@ MIDDLEWARE_CLASSES = (
     #'announcements.middleware.AnnouncementsMiddleware',
 )
 
+AUTHENTICATION_BACKENDS = (
+    'django_openid_auth.auth.OpenIDBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
 ROOT_URLCONF = PROJECT_NAME + '.urls.urls'
 
 TEMPLATE_DIRS = (
@@ -140,6 +145,7 @@ INSTALLED_APPS = (
     'compressor',
     'endless_pagination',
     'django_extensions',
+    'django_openid_auth',
     #'announcements',
 
     # My apps
@@ -162,6 +168,7 @@ DATE_INPUT_FORMATS = (
 '%B %d %Y', '%B %d, %Y', '%d %B %Y', '%d %B, %Y',
 )
 
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # Django-debug-toolbar settings
 INTERNAL_IPS = ('127.0.0.1', '127.0.1.1')
@@ -192,6 +199,12 @@ COMPRESS = True
 # Pagination
 ENDLESS_PAGINATION_PER_PAGE = 5
 ENDLESS_PAGINATION_LOADING = '<img src="%s/images/loader.gif" alt="loading" />' % MEDIA_URL
+
+
+# Django-openid-auth
+OPENID_CREATE_USERS = True
+OPENID_UPDATE_DETAILS_FROM_SREG = False
+OPENID_SSO_SERVER_URL = 'https://www.google.com/accounts/o8/site-xrds?hd=rmv.ac.in'
 
 
 # All production settings like sensitive passwords go here.
