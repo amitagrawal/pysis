@@ -5,10 +5,10 @@ MySQL-python==1.2.3
 PIL==1.1.7
 flup
 
-django-avatar==1.0.5
 django-compressor==0.5.3
 django-endless-pagination==0.6
 django-notification==0.1.5
+-e git+http://github.com/ericflo/django-avatar.git/@b52c89bbdd39aac4e5abc9e716ef0b2459014858#egg=django_avatar-1.1a5-py2.6-dev
 
 # For Admin Interface
 fullhistory==0.3.0-final
