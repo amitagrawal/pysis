@@ -55,6 +55,7 @@
         <table style="width:100%;">
             <tr>
                 <td style="vertical-align:middle; text-align:center;">
+					<br/> <br/> <br/> <br/> <br/> <br/>
                     <p id="intro">
                         Everything you want to know...
                         <br/>
@@ -62,39 +63,18 @@
                     </p>
                 </td>
                 <td>
+                	<br/> <br/> <br/> <br/> <br/> <br/>
+
+					<a style="text-decoration:none;" href="{{ settings.LOGIN_URL }}">
                     <div id="signup-box">
-                        <h2>Get Inside</h2> <br/>
+                        <h2 style=" font-size: 42px;">
+							Login
+						</h2>
 
-                            {% if form.non_field_errors %}
-                            <div id="signup-form-error">
-                                {{ form.non_field_errors|join:' ' }}
-                            </div>
-                            {% endif %}
-
-                        <form id="signup-form" method="post">
-                        {% csrf_token %}
-                            <ul>
-                                <li>
-                                    <label for="signup-username">
-                                      <p class="label">  Register Number </p>
-                                    </label>
-                                    <input  id="id_username" class="field" name="username" type="text" />
-                                </li>
-                                <li>
-                                    <label for="signup-password">
-                                        <p class="label"> Password </p>
-                                    </label>
-                                    <input id="id_password" class="field" name="password" type="password" />
-                                </li>
-                                <li>
-                                    <br/>
-                                </li>
-                                <li>
-                                    <input value="Sign in" id="signup-submit" type="submit" />
-                                </li>
-                            </ul>
-                        </form>
+						
+						<br/>
                     </div>
+					</a>
                 </td>
             </tr>
         </table>
