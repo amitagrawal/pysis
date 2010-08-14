@@ -13,7 +13,7 @@ MESSAGE_TAGS = {
     messages.ERROR : 'error',
 }
 
-AUTH_PROFILE_MODULE = 'myprofile.Profile'
+AUTH_PROFILE_MODULE = 'accounts.Profile'
 
 # Google Apps Settings
 GOOGLE_APPS_DOMAIN = 'mydomain.com'
