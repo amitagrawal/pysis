@@ -1,3 +1,4 @@
+Version 45 	 2010-08-14 	 Adding support to create User accounts in local database and Google Apps 
 Version 44 	 2010-08-14 	 Adding GoogleAppsManager. Tested 100% 
 Version 43 	 2010-08-13 	 Changes to Homepage 
 Version 42 	 2010-08-13 	 Added OpenID support 
