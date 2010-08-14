@@ -150,6 +150,7 @@ INSTALLED_APPS = (
 
     # My apps
     'generic_app',
+    'accounts',
     'myprofile',
     'students',
 )

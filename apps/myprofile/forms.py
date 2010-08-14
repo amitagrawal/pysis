@@ -1,7 +1,7 @@
 from django.conf import settings
 from django import forms
 
-from myprofile.models import Profile
+from accounts.models import Profile
 
 
 class GeneralDetailsForm(forms.ModelForm):

@@ -12,16 +12,12 @@ urlpatterns = patterns('',
     (r'^$',
      lambda request: HttpResponseRedirect(settings.MY_PROFILE_LANDING_URL)),
 
-    # Edit my Profile
+    # Edit My Profile
     url(r'^(?P<category>.*)/edit/$', edit_my_profile,
         name='edit_my_profile'),
 
-    # My Profile
+    # Display My Profile
     url(r'^(?P<category>.*)/$', display_my_profile,
         name='display_my_profile'),
-
-
-    #(r'^search/all/$', display_all_students),
-    #(r'^display/(?P<username>.*)/$', display_profile),
 
 )

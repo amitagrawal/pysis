@@ -1,3 +1,5 @@
+Version 44 	 2010-08-14 	 Adding GoogleAppsManager. Tested 100% 
+Version 43 	 2010-08-13 	 Changes to Homepage 
 Version 42 	 2010-08-13 	 Added OpenID support 
 Version 41 	 2010-08-13 	 Changing django-avatar version in requirements 
 Version 40 	 2010-08-12 	 Upgraded django-avatar app to 1.1a5 

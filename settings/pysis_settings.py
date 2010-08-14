@@ -13,6 +13,13 @@ MESSAGE_TAGS = {
     messages.ERROR : 'error',
 }
 
+AUTH_PROFILE_MODULE = 'myprofile.Profile'
+
+# Google Apps Settings
+GOOGLE_APPS_DOMAIN = 'mydomain.com'
+GOOGLE_APPS_ADMIN_USERNAME = 'admin@mydomain.com'
+GOOGLE_APPS_ADMIN_PASSWORD = 'my_secret_pass'
+
 GOOGLE_ANALYTICS_ID = "'UA-15662130-6'"
 
 MY_PROFILE_LANDING_URL = '/myprofile/general/'
@@ -64,7 +71,7 @@ STUDENTS_PROFILE_MENU = [
     ('All Students', '/students/search/?q=all'),
 ]
 
-STUDENTS_PROFILE_MENU_URLS =  [x[1] for x in STUDENTS_PROFILE_MENU]
+STUDENTS_PROFILE_MENU_URLS =  zip(*STUDENTS_PROFILE_MENU)[1]
 
 # These fields determine who can see what.
 # For the complete list of available fields, see myprofile.views.Profile
@@ -74,6 +81,7 @@ PROFILE_PREVIEW_FIELD_LIST = [
     'course',
     'birth_day',
     'personal_email_id',
+    'vidyalaya_email_id',
     'personal_contact_number',
     ]
 
@@ -98,6 +106,7 @@ GENERAL_DETAILS_FIELD_LIST = [
     'register_number',
     'course',
     'year_of_joining',
+    'vidyalaya_email_id',
     ]
 
 PERSONAL_DETAILS_FIELD_LIST = [
@@ -119,7 +128,6 @@ FAMILY_DETAILS_FIELD_LIST = [
 CONTACT_DETAILS_FIELD_LIST = [
     'personal_email_id',
     'personal_email_id2',
-    'vidyalaya_email_id',
     'personal_contact_number',
     'personal_contact_number2',
     'emergency_contact_number',

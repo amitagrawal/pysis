@@ -9,6 +9,11 @@ EMAIL_HOST_USER = 'my_user_name@gmail.com'
 EMAIL_HOST_PASSWORD = 'my_password'
 EMAIL_USE_TLS = True
 
+# Google Apps Settings
+GOOGLE_APPS_DOMAIN = 'rmv.ac.in'
+GOOGLE_APPS_ADMIN_USERNAME = 'admin@rmv.ac.in'
+GOOGLE_APPS_ADMIN_PASSWORD = 'admin_pass'
+
 
 DATABASES = {
     'default': {

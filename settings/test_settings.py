@@ -5,6 +5,8 @@ INSTALLED_APPS = list(INSTALLED_APPS)
 # django-sane-testing is throwing errors when south is enabled. So disable south
 INSTALLED_APPS.remove('south')
 
+TEST_USERNAME = '09mca099'
+TEST_USER_PASSWORD = 'p'
 
 URLS_TO_TEST = [
     '/',
@@ -15,7 +17,7 @@ URLS_TO_TEST = [
     #'/attendance',
     #'/library',
     #'/marks',
-    
+
     '/myprofile/general',
     '/myprofile/personal',
     '/myprofile/family',
@@ -28,31 +30,31 @@ URLS_TO_TEST = [
     '/myprofile/contact/edit',
     '/myprofile/education/edit',
     '/myprofile/misc/edit',
-    
+
     '/myprofile/avatar/change',
     '/myprofile/avatar/delete',
-    
+
     '/students/search/?q=all',
     '/students/search/?q=ram',
     '/students/search/?q=somejunk',
-    
+
     '/students/browse',
     '/students/browse/MCA',
     '/students/browse/MCA/2009',
-    
+
     '/students/browse/myclassmates',
     '/students/browse/myjuniors',
     '/students/browse/myseniors',
     '/students/browse/somejunk',
-    
+
     '/students/display/09mca001',
-    
+
     '/password_change',
-                
+
 ]
 
 PUBLIC_URLS = [
-    '/',               
+    '/',
 ]
 
 # Test urls ending with / also

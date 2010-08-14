@@ -43,22 +43,22 @@ class Course(models.Model):
     level = models.CharField(max_length=4,
                              choices=COURSE_LEVELS,
                              default='UG')
-    
+
     objects = models.Manager()
 
     def __unicode__(self):
         return self.name
-    
+
 class Batch(models.Model):
     code = models.CharField(max_length=5, unique=True,
                             help_text='First 5 characters of register number')
     course = models.ForeignKey(Course, null=True, blank=True)
     year = models.IntegerField()
     name = models.CharField(max_length=50, unique=True)
-    
+
     def __unicode__(self):
         return self.name
-    
+
     class Meta:
         ordering = ["course", "-year"]
         verbose_name_plural = "Batches"
@@ -66,7 +66,7 @@ class Batch(models.Model):
 
 class Profile(models.Model):
     # Register Number, First Name and Last Name are defined in User model
-    user = models.ForeignKey(User, unique=True, editable=False)
+    user = models.ForeignKey(User, unique=True, )
 
     objects = ProfileManager()
 
@@ -100,6 +100,7 @@ class Profile(models.Model):
     # GeneralDetails
     course = models.ForeignKey(Course, null=True, blank=True)
     year_of_joining = models.DecimalField(max_digits=4, decimal_places=0, null=True, blank=True)
+    vidyalaya_email_id = models.EmailField(max_length=75, null=True, blank=True)
 
 
     # PersonalDetails
@@ -127,7 +128,6 @@ class Profile(models.Model):
     # Contact Details
     personal_email_id = models.EmailField(max_length=75, null=True, blank=True)
     personal_email_id2 = models.EmailField(max_length=75, null=True, blank=True)
-    vidyalaya_email_id = models.EmailField(max_length=75, null=True, blank=True)
     personal_contact_number = models.CharField(max_length=20, null=True, blank=True)
     personal_contact_number2 = models.CharField(max_length=20, null=True, blank=True)
     emergency_contact_number = models.CharField(max_length=20, null=True, blank=True)
@@ -167,6 +167,7 @@ class Profile(models.Model):
     linkedin_profile_url = models.URLField(null=True, blank=True, verify_exists=False)
 
     # Audit Trail
+    google_account_created = models.BooleanField(default=False)
     last_modified_on = models.DateTimeField(editable=False,
                                             auto_now=True)
 

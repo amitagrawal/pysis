@@ -1,17 +1,15 @@
 from djangosanetesting.cases import HttpTestCase
 from django.conf import settings
 
-from myprofile.tests.common import create_user
-
-username = '09mca001'
-password = 'p'
-
+from accounts import testdata
 
 class TestSanity(HttpTestCase):
     def __init__(self, *args, **kwargs):
         super(self.__class__, self).__init__(*args, **kwargs)
         self.host = 'localhost'
         self.port = 8000
+
+        testdata.run()
 
     def test_that_none_of_the_valid_urls_throw_404(self):
         for page in settings.URLS_TO_TEST:
@@ -30,9 +28,8 @@ class TestSanity(HttpTestCase):
 
 
     def test_that_logged_in_user_can_browse_all_urls(self):
-        create_user()
-        assert self.client.login(username=username,
-                                 password=password)
+        assert self.client.login(username=settings.TEST_USERNAME,
+                                 password=settings.TEST_USER_PASSWORD)
 
         for page in settings.URLS_TO_TEST:
             if page in [settings.LOGIN_URL, settings.LOGIN_URL + '/']:

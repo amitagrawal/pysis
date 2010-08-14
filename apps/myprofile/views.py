@@ -8,7 +8,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from endless_pagination.decorators import page_template
 
-from myprofile.models import Profile
+from accounts.models import Profile
 from myprofile.forms import GeneralDetailsForm
 from myprofile.forms import PersonalDetailsForm
 from myprofile.forms import FamilyDetailsForm
@@ -18,12 +18,12 @@ from myprofile.forms import MiscDetailsForm
 
 
 @login_required
-def display_my_profile(request, 
+def display_my_profile(request,
                        category='general',
                        template="myprofile/display_my_profile.html",
                        extra_context=None):
     my_profile = get_object_or_404(Profile, user=request.user)
-    
+
     if category == 'general':
         data = my_profile.general_details()
     elif category == 'personal':
@@ -44,11 +44,11 @@ def display_my_profile(request,
 
     if extra_context is not None:
         context.update(extra_context)
-    
+
     return render_to_response(template, context, context_instance=RequestContext(request))
-    
+
 @login_required
-def edit_my_profile(request, 
+def edit_my_profile(request,
                     category='general',
                     template="myprofile/edit_my_profile.html",
                     extra_context=None):
@@ -84,6 +84,6 @@ def edit_my_profile(request,
 
     if extra_context is not None:
         context.update(extra_context)
-    
+
     return render_to_response(template, context, context_instance=RequestContext(request))
 

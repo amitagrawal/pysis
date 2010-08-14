@@ -1,0 +1,37 @@
+.. -*- restructuredtext -*-
+
+User Accounts
+=================
+This app enables user account management.
+
+Features
+=================
+
+ 1. Create Account
+
+    1. Via Admin Interface
+    2. Via manage.py command
+    3. Via shell scripts
+
+
+ 2. Edit Account Details
+
+    1. Via Admin Interface
+
+ 3. Change Password
+
+    1. Via Admin Interface
+    2. Via manage.py command
+
+ 4. Reset Forgotten Password
+
+    1. Via Admin Interface
+    2. Self-service via web
+
+ 5. Deactivate/Reactivate Accounts
+
+    1. Via Admin Interface
+
+ 6. Delete Accounts
+
+    1. Via Admin Interface

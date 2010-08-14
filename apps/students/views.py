@@ -6,7 +6,7 @@ from endless_pagination.decorators import page_template
 from django.db.models import Q
 
 from django.contrib.auth.models import User
-from myprofile.models import Profile, Batch
+from accounts.models import Profile, Batch
 
 @login_required
 @page_template("students/search_data.html")
@@ -60,7 +60,7 @@ def display_batch(request,
                   extra_context=None):
 
     myprofile = Profile.objects.get(user=request.user)
-    
+
     if myprofile.course and myprofile.year_of_joining:
         if course == 'myclassmates':
             course = myprofile.course.code
@@ -71,7 +71,7 @@ def display_batch(request,
         elif course == 'myjuniors':
             course = myprofile.course.code
             joining_year = myprofile.year_of_joining + 1
-                
+
     profiles = Profile.objects.all()
 
     if course:
@@ -84,7 +84,7 @@ def display_batch(request,
     if course.startswith('my'):
         title = ''
     else:
-        title = 'Students of %s %s course' % (joining_year, course)        
+        title = 'Students of %s %s course' % (joining_year, course)
 
     context = { 'objects' : profiles,
                 'title' : title }
