@@ -23,11 +23,11 @@ class ProfileAdmin(FullHistoryAdmin):
     # Options for admin
     list_display = ('full_name',
                     'register_number',
-                    'vidyalaya_email_id',
+                    'college_email_id',
                     'personal_email_id',
                     'google_account_created',
                     'last_modified_on',)
-    #list_editable = ('vidyalaya_email_id',)
+    #list_editable = ('college_email_id',)
 
     list_filter = ('google_account_created',
                    'year_of_joining',
@@ -39,7 +39,7 @@ class ProfileAdmin(FullHistoryAdmin):
                      'personal_email_id')
     actions = ['create_accounts_in_google',
                'delete_accounts_from_google',
-               'populate_vidyalaya_email_id',
+               'populate_college_email_id',
                'reset_password',
                'mark_as_processed',
                'mark_as_not_processed',
@@ -71,20 +71,20 @@ class ProfileAdmin(FullHistoryAdmin):
                 messages.success(request,
                     'Successfully deleted %s' % profile.register_number)
 
-    def populate_vidyalaya_email_id(self, request, queryset):
+    def populate_college_email_id(self, request, queryset):
         """Computes unique email id and populates
         """
         for profile in queryset:
             # Populate only if it is empty.
-            if profile.vidyalaya_email_id:
+            if profile.college_email_id:
                 messages.error(request,
-                    'Vidyalaya email id is already populated for %s. Not modifying.' % profile.register_number)
+                    'College email id is already populated for %s. Not modifying.' % profile.register_number)
             else:
                 username = accounts_manager.get_new_username(profile.user.first_name,
                                                              profile.user.last_name)
 
                 if username:
-                    profile.vidyalaya_email_id = username + '@' + settings.GOOGLE_APPS_DOMAIN
+                    profile.college_email_id = username + '@' + settings.GOOGLE_APPS_DOMAIN
                     profile.save()
                 else:
                     messages.error(request,

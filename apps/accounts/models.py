@@ -100,7 +100,7 @@ class Profile(models.Model):
     # GeneralDetails
     course = models.ForeignKey(Course, null=True, blank=True)
     year_of_joining = models.DecimalField(max_digits=4, decimal_places=0, null=True, blank=True)
-    vidyalaya_email_id = models.EmailField(max_length=75, null=True, blank=True)
+    college_email_id = models.EmailField(max_length=75, null=True, blank=True)
 
 
     # PersonalDetails

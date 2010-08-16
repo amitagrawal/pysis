@@ -81,7 +81,7 @@ PROFILE_PREVIEW_FIELD_LIST = [
     'course',
     'birth_day',
     'personal_email_id',
-    'vidyalaya_email_id',
+    'college_email_id',
     'personal_contact_number',
     ]
 
@@ -92,7 +92,7 @@ PROFILE_FULLVIEW_FIELD_LIST = [
     'birth_day',
     'personal_email_id',
     'personal_email_id2',
-    'vidyalaya_email_id',
+    'college_email_id',
     'personal_contact_number',
     'personal_website',
     'orkut_profile_url',
@@ -106,7 +106,7 @@ GENERAL_DETAILS_FIELD_LIST = [
     'register_number',
     'course',
     'year_of_joining',
-    'vidyalaya_email_id',
+    'college_email_id',
     ]
 
 PERSONAL_DETAILS_FIELD_LIST = [

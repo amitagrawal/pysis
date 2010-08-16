@@ -34,6 +34,7 @@ class Migration(SchemaMigration):
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'], unique=True)),
             ('course', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['accounts.Course'], null=True, blank=True)),
             ('year_of_joining', self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=4, decimal_places=0, blank=True)),
+            ('college_email_id', self.gf('django.db.models.fields.EmailField')(max_length=75, null=True, blank=True)),
             ('gender', self.gf('django.db.models.fields.CharField')(default='M', max_length=2)),
             ('blood_group', self.gf('django.db.models.fields.CharField')(max_length=4, null=True, blank=True)),
             ('date_of_birth', self.gf('django.db.models.fields.DateField')(null=True, blank=True)),
@@ -46,7 +47,6 @@ class Migration(SchemaMigration):
             ('reservation_category', self.gf('django.db.models.fields.CharField')(max_length=10, null=True, blank=True)),
             ('personal_email_id', self.gf('django.db.models.fields.EmailField')(max_length=75, null=True, blank=True)),
             ('personal_email_id2', self.gf('django.db.models.fields.EmailField')(max_length=75, null=True, blank=True)),
-            ('vidyalaya_email_id', self.gf('django.db.models.fields.EmailField')(max_length=75, null=True, blank=True)),
             ('personal_contact_number', self.gf('django.db.models.fields.CharField')(max_length=20, null=True, blank=True)),
             ('personal_contact_number2', self.gf('django.db.models.fields.CharField')(max_length=20, null=True, blank=True)),
             ('emergency_contact_number', self.gf('django.db.models.fields.CharField')(max_length=20, null=True, blank=True)),
@@ -72,6 +72,7 @@ class Migration(SchemaMigration):
             ('orkut_profile_url', self.gf('django.db.models.fields.URLField')(max_length=200, null=True, blank=True)),
             ('facebook_profile_url', self.gf('django.db.models.fields.URLField')(max_length=200, null=True, blank=True)),
             ('linkedin_profile_url', self.gf('django.db.models.fields.URLField')(max_length=200, null=True, blank=True)),
+            ('google_account_created', self.gf('django.db.models.fields.BooleanField')(default=False, blank=True)),
             ('last_modified_on', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
         ))
         db.send_create_signal('accounts', ['Profile'])
@@ -111,6 +112,7 @@ class Migration(SchemaMigration):
             'actual_date_of_birth': ('django.db.models.fields.DateField', [], {'null': 'True', 'blank': 'True'}),
             'blood_group': ('django.db.models.fields.CharField', [], {'max_length': '4', 'null': 'True', 'blank': 'True'}),
             'caste': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True', 'blank': 'True'}),
+            'college_email_id': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'null': 'True', 'blank': 'True'}),
             'course': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['accounts.Course']", 'null': 'True', 'blank': 'True'}),
             'date_of_birth': ('django.db.models.fields.DateField', [], {'null': 'True', 'blank': 'True'}),
             'emergency_contact_number': ('django.db.models.fields.CharField', [], {'max_length': '20', 'null': 'True', 'blank': 'True'}),
@@ -119,6 +121,7 @@ class Migration(SchemaMigration):
             'father_name': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
             'father_profession': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
             'gender': ('django.db.models.fields.CharField', [], {'default': "'M'", 'max_length': '2'}),
+            'google_account_created': ('django.db.models.fields.BooleanField', [], {'default': 'False', 'blank': 'True'}),
             'history_of_arrears': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'hobbies': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
             'hslc_major': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True', 'blank': 'True'}),
@@ -149,7 +152,6 @@ class Migration(SchemaMigration):
             'ug_passed_out_year': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '4', 'decimal_places': '0', 'blank': 'True'}),
             'ug_percentage': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '4', 'decimal_places': '2', 'blank': 'True'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']", 'unique': 'True'}),
-            'vidyalaya_email_id': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'null': 'True', 'blank': 'True'}),
             'year_of_joining': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '4', 'decimal_places': '0', 'blank': 'True'})
         },
         'auth.group': {

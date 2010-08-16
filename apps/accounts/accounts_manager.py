@@ -38,7 +38,7 @@ def is_unique(username):
     domain = settings.GOOGLE_APPS_DOMAIN
     email_id = username + '@' + domain
 
-    exists = Profile.objects.filter(vidyalaya_email_id__iexact=email_id).exists()
+    exists = Profile.objects.filter(college_email_id__iexact=email_id).exists()
 
     return not exists
 
@@ -91,13 +91,13 @@ def get_new_username(first_name,
     
 
 def send_introduction_mail(first_name,
-                           vidyalaya_email_id):
+                           college_email_id):
 
     c = {'first_name': first_name,}
-    subject = "Welcome to Vidyalaya Mail"
+    subject = "Welcome to %s" % settings.ORGANIZATION
 
     send_html_mail('accounts/introduction_email.html',
-                   c, subject, vidyalaya_email_id)
+                   c, subject, college_email_id)
     
 
 def create_account_in_google_apps(request, profile, password):
@@ -105,17 +105,17 @@ def create_account_in_google_apps(request, profile, password):
     username = profile.user.username
     first_name = profile.user.first_name
     last_name = profile.user.last_name
-    vidyalaya_email_id = profile.vidyalaya_email_id
+    college_email_id = profile.college_email_id
     groupname = profile.register_number[:5]
 
-    if not vidyalaya_email_id:
+    if not college_email_id:
         messages.error(request,
-             'Vidyalaya Email Id is empty for %s' % username)
+             'College Email Id is empty for %s' % username)
         return
     
     if profile.google_account_created:
         messages.error(request,
-             'Vidyalaya Email Id is already created for %s' % username)
+             'College Email Id is already created for %s' % username)
         return
     
     try:
@@ -125,11 +125,11 @@ def create_account_in_google_apps(request, profile, password):
                            password,
                            first_name,
                            last_name,
-                           vidyalaya_email_id,
+                           college_email_id,
                            groupname
                           )
         
-        send_introduction_mail(first_name, vidyalaya_email_id)
+        send_introduction_mail(first_name, college_email_id)
         
         profile.google_account_created = True
         profile.save()

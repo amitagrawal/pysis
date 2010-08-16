@@ -51,7 +51,7 @@ def run():
     accounts_profile_1.user = auth_user_2
     accounts_profile_1.course = accounts_course_1
     accounts_profile_1.year_of_joining = Decimal('2009')
-    accounts_profile_1.vidyalaya_email_id = u'test@rmv.ac.in'
+    accounts_profile_1.college_email_id = u'test@rmv.ac.in'
     accounts_profile_1.gender = u'M'
     accounts_profile_1.actual_date_of_birth = datetime.date(2009, 6, 1)
     accounts_profile_1.save()
