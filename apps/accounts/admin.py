@@ -25,13 +25,18 @@ class ProfileAdmin(FullHistoryAdmin):
                     'register_number',
                     'college_email_id',
                     'personal_email_id',
+                    'personal_contact_number',
+                    'actual_date_of_birth',
                     'google_account_created',
                     'last_modified_on',)
     #list_editable = ('college_email_id',)
 
     list_filter = ('google_account_created',
                    'year_of_joining',
-                   'course',)
+                   'course',
+                   'blood_group',
+                   'reservation_category',
+                   )
     list_per_page = 20
     search_fields = ('user__first_name', 
                      'user__last_name',
