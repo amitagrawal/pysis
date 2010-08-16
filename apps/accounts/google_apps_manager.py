@@ -31,15 +31,8 @@ class GoogleAppsManager(object):
                         email=self.email,
                         password=self.password)
 
-        try:
-          self.apps.ProgrammaticLogin()
-          testapps = self.apps.RetrieveUser(self.email.split('@')[0])
-        except gdata.service.BadAuthentication, e:
-            print "ERROR: Invalid username or password."
-        except gdata.apps.service.AppsForYourDomainException, e:
-            print "ERROR: Either the user you entered is not a Google Apps Administrator or the Provisioning API is not enabled for your domain. Please see: http://www.google.com/support/a/bin/answer.py?hl=en&answer=60757"
-        except socket.error, e:
-            print "ERROR: Failed to connect to Google's servers.  Please check your internet connection"
+        self.apps.ProgrammaticLogin()
+        testapps = self.apps.RetrieveUser(self.email.split('@')[0])
 
 
     def get_email_settings_object(self):
@@ -205,19 +198,7 @@ class GoogleAppsManager(object):
             self.enable_send_as(username, nickname,
                                 first_name, last_name)
 
-
     def delete_account(self, username):
-        try:
             self.remove_user_from_all_groups(username)
-        except Exception, e:
-            print "Exception : %s" % str(e)
-
-        try:
             self.delete_all_nicknames_for_user(username)
-        except Exception, e:
-            print "Exception : %s" % str(e)
-
-        try:
             self.delete_user(username)
-        except Exception, e:
-            print "Exception : %s" % str(e)

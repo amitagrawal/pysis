@@ -7,16 +7,12 @@ import csv
 from django.db.utils import IntegrityError
 from django.db import IntegrityError
 from django.conf import settings
+from django.contrib import messages
 from django.contrib.auth.models import User
 
 from accounts.models import Profile, Course
 from accounts.google_apps_manager import GoogleAppsManager
-
-
-# Output of
-# select distinct reg_no, name from Result where reg_no like '08MCA%' order by reg_no;
-CSV_FILE = '/tmp/students.csv'
-students = csv.reader(open(CSV_FILE), delimiter='|', skipinitialspace=True)
+from generic_app.email import send_html_mail
 
 def get_names(full_name):
     """ Sanitizes the full_name and
@@ -92,105 +88,103 @@ def get_new_username(first_name,
     username = first_name_without_spaces + '.' + last_name_without_spaces
     if is_unique(username):
         return username
+    
 
-def create_account_in_google_apps(register_number, default_passwd,
-                                  first_name, last_name):
+def send_introduction_mail(first_name,
+                           vidyalaya_email_id):
 
-    gam = GoogleAppsManager()
+    c = {'first_name': first_name,}
+    subject = "Welcome to Vidyalaya Mail"
 
-    if gam.user_exists(register_number):
-        print 'Google Apps account for %s already exists. Aborting' % register_number
+    send_html_mail('accounts/introduction_email.html',
+                   c, subject, vidyalaya_email_id)
+    
+
+def create_account_in_google_apps(request, profile, password):
+
+    username = profile.user.username
+    first_name = profile.user.first_name
+    last_name = profile.user.last_name
+    vidyalaya_email_id = profile.vidyalaya_email_id
+    groupname = profile.register_number[:5]
+
+    if not vidyalaya_email_id:
+        messages.error(request,
+             'Vidyalaya Email Id is empty for %s' % username)
         return
-
-    nickname = get_new_username(first_name, last_name)
-
-    if not nickname:
-        print 'Can not get a unique Google Apps id for %s. Aborting ' % register_number
+    
+    if profile.google_account_created:
+        messages.error(request,
+             'Vidyalaya Email Id is already created for %s' % username)
         return
-
-    username = register_number
-    password = default_passwd
-    groupname = register_number[:5]
-
-    gam.create_account(username, password,
-                       first_name, last_name,
-                       nickname, groupname)
-
-    print 'Successfully Created Google Apps Account for %s' % username
-    return nickname
-
-
-def create_local_account(username, password,
-                         first_name, last_name,
-                         course_code, year_of_joining):
-
-    course = Course.objects.get(code__iexact=course_code)
-
+    
     try:
+        gam = GoogleAppsManager()
+        
+        gam.create_account(username,
+                           password,
+                           first_name,
+                           last_name,
+                           vidyalaya_email_id,
+                           groupname
+                          )
+        
+        send_introduction_mail(first_name, vidyalaya_email_id)
+        
+        profile.google_account_created = True
+        profile.save()
+        
+    except Exception, e:
+        messages.error(request,
+            'Error while creating %s. Error : %s' %
+            (profile.register_number, e))
+    else:
+        messages.success(request,
+            'Successfully created %s. Password is %s' %
+            (profile.register_number, password))
+
+
+def create_accounts(students):
+    for register_number, name in students:
+        username = register_number.lower()
+        password = None
+        first_name, last_name = get_names(name)
         domain = settings.GOOGLE_APPS_DOMAIN
         email = username + '@' + domain
-        user = User.objects.create_user(username=username,
-                                        password=password,
-                                        email=email)
-
-        user.first_name = first_name
-        user.last_name = last_name
-        user.save()
-
-    except IntegrityError:
-        print 'Account %s already exists' % username
-
-
-    try:
-        profile = Profile.objects.create(user=user,
-                                         course=course,
-                                         year_of_joining=year_of_joining)
-    except IntegrityError:
-        print 'Profile %s already exists' % username
-        return
-
-    print 'Successfully Created %s' % username
-    return profile
-
-def update_profile_with_google_apps_status(register_number,
-                                           nickname):
-    google_apps_email_id = nickname + '@' + settings.GOOGLE_APPS_DOMAIN
-
-    profile = Profile.objects.get(user__username__exact=register_number)
-
-    profile.vidyalaya_email_id = google_apps_email_id
-    profile.google_account_created = True
-    profile.save()
-
-def create_accounts(default_passwd):
-    for register_number, name in students:
-        register_number = register_number.lower()
-        first_name, last_name = get_names(name)
 
         # First two letters of register_number represents year
         year_of_joining = register_number[:2].replace('m', '0')
         year_of_joining = int(year_of_joining) + 2000
 
         course_code =  register_number[2:5]
+        course = Course.objects.get(code__iexact=course_code)
 
-        profile = create_local_account(register_number, None,
-                                       first_name, last_name,
-                                       course_code, year_of_joining)
-
-        if profile.google_account_created:
-            continue
-
-        #try:
-            #nickname = create_account_in_google_apps(register_number, default_passwd,
-                                                    #first_name, last_name)
-            #if nickname:
-                #update_profile_with_google_apps_status(register_number,
-                                                       #nickname)
-        #except Exception, e:
-            #print 'Exception while creating Google Apps account for %s : %s' % (register_number, str(e))
+        try:
+            user = User.objects.create_user(username=username,
+                                            password=password,
+                                            email=email)
+    
+            user.first_name = first_name
+            user.last_name = last_name
+            user.save()
+    
+        except IntegrityError:
+            print 'Account %s already exists' % username
+    
+        try:
+            profile = Profile.objects.create(user=user,
+                                             course=course,
+                                             year_of_joining=year_of_joining)
+        except IntegrityError:
+            print 'Profile %s already exists' % username
+            return
+    
+        print 'Successfully Created %s' % username
 
 
 if __name__ == '__main__':
-
-    default_passwd = raw_input('Enter the default password : ')
-    create_accounts(default_passwd)
+    # Output of
+    # select distinct reg_no, name from Result where reg_no like '08MCA%' order by reg_no;
+    CSV_FILE = '/tmp/students.csv'
+    students = csv.reader(open(CSV_FILE), delimiter='|', skipinitialspace=True)
+    create_accounts(students)

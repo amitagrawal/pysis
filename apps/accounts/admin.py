@@ -29,7 +29,9 @@ class ProfileAdmin(FullHistoryAdmin):
                     'last_modified_on',)
     #list_editable = ('vidyalaya_email_id',)
 
-    list_filter = ('google_account_created',)
+    list_filter = ('google_account_created',
+                   'year_of_joining',
+                   'course',)
     list_per_page = 20
     search_fields = ('user__first_name', 
                      'user__last_name',
@@ -50,38 +52,16 @@ class ProfileAdmin(FullHistoryAdmin):
         password = User.objects.make_random_password(length=6)
 
         for profile in queryset:
-            if not profile.vidyalaya_email_id:
-                messages.error(request,
-                    'Vidyalaya Email Id is empty for %s' % profile.register_number)
-
-            username = profile.user.username
-            groupname = profile.register_number[:5]
-
-            try:
-                gam.create_account(username,
-                                   password,
-                                   profile.user.first_name,
-                                   profile.user.last_name,
-                                   profile.vidyalaya_email_id,
-                                   groupname
-                                   )
-            except Exception, e:
-                messages.error(request,
-                    'Error while creating %s. Error : %s' %
-                    (profile.register_number, e))
-            else:
-                messages.success(request,
-                    'Successfully created %s. Password is %s' %
-                    (profile.register_number, password))
+            accounts_manager.create_account_in_google_apps(request, profile, password)
 
 
     def delete_accounts_from_google(self, request, queryset):
         """Deletes the user from Google Apps database
         """
-        gam = GoogleAppsManager()
 
         for profile in queryset:
             try:
+                gam = GoogleAppsManager()
                 gam.delete_account(profile.user.username)
             except Exception, e:
                 messages.error(request,
