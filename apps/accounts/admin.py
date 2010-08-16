@@ -2,6 +2,12 @@ from django.contrib import admin
 from django.contrib import databrowse
 from django.contrib import messages
 from django.conf import settings
+from django.contrib.admin.util import get_deleted_objects
+from django.shortcuts import render_to_response
+from django.utils.encoding import force_unicode
+from django.contrib.admin import helpers
+from django import template
+
 import fullhistory
 from fullhistory.admin import FullHistoryAdmin
 
@@ -64,17 +70,44 @@ class ProfileAdmin(FullHistoryAdmin):
         """Deletes the user from Google Apps database
         """
 
-        for profile in queryset:
-            try:
-                gam = GoogleAppsManager()
-                gam.delete_account(profile.user.username)
-            except Exception, e:
-                messages.error(request,
-                    'Error while deleting %s. Error : %s' %
-                    (profile.register_number, e))
-            else:
-                messages.success(request,
-                    'Successfully deleted %s' % profile.register_number)
+        opts = self.model._meta
+        app_label = opts.app_label
+    
+        deletable_objects = [profile for profile in queryset] 
+    
+        # The user has already confirmed the deletion.
+        # Do the deletion and return a None to display the change list view again.
+        if request.POST.get('post'):
+            for profile in queryset:
+                try:
+                    gam = GoogleAppsManager()
+                    gam.delete_account(profile.user.username)
+                except Exception, e:
+                    messages.error(request,
+                        'Error while deleting %s. Error : %s' %
+                        (profile.register_number, e))
+                else:
+                    messages.success(request,
+                        'Successfully deleted %s' % profile.register_number)
+            return None
+    
+        context = {
+            "title": "Are you sure?",
+            "object_name": force_unicode(opts.verbose_name),
+            "deletable_objects": [deletable_objects],
+            'queryset': queryset,
+            "perms_lacking": False,
+            "opts": opts,
+            "root_path": self.admin_site.root_path,
+            "app_label": app_label,
+            'action_checkbox_name': helpers.ACTION_CHECKBOX_NAME,
+        }
+    
+        # Display the confirmation page
+        return render_to_response('accounts/delete_from_google_apps_confirmation.html',
+                                  context, 
+                                  context_instance=template.RequestContext(request))        
+
 
     def populate_college_email_id(self, request, queryset):
         """Computes unique email id and populates

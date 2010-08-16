@@ -1,0 +1,28 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+    <p> Are you sure you want to delete the selected {{ object_name }} objects from Google?
+    </p>
+
+    <br/> <br/>
+    <p style="color: red;"> All data will be lost permanently.
+    </p>
+    <br/> <br/>
+
+    {% for deletable_object in deletable_objects %}
+        <ul>{{ deletable_object|unordered_list }}</ul>
+    {% endfor %}
+
+    <br/> <br/>
+
+    <form action="" method="post">{% csrf_token %}
+    <div>
+    {% for obj in queryset %}
+    <input type="hidden" name="{{ action_checkbox_name }}" value="{{ obj.pk }}" />
+    {% endfor %}
+    <input type="hidden" name="action" value="delete_accounts_from_google" />
+    <input type="hidden" name="post" value="yes" />
+    <input type="submit" value="Yes, I'm sure" />
+    </div>
+    </form>
+{% endblock %}
