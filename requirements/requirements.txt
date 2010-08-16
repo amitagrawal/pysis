@@ -19,7 +19,7 @@ feedparser==4.1
 
 # For openid
 -e git+http://github.com/adieu/python-openid.git/@1423472e9a2f0d2ee8aa594a64dcd4824a266448#egg=python_openid-2.2.4-py2.6-dev
--e hg+http://bitbucket.org/dkmurthy/django-openid-auth@38ab365490878c0d0b3b50713c8cfe1b98e4f822#egg=django_openid_auth-tip
+-e hg+http://bitbucket.org/dkmurthy/django-openid-auth#egg=django_openid_auth
 
 # For Google Apps
 gdata==2.0.11

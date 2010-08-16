@@ -1,11 +1,14 @@
 from django.contrib import admin
 from django.contrib import databrowse
+from django.contrib import messages
+from django.conf import settings
 import fullhistory
 from fullhistory.admin import FullHistoryAdmin
 
-from accounts.models import Course
-from accounts.models import Batch
-from accounts.models import Profile
+from django.contrib.auth.models import User
+from accounts.models import Course, Batch, Profile
+from accounts.google_apps_manager import GoogleAppsManager
+from accounts import accounts_manager
 
 def register(model, modelAdmin):
     admin.site.register(model, modelAdmin)
@@ -15,98 +18,129 @@ def register(model, modelAdmin):
 class DefaultAdmin(FullHistoryAdmin):
     pass
 
-#class ProfileAdmin(FullHistoryAdmin):
+class ProfileAdmin(FullHistoryAdmin):
 
-    ## Options for admin
-    #list_display = ('first_name',
-                    #'last_name',
-                    #'register_number',
-                    #'vidyalaya_email_id',
-                    #'processed',
-                    #'last_modified_on',)
-    ##list_editable = ('vidyalaya_email_id',)
-    #list_filter = ('processed',)
-    #list_per_page = 20
-    #search_fields = ('first_name', 'last_name', 'register_number',)
-    #actions = ['create_accounts_in_google',
-               #'delete_accounts_from_google',
-               #'populate_vidyalaya_email_id',
-               #'reset_password',
-               #'mark_as_processed',
-               #'mark_as_not_processed',
-              #]
+    # Options for admin
+    list_display = ('full_name',
+                    'register_number',
+                    'vidyalaya_email_id',
+                    'personal_email_id',
+                    'google_account_created',
+                    'last_modified_on',)
+    #list_editable = ('vidyalaya_email_id',)
 
-    #def create_accounts_in_google(self, request, queryset):
-        #"""Creates the user in Google Apps database
-        #"""
-        #for registration in queryset:
-            #result = gam_actions.create(registration)
+    list_filter = ('google_account_created',)
+    list_per_page = 20
+    search_fields = ('user__first_name', 
+                     'user__last_name',
+                     'user__username',
+                     'personal_email_id')
+    actions = ['create_accounts_in_google',
+               'delete_accounts_from_google',
+               'populate_vidyalaya_email_id',
+               'reset_password',
+               'mark_as_processed',
+               'mark_as_not_processed',
+              ]
 
-            #if result:
-                #self.message_user(request,
-                                  #'Failed to create "%s" for %s. Reason = %s' %
-                                      #(registration.vidyalaya_email_id,
-                                       #registration.register_number,
-                                       #result))
-            #else:
-                #self.message_user(request, "Successfully created %s" % registration.vidyalaya_email_id)
-                #registration.processed = True
-                #registration.save()
+    def create_accounts_in_google(self, request, queryset):
+        """Creates the Google Apps account for the user
+        """
+        gam = GoogleAppsManager()
+        password = User.objects.make_random_password(length=6)
 
-    #def delete_accounts_from_google(self, request, queryset):
-        #"""Deletes the user from Google Apps database
-        #"""
-        #for registration in queryset:
-            #result = gam_actions.delete(registration)
+        for profile in queryset:
+            if not profile.vidyalaya_email_id:
+                messages.error(request,
+                    'Vidyalaya Email Id is empty for %s' % profile.register_number)
 
-            #if result:
-                #self.message_user(request,
-                                  #'Failed to delete %s. Reason = %s' %
-                                  #(registration.vidyalaya_email_id, result))
-            #else:
-                #self.message_user(request, "Successfully deleted %s" % registration.vidyalaya_email_id)
-                #registration.processed = False
-                #registration.save()
+            username = profile.user.username
+            groupname = profile.register_number[:5]
+
+            try:
+                gam.create_account(username,
+                                   password,
+                                   profile.user.first_name,
+                                   profile.user.last_name,
+                                   profile.vidyalaya_email_id,
+                                   groupname
+                                   )
+            except Exception, e:
+                messages.error(request,
+                    'Error while creating %s. Error : %s' %
+                    (profile.register_number, e))
+            else:
+                messages.success(request,
+                    'Successfully created %s. Password is %s' %
+                    (profile.register_number, password))
 
 
-    #def populate_vidyalaya_email_id(self, request, queryset):
-        #"""Computes unique email id and populates
-        #"""
-        #for registration in queryset:
-            ## Populate only if it is empty.
-            #if registration.vidyalaya_email_id:
-                #logging.info("Vidyalaya email id is already populated for %s. Not modifying." % registration.register_number)
-            #else:
-                #email_id = vidyalaya_policy.get_new_email_id(
-                                            #registration.first_name,
-                                            #registration.last_name,
-                                            #registration.register_number)
-                #logging.debug("Generated %s for %s" % (email_id, registration.register_number))
+    def delete_accounts_from_google(self, request, queryset):
+        """Deletes the user from Google Apps database
+        """
+        gam = GoogleAppsManager()
 
-                #if email_id:
-                    #registration.vidyalaya_email_id = email_id
-                    #registration.save()
-                #else:
-                    #self.message_user(request, "Could not generate a unique email id. Human wisdom is required")
+        for profile in queryset:
+            try:
+                gam.delete_account(profile.user.username)
+            except Exception, e:
+                messages.error(request,
+                    'Error while deleting %s. Error : %s' %
+                    (profile.register_number, e))
+            else:
+                messages.success(request,
+                    'Successfully deleted %s' % profile.register_number)
 
-        #self.message_user(request, "Completed")
+    def populate_vidyalaya_email_id(self, request, queryset):
+        """Computes unique email id and populates
+        """
+        for profile in queryset:
+            # Populate only if it is empty.
+            if profile.vidyalaya_email_id:
+                messages.error(request,
+                    'Vidyalaya email id is already populated for %s. Not modifying.' % profile.register_number)
+            else:
+                username = accounts_manager.get_new_username(profile.user.first_name,
+                                                             profile.user.last_name)
 
-    #def reset_password(self, request, queryset):
-        #for registration in queryset:
-            #result = gam_actions.reset(registration)
+                if username:
+                    profile.vidyalaya_email_id = username + '@' + settings.GOOGLE_APPS_DOMAIN
+                    profile.save()
+                else:
+                    messages.error(request,
+                        'Could not generate a unique username for %s' % profile.register_number)
 
-            #if result:
-                #self.message_user(request, "Failed to reset password for %s" % registration.vidyalaya_email_id)
-            #else:
-                #self.message_user(request, "Successfully reset password for %s" % registration.vidyalaya_email_id)
 
-    #def mark_as_processed(self, request, queryset):
-        #queryset.update(processed=True)
+    def reset_password(self, request, queryset):
+        gam = GoogleAppsManager()
+        passwd = User.objects.make_random_password(length=6)
 
-    #def mark_as_not_processed(self, request, queryset):
-        #queryset.update(processed=False)
+        for profile in queryset:
+            if not profile.google_account_created:
+                messages.error(request,
+                    'No Google Apps account for %s' % profile.register_number)
+                continue
+
+            try:
+                username = profile.register_number
+                result = gam.change_password(username,
+                                             passwd)
+            except Exception, e:
+                messages.error(request,
+                    'Failed to update password for %s. Reason : %s' %
+                    (username, e))
+            else:
+                messages.success(request,
+                    'Successfully updated password for %s. New Password is %s' %
+                    (username, passwd))
+
+    def mark_as_processed(self, request, queryset):
+        queryset.update(google_account_created=True)
+
+    def mark_as_not_processed(self, request, queryset):
+        queryset.update(google_account_created=False)
 
 
 register(Course, DefaultAdmin)
 register(Batch, DefaultAdmin)
-register(Profile, DefaultAdmin)
+register(Profile, ProfileAdmin)

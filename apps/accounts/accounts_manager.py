@@ -94,7 +94,7 @@ def get_new_username(first_name,
         return username
 
 def create_account_in_google_apps(register_number, default_passwd,
-                                 first_name, last_name):
+                                  first_name, last_name):
 
     gam = GoogleAppsManager()
 
@@ -142,7 +142,6 @@ def create_local_account(username, password,
 
 
     try:
-
         profile = Profile.objects.create(user=user,
                                          course=course,
                                          year_of_joining=year_of_joining)
@@ -181,14 +180,14 @@ def create_accounts(default_passwd):
         if profile.google_account_created:
             continue
 
-        try:
-            nickname = create_account_in_google_apps(register_number, default_passwd,
-                                                    first_name, last_name)
-            if nickname:
-                update_profile_with_google_apps_status(register_number,
-                                                       nickname)
-        except Exception, e:
-            print 'Exception while creating Google Apps account for %s : %s' % (register_number, str(e))
+        #try:
+            #nickname = create_account_in_google_apps(register_number, default_passwd,
+                                                    #first_name, last_name)
+            #if nickname:
+                #update_profile_with_google_apps_status(register_number,
+                                                       #nickname)
+        #except Exception, e:
+            #print 'Exception while creating Google Apps account for %s : %s' % (register_number, str(e))
 
 
 if __name__ == '__main__':

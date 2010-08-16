@@ -114,6 +114,9 @@ class GoogleAppsManager(object):
     def delete_nickname(self, nickname):
         self.apps.DeleteNickname(nickname)
 
+    def delete_all_nicknames_for_user(self, username):
+        for nickname in self.apps.GetGeneratorForAllNicknamesOfAUser(username):
+            self.delete_nickname(nickname)
 
     def change_password(self, username, new_password):
         user = self.apps.RetrieveUser(username)
@@ -146,6 +149,12 @@ class GoogleAppsManager(object):
         obj = self.get_groups_object()
         email = username + '@' + self.domain
         obj.RemoveMemberFromGroup(email, groupname)
+
+    def remove_user_from_all_groups(self, username):
+        obj = self.get_groups_object()
+        email_id = username + '@' + self.domain
+        for groupname in obj.RetrieveGroups(email_id, direct_only=True):
+            self.remove_user_from_group(username, groupname)
 
 
     def force_password_change(self, username):
@@ -189,15 +198,26 @@ class GoogleAppsManager(object):
 
         self.force_password_change(username)
         self.turn_off_webclips(username)
-        self.create_nickname(username, nickname)
-        self.enable_send_as(username, nickname,
-                            first_name, last_name)
-
         self.add_user_to_group(username, groupname)
 
+        if nickname:
+            self.create_nickname(username, nickname)
+            self.enable_send_as(username, nickname,
+                                first_name, last_name)
 
-    def delete_account(self, username, nickname, groupname):
-        self.remove_user_from_group(username, groupname)
-        self.delete_nickname(nickname)
 
-        self.delete_user(username)
+    def delete_account(self, username):
+        try:
+            self.remove_user_from_all_groups(username)
+        except Exception, e:
+            print "Exception : %s" % str(e)
+
+        try:
+            self.delete_all_nicknames_for_user(username)
+        except Exception, e:
+            print "Exception : %s" % str(e)
+
+        try:
+            self.delete_user(username)
+        except Exception, e:
+            print "Exception : %s" % str(e)

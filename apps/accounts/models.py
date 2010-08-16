@@ -66,7 +66,7 @@ class Batch(models.Model):
 
 class Profile(models.Model):
     # Register Number, First Name and Last Name are defined in User model
-    user = models.ForeignKey(User, unique=True, related_name='user_profile')
+    user = models.ForeignKey(User, unique=True,)
 
     objects = ProfileManager()
 
