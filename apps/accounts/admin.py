@@ -28,7 +28,7 @@ class ProfileAdmin(FullHistoryAdmin):
 
     # Options for admin
     list_display = ('full_name',
-                    'register_number',
+                    'user',
                     'college_email_id',
                     'personal_email_id',
                     'personal_contact_number',
@@ -59,6 +59,38 @@ class ProfileAdmin(FullHistoryAdmin):
                'deactivate_account',
                'reactivate_account',
               ]
+    
+    fieldsets = ((None, 
+                  {'fields': ('user', 'course', 'year_of_joining', 'college_email_id',)
+                  }
+                 ),
+                 ('Personal Details', 
+                  {'classes': ('collapse','closed',),
+                   'fields': settings.PERSONAL_DETAILS_FIELD_LIST
+                  }
+                 ), 
+                 ('Family Details', 
+                  {'classes': ('collapse','closed',),
+                   'fields': settings.FAMILY_DETAILS_FIELD_LIST
+                  }
+                 ),                 
+                 ('Contact Details', 
+                  {'classes': ('collapse','closed',),
+                   'fields': settings.CONTACT_DETAILS_FIELD_LIST
+                  }
+                 ),                 
+                 ('Education Details', 
+                  {'classes': ('collapse','closed',),
+                   'fields': settings.EDUCATION_DETAILS_FIELD_LIST
+                  }
+                 ),                 
+                 ('Misc Details', 
+                  {'classes': ('collapse','closed',),
+                   'fields': settings.MISC_DETAILS_FIELD_LIST
+                  }
+                 ),                 
+                )
+    
 
     def create_accounts_in_google(self, request, queryset):
         """Creates the Google Apps account for the user

@@ -7,7 +7,8 @@ from accounts.models import Profile
 class GeneralDetailsForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = list(set(settings.GENERAL_DETAILS_FIELD_LIST) - set(['first_name', 'last_name', 'register_number']))
+        fields = list(set(settings.GENERAL_DETAILS_FIELD_LIST) - 
+                      set(['first_name', 'last_name', 'register_number', 'college_email_id']))
 
 class PersonalDetailsForm(forms.ModelForm):
     class Meta:
