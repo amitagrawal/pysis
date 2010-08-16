@@ -10,82 +10,61 @@ class CustomIndexDashboard(Dashboard):
     Custom index dashboard for pysis.
     """
     def __init__(self, **kwargs):
+        self.columns = 3
         Dashboard.__init__(self, **kwargs)
 
-        # append a link list module for "quick links"
-        #self.children.append(modules.LinkList(
-        #    title=_('Quick links'),
-        #    layout='inline',
-        #    draggable=False,
-        #    deletable=False,
-        #    collapsible=False,
-        #    children=[
-        #        {
-        #            'title': _('Return to site'),
-        #            'url': '/',
-        #        },
-        #        {
-        #            'title': _('Change password'),
-        #            'url': reverse('admin:password_change'),
-        #        },
-        #        {
-        #            'title': _('Log out'),
-        #            'url': reverse('admin:logout')
-        #        },
-        #    ]
-        #))
-        
+        self.children.append(modules.AppList(
+            title='PySIS',
+            include_list=('accounts', 'django.contrib.auth'),
+            css_classes=['collapse', 'open'],
+        ))
+
         # append an app list module for "Administration"
         self.children.append(modules.AppList(
             title='Administration',
             include_list=('django.contrib',),
-            css_classes=['collapse', 'open'],
+            css_classes=['collapse', 'closed'],
         ))
-        
+
         # append an app list module for "Applications"
         self.children.append(modules.AppList(
             title='Applications',
             exclude_list=('django.contrib',),
-            css_classes=['collapse', 'open'],
+            css_classes=['collapse', 'closed'],
+        ))
+
+        # append a link list module for "quick links"
+        self.children.append(modules.LinkList(
+            title='Quick links',
+            column=3,
+            layout='inline',
+            draggable=False,
+            deletable=False,
+            collapsible=True,
+            children=[
+                {
+                    'title': 'Return to site',
+                    'url': '/',
+                },
+                {
+                    'title': 'Change password',
+                    'url': reverse('admin:password_change'),
+                },
+                {
+                    'title': 'Log out',
+                    'url': reverse('admin:logout')
+                },
+            ]
         ))
 
         # append a recent actions module
         self.children.append(modules.RecentActions(
-            column=2,
+            column=3,
             title='Recent Actions',
-            limit=5
+            limit=5,
+            css_classes=['collapse', 'closed'],
         ))
 
-        # append a feed module
-        self.children.append(modules.Feed(
-            column=2,
-            title='Latest Django News',
-            feed_url='http://www.djangoproject.com/rss/weblog/',
-            limit=5
-        ))
-
-        # append another link list module for "support".
-        self.children.append(modules.LinkList(
-            column=2,
-            title='Support',
-            children=[
-                {
-                    'title': 'Django documentation',
-                    'url': 'http://docs.djangoproject.com/',
-                    'external': True,
-                },
-                {
-                    'title': 'Django "django-users" mailing list',
-                    'url': 'http://groups.google.com/group/django-users',
-                    'external': True,
-                },
-                {
-                    'title': 'Django irc channel',
-                    'url': 'irc://irc.freenode.net/django',
-                    'external': True,
-                },
-            ]
-        ))
 
     def init_with_context(self, context):
         """
