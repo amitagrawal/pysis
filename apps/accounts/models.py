@@ -167,6 +167,7 @@ class Profile(models.Model):
     linkedin_profile_url = models.URLField(null=True, blank=True, verify_exists=False)
 
     # Audit Trail
+    active = models.BooleanField(default=True)
     google_account_created = models.BooleanField(default=False)
     last_modified_on = models.DateTimeField(editable=False,
                                             auto_now=True)

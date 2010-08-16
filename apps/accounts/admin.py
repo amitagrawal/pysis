@@ -34,10 +34,12 @@ class ProfileAdmin(FullHistoryAdmin):
                     'personal_contact_number',
                     'actual_date_of_birth',
                     'google_account_created',
+                    'active',
                     'last_modified_on',)
     #list_editable = ('college_email_id',)
 
     list_filter = ('google_account_created',
+                   'active',
                    'year_of_joining',
                    'course',
                    'blood_group',
@@ -54,6 +56,8 @@ class ProfileAdmin(FullHistoryAdmin):
                'reset_password',
                'mark_as_processed',
                'mark_as_not_processed',
+               'deactivate_account',
+               'reactivate_account',
               ]
 
     def create_accounts_in_google(self, request, queryset):
@@ -157,6 +161,38 @@ class ProfileAdmin(FullHistoryAdmin):
 
     def mark_as_not_processed(self, request, queryset):
         queryset.update(google_account_created=False)
+        
+    def deactivate_account(self, request, queryset):
+        gam = GoogleAppsManager()
+        
+        for profile in queryset:
+            try:
+                gam.suspend_user(profile.user.username)
+                profile.active = False
+                profile.save()
+            except Exception, e:
+                messages.error(request,
+                    'Error while deactivating %s. Reason : %s' %
+                    (profile.user.username, e))
+            else:
+                messages.success(request,
+                    'Deactivated %s' % profile.user.username)            
+        
+    def reactivate_account(self, request, queryset):
+        gam = GoogleAppsManager()
+        
+        for profile in queryset:
+            try:
+                gam.unsuspend_user(profile.user.username)
+                profile.active = True
+                profile.save()
+            except Exception, e:
+                messages.error(request,
+                    'Error while reactivating %s. Reason : %s' %
+                    (profile.user.username, e))
+            else:
+                messages.success(request,
+                    'Reactivated %s' % profile.user.username)            
 
 
 register(Course, DefaultAdmin)
