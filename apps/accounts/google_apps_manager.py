@@ -18,6 +18,9 @@ class UserDoesNotExist(Exception):
 class UserAlreadyExists(Exception):
     pass
 
+class UserDeletionException(Exception):
+    pass
+
 
 class GoogleAppsManager(object):
     def __init__(self):
@@ -108,8 +111,8 @@ class GoogleAppsManager(object):
         self.apps.DeleteNickname(nickname)
 
     def delete_all_nicknames_for_user(self, username):
-        for nickname in self.apps.GetGeneratorForAllNicknamesOfAUser(username):
-            self.delete_nickname(nickname)
+        for entry in self.apps.RetrieveNicknames(username).entry:
+            self.delete_nickname(entry.nickname.name)
 
     def change_password(self, username, new_password):
         user = self.apps.RetrieveUser(username)
@@ -120,6 +123,8 @@ class GoogleAppsManager(object):
         user.login.hash_function_name = 'SHA-1'
 
         self.apps.UpdateUser(username, user)
+        
+        self.force_password_change(username)
 
     def group_exists(self, groupname):
         obj = self.get_groups_object()
@@ -146,8 +151,8 @@ class GoogleAppsManager(object):
     def remove_user_from_all_groups(self, username):
         obj = self.get_groups_object()
         email_id = username + '@' + self.domain
-        for groupname in obj.RetrieveGroups(email_id, direct_only=True):
-            self.remove_user_from_group(username, groupname)
+        for group in obj.RetrieveGroups(email_id, direct_only=True):
+            self.remove_user_from_group(username, group['groupId'])
 
 
     def force_password_change(self, username):
@@ -199,6 +204,25 @@ class GoogleAppsManager(object):
                                 first_name, last_name)
 
     def delete_account(self, username):
+        errors = []
+        
+        if not self.user_exists(username):
+            raise UserDoesNotExist, "User %s does not exist" % username
+        
+        try:
             self.remove_user_from_all_groups(username)
+        except Exception, e:
+            errors.append('remove_user_from_all_groups : %s' % e)
+        
+        try:
             self.delete_all_nicknames_for_user(username)
+        except Exception, e:
+            errors.append('delete_all_nicknames_for_user : %s' % e)
+
+        try:            
             self.delete_user(username)
+        except Exception, e:
+            errors.append('delete_user : %s' % e)
+
+        if errors:
+            raise UserDeletionException, errors

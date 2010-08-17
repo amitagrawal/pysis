@@ -105,6 +105,7 @@ class ProfileAdmin(FullHistoryAdmin):
     def delete_accounts_from_google(self, request, queryset):
         """Deletes the user from Google Apps database
         """
+        gam = GoogleAppsManager()
 
         opts = self.model._meta
         app_label = opts.app_label
@@ -116,8 +117,9 @@ class ProfileAdmin(FullHistoryAdmin):
         if request.POST.get('post'):
             for profile in queryset:
                 try:
-                    gam = GoogleAppsManager()
                     gam.delete_account(profile.user.username)
+                    profile.google_account_created = False
+                    profile.save()
                 except Exception, e:
                     messages.error(request,
                         'Error while deleting %s. Error : %s' %

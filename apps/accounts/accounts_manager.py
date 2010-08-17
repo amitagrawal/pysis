@@ -106,6 +106,7 @@ def create_account_in_google_apps(request, profile, password):
     first_name = profile.user.first_name
     last_name = profile.user.last_name
     college_email_id = profile.college_email_id
+    nickname = college_email_id.split('@')[0]
     groupname = profile.register_number[:5]
 
     if not college_email_id:
@@ -125,7 +126,7 @@ def create_account_in_google_apps(request, profile, password):
                            password,
                            first_name,
                            last_name,
-                           college_email_id,
+                           nickname,
                            groupname
                           )
         

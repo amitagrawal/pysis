@@ -26,7 +26,7 @@ ADMINS = (
     ('Ramakrishna Mission Vidyalaya', 'info@rmv.ac.in'),
 )
 
-DEFAULT_ADMIN_EMAIL = '%s <%s>' % ADMINS[0]
+DEFAULT_FROM_EMAIL = '%s <%s>' % ADMINS[0]
 
 MANAGERS = ADMINS
 
