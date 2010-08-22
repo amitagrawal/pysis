@@ -19,12 +19,11 @@ class TestSanity(HttpTestCase):
 
 
     def test_that_all_private_urls_are_protected_with_login_required(self):
-        for page in settings.URLS_TO_TEST:
-            if page not in settings.PUBLIC_URLS:
-                res = self.client.get(page, follow=True)
+        for page in settings.PRIVATE_URLS:
+            res = self.client.get(page, follow=True)
 
-                assert res.request['PATH_INFO'] == settings.LOGIN_URL, \
-                       "%s Failed. Not redirected to Sign in page" % page
+            assert res.request['PATH_INFO'] == settings.LOGIN_URL, \
+                   "%s Failed. Not redirected to Sign in page" % page
 
 
     def test_that_logged_in_user_can_browse_all_urls(self):

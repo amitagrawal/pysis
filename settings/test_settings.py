@@ -10,8 +10,15 @@ INSTALLED_APPS.remove('south')
 TEST_USERNAME = '09mca099'
 TEST_USER_PASSWORD = 'p'
 
-URLS_TO_TEST = [
+PUBLIC_URLS = [
     '/',
+    
+    '/password/reset',
+    '/password/reset/done',
+    '/password/reset/complete',
+]
+
+PRIVATE_URLS = [
     #'/admin',
     #'/browse',
     '/myprofile',
@@ -52,13 +59,12 @@ URLS_TO_TEST = [
     '/students/display/09mca099',
 
     #'/password_change',
-
 ]
 
-PUBLIC_URLS = [
-    '/',
-]
+
+URLS_TO_TEST = PUBLIC_URLS + PRIVATE_URLS
 
 # Test urls ending with / also
 URLS_TO_TEST += [url + '/' for url in URLS_TO_TEST]
 PUBLIC_URLS  += [url + '/' for url in PUBLIC_URLS]
+PRIVATE_URLS  += [url + '/' for url in PRIVATE_URLS]
