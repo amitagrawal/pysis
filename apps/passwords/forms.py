@@ -52,7 +52,7 @@ class PasswordResetForm(forms.Form):
                        c, 
                        subject, 
                        personal_email_id,
-                       fail_silently=True)
+                       fail_silently=False)
         
 
 class PasswordSelectForm(SetPasswordForm):

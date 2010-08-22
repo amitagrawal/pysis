@@ -1,0 +1,31 @@
+{% extends "email_base.html" %}
+
+{% block content %}
+
+<h2> Dear {{ first_name }}, </h2>
+
+<span style="color: rgb(153, 0, 0);
+             font-family: cursive;
+             font-size: 18px;
+             line-height: 25px;">
+On this very special day, your birthday, a bouquet of words from our heart - <br> <br>
+
+    May this day be all that you wished for, <br>
+    May the days ahead be bright and colorful... <br>
+    full of joy, happiness and friendship. <br>
+    May you continue to be <br>
+    such an uplifting and positive force in so many people's lives <br>
+    And may your year ahead <br>
+    Be blessed and happy - Always. <br>
+
+<br>
+
+<img style="width: 350px; height: 350px;" alt="Happy Birthday" src="http://google.rmv.ac.in/greetings/happy_birthday_presents.gif">
+
+</span>
+
+<h2>
+- Students and Staff of {{ organization }}
+</h2>
+
+{% endblock %}

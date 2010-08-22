@@ -154,6 +154,7 @@ INSTALLED_APPS = (
     'passwords',
     'myprofile',
     'students',
+    'greetings',
 )
 
 FIXTURE_DIRS = (
