@@ -13,6 +13,7 @@ from django.http import HttpResponseRedirect
 
 from generic_app.views import logoutuser
 import myprofile
+import passwords
 
 try:
     admin.autodiscover()
@@ -24,14 +25,11 @@ urlpatterns = patterns('',
     # Example:
     # (r'^pysis/', include('pysis.foo.urls')),
 
-    url(r'^$', 'django.contrib.auth.views.login',
-        {'template_name': 'homepage/homepage.html'} ,
+    url(r'^$', direct_to_template,
+        {'template': 'homepage/homepage.html'} ,
         name='login'),
     url(r'^logout/$', logoutuser,
         name='logout'),
-    url(r'^password_change/$',
-        lambda request: HttpResponseRedirect(settings.PASSWORD_CHANGE_URL),
-        name='password_change'),
         
     (r'^favicon\.ico$', 'django.views.generic.simple.redirect_to',
                         {'url': '%s/images/favicon.ico' % settings.MEDIA_URL}),
@@ -46,6 +44,8 @@ urlpatterns = patterns('',
 
     (r'^myprofile/avatar/', include('avatar.urls')),
     (r'^myprofile/', include('myprofile.urls')),
+    
+    (r'^password/', include('passwords.urls')),
 
     (r'^students/', include('students.urls')),
 
