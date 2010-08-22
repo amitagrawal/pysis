@@ -9,11 +9,12 @@ from django.conf import settings
 
 env.hosts = [os.environ.get('MYSERVER')]
 
-def test():
-    # use test settings, not actual settings
-    os.environ['DJANGO_SETTINGS_MODULE'] = 'pysis.settings.test_settings'
-    os.environ['PYTHONPATH'] = '.:..:%s/apps' %  settings.PROJECT_ROOT
+# use test settings, not actual settings
+os.environ['DJANGO_SETTINGS_MODULE'] = 'pysis.settings.test_settings'
+os.environ['PYTHONPATH'] = '.:..:%s/apps' %  settings.PROJECT_ROOT
 
+
+def run_pylint():
     local('pylint ' +
           # E1101 is a very useful message.
           # But I have to disable it because
@@ -24,11 +25,17 @@ def test():
           '--disable=C,R,W ' +
           settings.PROJECT_ROOT, capture=False)
 
+
+def run_nose():
     local('nosetests -v -d -x ' +
            '--with-doctest ' +
            '--with-django ' +
            '--with-djangoliveserver ' +
            '--with-selenium ', capture=False)
+
+def test():
+    run_pylint()
+    run_nose()
 
 def deploy(skip_tests='no'):
     if skip_tests != 'yes':

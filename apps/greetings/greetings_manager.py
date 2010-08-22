@@ -33,13 +33,13 @@ def send_reminder_to_group(profile,
     except Batch.DoesNotExist:
         return
 
-    if batch.code.contains('staff'):
+    if batch.code.startswith('staff'):
         return
 
     batch_email_id = '%s@%s' % (batch.code, settings.GOOGLE_APPS_DOMAIN)
     subject = "%s's Birthday Reminder" % profile.first_name
 
-    c = {'first_name': profile.first_namefirst_name,
+    c = {'first_name': profile.first_name,
          'birth_day': profile.birth_day,
          'register_number': profile.register_number,
         }
