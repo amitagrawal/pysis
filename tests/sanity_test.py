@@ -1,7 +1,7 @@
 from djangosanetesting.cases import HttpTestCase
 from django.conf import settings
 
-from accounts import testdata
+from accounts.tests import testdata
 
 class TestSanity(HttpTestCase):
     def __init__(self, *args, **kwargs):
@@ -9,6 +9,7 @@ class TestSanity(HttpTestCase):
         self.host = 'localhost'
         self.port = 8000
 
+    def setUp(self):
         testdata.run()
 
     def test_that_none_of_the_valid_urls_throw_404(self):
@@ -21,8 +22,7 @@ class TestSanity(HttpTestCase):
         for page in settings.URLS_TO_TEST:
             if page not in settings.PUBLIC_URLS:
                 res = self.client.get(page, follow=True)
-                assert 'Sign in' in res.content, \
-                       "%s Failed. Not redirected to Sign in page" % page
+
                 assert res.request['PATH_INFO'] == settings.LOGIN_URL, \
                        "%s Failed. Not redirected to Sign in page" % page
 
@@ -38,8 +38,6 @@ class TestSanity(HttpTestCase):
             assert res.status_code == 200, \
                 "%s Failed. Received Status Code = %s" % (page, res.status_code)
 
-            assert 'Sign in' not in res.content, \
-                   "%s Failed. Logged in user redirected to Sign in page" % page
             assert res.request['PATH_INFO'] != settings.LOGIN_URL, \
                    "%s Failed. Logged in user redirected to Sign in page" % page
 

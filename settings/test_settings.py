@@ -47,9 +47,9 @@ URLS_TO_TEST = [
     '/students/browse/myseniors',
     '/students/browse/somejunk',
 
-    '/students/display/09mca001',
+    '/students/display/09mca099',
 
-    '/password_change',
+    #'/password_change',
 
 ]
 

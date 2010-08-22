@@ -2,7 +2,7 @@ from djangosanetesting.cases import HttpTestCase
 from django.conf import settings
 from django.core.urlresolvers import reverse
 
-from accounts import testdata
+from accounts.tests import testdata
 from accounts.models import Profile, Course
 
 
@@ -29,12 +29,14 @@ class TestMyProfileEdit(HttpTestCase):
         self.host = 'localhost'
         self.port = 8000
 
+    def setUp(self):
         testdata.run()
         assert self.client.login(username=settings.TEST_USERNAME,
                                  password=settings.TEST_USER_PASSWORD)
 
     def test_contact_details(self):
         for personal_email_id, personal_contact_number, msg, success in contact_details:
+
             res = self.client.post(contact_details_url,
                                    {'personal_email_id' : personal_email_id,
                                     'personal_contact_number' : personal_contact_number,
