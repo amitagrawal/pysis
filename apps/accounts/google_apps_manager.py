@@ -123,7 +123,7 @@ class GoogleAppsManager(object):
         user.login.hash_function_name = 'SHA-1'
 
         self.apps.UpdateUser(username, user)
-        
+
         self.force_password_change(username)
 
     def group_exists(self, groupname):
@@ -194,7 +194,7 @@ class GoogleAppsManager(object):
         self.create_new_user(username, password,
                              first_name, last_name)
 
-        self.force_password_change(username)
+        #self.force_password_change(username)
         self.turn_off_webclips(username)
         self.add_user_to_group(username, groupname)
 
@@ -205,21 +205,21 @@ class GoogleAppsManager(object):
 
     def delete_account(self, username):
         errors = []
-        
+
         if not self.user_exists(username):
             raise UserDoesNotExist, "User %s does not exist" % username
-        
+
         try:
             self.remove_user_from_all_groups(username)
         except Exception, e:
             errors.append('remove_user_from_all_groups : %s' % e)
-        
+
         try:
             self.delete_all_nicknames_for_user(username)
         except Exception, e:
             errors.append('delete_all_nicknames_for_user : %s' % e)
 
-        try:            
+        try:
             self.delete_user(username)
         except Exception, e:
             errors.append('delete_user : %s' % e)
