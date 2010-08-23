@@ -10,9 +10,11 @@ INSTALLED_APPS.remove('south')
 TEST_USERNAME = '09mca099'
 TEST_USER_PASSWORD = 'p'
 
+LOGIN_URL = '/admin/'
+
 PUBLIC_URLS = [
     '/',
-    
+
     '/password/reset',
     '/password/reset/done',
     '/password/reset/complete',
