@@ -30,7 +30,7 @@ class PasswordResetForm(forms.Form):
 
         return register_number
 
-    def save(self, 
+    def save(self,
              email_template_name='passwords/password_reset_email.html',
              request=None):
         """
@@ -38,9 +38,10 @@ class PasswordResetForm(forms.Form):
         """
         personal_email_id = self.profile.personal_email_id or self.profile.personal_email_id2
         request.session['personal_email_id'] = personal_email_id
-        domain = RequestSite(request).domain 
+        domain = RequestSite(request).domain
 
         c = {
+            'first_name' : self.profile.user.first_name,
             'email': personal_email_id,
             'domain': domain,
             'uid': int_to_base36(self.user.id),
@@ -49,11 +50,11 @@ class PasswordResetForm(forms.Form):
 
         subject = "Password reset on %s" % domain
         send_html_mail(email_template_name,
-                       c, 
-                       subject, 
+                       c,
+                       subject,
                        personal_email_id,
                        fail_silently=False)
-        
+
 
 class PasswordSelectForm(SetPasswordForm):
     """
@@ -62,14 +63,14 @@ class PasswordSelectForm(SetPasswordForm):
     """
     def __init__(self, user, *args, **kwargs):
         self.user = user
-        super(PasswordSelectForm, self).__init__(user, *args, **kwargs)
+        SetPasswordForm.__init__(self, user, *args, **kwargs)
 
     def save(self):
         username = self.user.username
         password = self.cleaned_data['new_password1']
-        
+
         gam = GoogleAppsManager()
-        gam.change_password(username, 
-                            password)        
-        
+        gam.change_password(username,
+                            password)
+
         return self.user
