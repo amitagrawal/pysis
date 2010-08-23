@@ -123,8 +123,7 @@ class GoogleAppsManager(object):
         user.login.hash_function_name = 'SHA-1'
 
         self.apps.UpdateUser(username, user)
-
-        self.force_password_change(username)
+        #self.force_password_change(username)
 
     def group_exists(self, groupname):
         obj = self.get_groups_object()
