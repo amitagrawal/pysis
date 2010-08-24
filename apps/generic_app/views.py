@@ -6,5 +6,5 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def logoutuser(request):
   logout(request)
-  return redirect('/')
+  return redirect(settings.LOGOUT_REDIRECT_URL)
 

@@ -16,7 +16,7 @@ MESSAGE_TAGS = {
 AUTH_PROFILE_MODULE = 'accounts.Profile'
 
 # Google Apps Settings
-GOOGLE_APPS_DOMAIN = 'mydomain.com'
+GOOGLE_APPS_DOMAIN = 'rmv.ac.in'
 GOOGLE_APPS_ADMIN_USERNAME = 'admin@mydomain.com'
 GOOGLE_APPS_ADMIN_PASSWORD = 'my_secret_pass'
 
@@ -27,6 +27,9 @@ STUDENTS_LANDING_URL = '/students/browse/myclassmates/'
 
 LOGIN_URL = '/openid/login/'
 LOGIN_REDIRECT_URL = MY_PROFILE_LANDING_URL
+LOGOUT_REDIRECT_URL = 'https://www.google.com/accounts/Logout?' +\
+                      'continue=https://www.google.com/a/' +\
+                      GOOGLE_APPS_DOMAIN
 PASSWORD_CHANGE_URL = 'https://www.google.com/accounts/EditPasswd'
 
 MAIN_MENU_LEFT = [
