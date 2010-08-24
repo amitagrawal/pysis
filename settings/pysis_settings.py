@@ -32,6 +32,7 @@ PASSWORD_CHANGE_URL = 'https://www.google.com/accounts/EditPasswd'
 MAIN_MENU_LEFT = [
 
     # (Name, URL)
+    ('My Profile', '/myprofile/'),
     ('Student Profiles', '/students/'),
     ('Attendance', '/attendance/'),
     ('Marks', '/marks/'),
@@ -43,7 +44,7 @@ MAIN_MENU_LEFT = [
 MAIN_MENU_RIGHT = [
 
     # (Name, URL)
-    ('My Profile', MY_PROFILE_LANDING_URL),
+    ('Ideas', 'http://vidyalaya.ideascale.com'),
     ('Vidyalaya Mail', 'http://mail.rmv.ac.in'),
 ]
 
