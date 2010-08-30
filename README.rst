@@ -1,5 +1,3 @@
-.. -*- restructuredtext -*-
-
 PySIS
 =================
 
@@ -49,5 +47,4 @@ Steps
 #. Add pysis to python path. Verify that this command won't throw any error ::
 
     >>> import pysis
-
 

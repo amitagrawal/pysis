@@ -1,2 +1,2 @@
-version = '70'
-last_modified_timestamp = '2010-08-24 12:49:42 IST'
+version = '71'
+last_modified_timestamp = '2010-08-30 21:35:26 IST'
