@@ -6,6 +6,8 @@
 Welcome to PySIS's documentation!
 =================================
 
+PySIS is Student Information System written in Python with Django.
+
 Contents:
 
 .. toctree::
