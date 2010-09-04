@@ -38,3 +38,4 @@ production_settings.py
 .pydevproject
 media/avatars
 media/CACHE
+_build
