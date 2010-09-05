@@ -11,7 +11,7 @@ from django.conf import settings
 from django.shortcuts import redirect
 from django.http import HttpResponseRedirect
 
-from generic_app.views import logoutuser
+from generic_app.views import display_homepage, logoutuser
 import myprofile
 import passwords
 
@@ -25,8 +25,7 @@ urlpatterns = patterns('',
     # Example:
     # (r'^pysis/', include('pysis.foo.urls')),
 
-    url(r'^$', direct_to_template,
-        {'template': 'homepage/homepage.html'} ,
+    url(r'^$', display_homepage,
         name='login'),
     url(r'^logout/$', logoutuser,
         name='logout'),

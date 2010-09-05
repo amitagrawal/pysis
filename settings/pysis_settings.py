@@ -31,6 +31,7 @@ LOGOUT_REDIRECT_URL = 'https://www.google.com/accounts/Logout?' +\
                       'continue=https://www.google.com/a/' +\
                       GOOGLE_APPS_DOMAIN
 PASSWORD_CHANGE_URL = 'https://www.google.com/accounts/EditPasswd'
+HOMEPAGE_FOR_LOGGEDIN_USERS = MY_PROFILE_LANDING_URL
 
 MAIN_MENU_LEFT = [
 
