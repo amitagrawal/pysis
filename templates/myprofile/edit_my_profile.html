@@ -14,7 +14,7 @@
 
     <p></p>
 
-    <form action="{{ request.path_info }}" method="post">
+    <form action="{{ request.path_info }}" method="post" id="myprofile_edit_form">
         {% csrf_token %}
 
         {% if form.non_field_errors %}
@@ -43,7 +43,7 @@
             {% endfor %}
         </table>
 
-            <button type="submit"> Save </button>
+            <button type="submit" class="noWarn"> Save </button>
     </form>
 
 {% endblock %}

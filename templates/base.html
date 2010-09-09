@@ -159,25 +159,34 @@
     });
     </script>
 
-	<script>
-	//jquery.toggle.list.js
-	jQuery(document).ready(function() {
-	  // hide all of the elements with a class of 'toggle'
-	  jQuery('.toggle').hide();
-	
-	  // clicking .toggleLink element will show the
-	  // child elements with the class of .toggle
-	  jQuery('a.toggleLink').click(function() {
-	    jQuery(this).parent().next('.toggle').toggle('slow');
-	    return false;
-	  });
-	});
-    </script>	
+    <script>
+    //jquery.toggle.list.js
+    jQuery(document).ready(function() {
+      // hide all of the elements with a class of 'toggle'
+      jQuery('.toggle').hide();
+
+      // clicking .toggleLink element will show the
+      // child elements with the class of .toggle
+      jQuery('a.toggleLink').click(function() {
+        jQuery(this).parent().next('.toggle').toggle('slow');
+        return false;
+      });
+    });
+
+    $(document).ready(function() {
+        $("form#myprofile_edit_form input").one("change", function() {
+            window.onbeforeunload = function() {
+                return 'There is unsaved data in this page.'; }
+        });
+        $('.noWarn').click(function() { window.onbeforeunload = null; });
+    });
+
+    </script>
+
 
     {% block extrajs %} {% endblock %}
 
     {% endcompress %}
-
 
 </body>
 </html>

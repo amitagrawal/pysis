@@ -1,3 +1,4 @@
+Version 76 	 2010-09-05 	 Cleanup of fabfile.py 
 Version 75 	 2010-09-05 	 Changing homepage for logged-in users 
 Version 74 	 2010-09-05 	 Changing theme of docs to natures as readthedocs.org does not support custom themes 
 Version 73 	 2010-09-04 	 Small change to docs 
