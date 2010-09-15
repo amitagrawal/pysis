@@ -7,7 +7,7 @@ def send_birthday_greetings(profile,
                             template_name='greetings/birthday_greetings_email.html'):
 
     c = {'first_name' : profile.first_name,
-         'orgnization' : settings.ORGANIZATION}
+         'organization' : settings.ORGANIZATION}
     subject = "Happy Birthday"
 
     to = []

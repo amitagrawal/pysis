@@ -1,8 +1,8 @@
 /* WRITE YOUR CSS CODE HERE */
 
 #aside ul li a {
-	font-weight:bold;
-	border-bottom: none;
+    font-weight:bold;
+    border-bottom: none;
 }
 
 /* tables */
@@ -43,8 +43,8 @@
 
 /* list */
 #content ul li {
-	background: none;
-} 
+    background: none;
+}
 
 /* BUTTONS */
 .edit, button{
@@ -60,48 +60,71 @@
     text-align:center;
 }
 
-.edit a { color:#fff;} 
+.edit a { color:#fff;}
 
 /* Images */
 img {
-	padding:10px;
-	vertical-align: middle;
+    padding:10px;
+    vertical-align: middle;
 }
 
 /* Some empty space */
 .empty_space {
-	margin-top:50px;
-	margin-bottom:0px;
+    margin-top:50px;
+    margin-bottom:0px;
 }
 
 /* Main Menu */
 #menu ul li a {
-	font-weight:bold;
-	color:#666;
-} 
+    font-weight:bold;
+    color:#666;
+}
 
 #menu ul li a span {
-	/* Fix for ugly underline in Firefox */
-	padding:7px 15px 8px 8px;
+    /* Fix for ugly underline in Firefox */
+    padding:7px 15px 8px 8px;
 }
 
 /* Tray */
 #tray a{
-	text-decoration: none;
+    text-decoration: none;
 }
 
 #main-title {
-	font-size: 17px;
+    font-size: 17px;
 }
 
 /* Profile Listing */
 
 /* Paginator */
 .endless_loading {
-	text-align: center;
+    text-align: center;
 }
 
 /* Search box in side menu */
 #aside #search fieldset .input-text {
-	width: 120px;
+    width: 120px;
+}
+
+.profile_search_page {
+    background: #3e464d;
+    padding-top: 40px;
+}
+
+.profile_search_listing {
+    clear: both;
+    width: 630px;
+    padding: 20px 30px;
+    background: #fff;
+    margin-left: auto ;
+    margin-right: auto ;
+}
+
+.profile_search_listing_bottom {
+    width: 690px;
+    height: 36px;
+    margin-bottom: 20px;
+    background: url(../images/profile_search_listing_bottom.jpg) no-repeat;
+    margin-left: auto ;
+    margin-right: auto ;
 }
