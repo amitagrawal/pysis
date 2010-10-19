@@ -1,3 +1,4 @@
+Revision 79 	 2010-10-19 	 Refactored some config stuff 
 Revision 78 	 2010-09-15 	 Prettifying Student profile listing pages 
 Revision 77 	 2010-09-09 	 Warning when navigating away from unsaved edit form 
 Revision 76 	 2010-09-05 	 Cleanup of fabfile.py 
