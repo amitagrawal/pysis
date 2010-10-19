@@ -1,78 +1,79 @@
-Version 77 	 2010-09-09 	 Warning when navigating away from unsaved edit form 
-Version 76 	 2010-09-05 	 Cleanup of fabfile.py 
-Version 75 	 2010-09-05 	 Changing homepage for logged-in users 
-Version 74 	 2010-09-05 	 Changing theme of docs to natures as readthedocs.org does not support custom themes 
-Version 73 	 2010-09-04 	 Small change to docs 
-Version 72 	 2010-09-04 	 Using ADCtheme for documentation 
-Version 71 	 2010-08-30 	 Renaming README to README.rst 
-Version 70 	 2010-08-24 	 Chaging URL in main menu 
-Version 69 	 2010-08-24 	 Logout now logs out of Google Apps also 
-Version 68 	 2010-08-24 	 Small change to main menu 
-Version 67 	 2010-08-23 	 Password reset confirm form 
-Version 66 	 2010-08-23 	 Removing forcePasswordChange as it is not working 
-Version 65 	 2010-08-23 	 Removing forcePasswordChange as it is not working 
-Version 64 	 2010-08-23 	 small testing related changes 
-Version 63 	 2010-08-23 	 Small changes to password reset 
-Version 62 	 2010-08-22 	 Small change to testing 
-Version 61 	 2010-08-22 	 Added testcases for password reset and greetings 
-Version 60 	 2010-08-22 	 Greetings on Birthdays. Not tested 
-Version 59 	 2010-08-22 	 Added Password Reset. Not tested 
-Version 58 	 2010-08-22 	 Testing related changes 
-Version 57 	 2010-08-17 	 Google Apps related changes. Tested 
-Version 56 	 2010-08-16 	 Small cosmetic changes 
-Version 55 	 2010-08-16 	 Customizing Admin Dashboard 
-Version 54 	 2010-08-16 	 To Activate/Deactivate accounts in Google 
-Version 53 	 2010-08-16 	 Confirmation while deleting Google account 
-Version 52 	 2010-08-16 	 Small changes to admin 
-Version 51 	 2010-08-16 	 Changing vidyalaya_email_id to college_email_id 
-Version 50 	 2010-08-16 	 sending email on activation 
-Version 49 	 2010-08-16 	 Google Apps realted changes. Not tested 
-Version 48 	 2010-08-14 	 Adding related_name to profile user 
-Version 47 	 2010-08-14 	 Mistake in settings 
-Version 46 	 2010-08-14 	 Updates to requirements 
-Version 45 	 2010-08-14 	 Adding support to create User accounts in local database and Google Apps 
-Version 44 	 2010-08-14 	 Adding GoogleAppsManager. Tested 100% 
-Version 43 	 2010-08-13 	 Changes to Homepage 
-Version 42 	 2010-08-13 	 Added OpenID support 
-Version 41 	 2010-08-13 	 Changing django-avatar version in requirements 
-Version 40 	 2010-08-12 	 Upgraded django-avatar app to 1.1a5 
-Version 39 	 2010-08-12 	 Making Course and Year of Joining in profile as optional 
-Version 38 	 2010-08-12 	 Minor cosmetic changes in submenu 
-Version 37 	 2010-08-12 	 Added 'Browse by Batch' 
-Version 36 	 2010-08-12 	 another small change to fabfile 
-Version 35 	 2010-08-12 	 Small change to fabfile 
-Version 34 	 2010-08-12 	 Remove test_utils apps 
-Version 33 	 2010-08-12 	 Deployment related changes 
-Version 32 	 2010-08-12 	 Major revision. Browse by Batch. Lot of cleanup. 
-Version 31 	 2010-08-11 	 Minor Look & Feel improvments 
-Version 30 	 2010-08-11 	 Added lot of functional test cases 
-Version 29 	 2010-08-11 	 Disabling L10N so that DATE_INPUT_FORMATS can be used in ModelForm Date Fields 
-Version 28 	 2010-08-10 	 Added Sanity test cases 
-Version 27 	 2010-08-10 	 Adding pysis version to the footer 
-Version 26 	 2010-08-10 	 Testing related changes 
-Version 25 	 2010-08-10 	 Minor changes to profile 
-Version 24 	 2010-08-10 	 Fixing DoesNotExist bug in scripts/create_users.py 
-Version 23 	 2010-08-10 	 Added django_extensions app. Using django to serve media when DEBUG=True 
-Version 22 	 2010-08-10 	 Adding favicon support 
-Version 21 	 2010-08-10 	 Small changes 
-Version 20 	 2010-08-10 	 Lot of internal cleanup 
-Version 19 	 2010-08-09 	 Forgot to add GA script to HomePage 
-Version 18 	 2010-08-09 	 Added Google Analytics support 
-Version 17 	 2010-08-09 	 Changing landing page to profile edit page 
-Version 16 	 2010-08-09 	 Chaning PhoneNumber from Int to String 
-Version 15 	 2010-08-09 	 Daemonize fcgi 
-Version 14 	 2010-08-09 	 Added 400.html 500.html 
-Version 13 	 2010-08-09 	 Started using south 
-Version 12 	 2010-08-09 	 Temporarily disabled announcements app 
-Version 11 	 2010-08-09 	 Changed README 
-Version 10 	 2010-08-09 	 Tons of Refactoring. New profile listing and search 
-Version 9 	 2010-08-08 	 Added announcement support (courtesy: http://github.com/subsume/django-announcements) 
-Version 8 	 2010-08-07 	 Adding Sphinx Documentation Template 
-Version 7 	 2010-08-07 	 Lots of new functionality. Tons of Cleanup 
-Version 6 	 2010-08-06 	 Added Avatars. Lot of UI changes. General Cleanup 
-Version 5 	 2010-08-05 	 Lot of UI improvements 
-Version 4 	 2010-08-05 	 Changing the theme to adminiziolite 
-Version 3 	 2010-08-05 	 Added working version of profile app 
-Version 2 	 2010-08-03 	 Added some goodies 
-Version 1 	 2010-08-03 	 Added some goodies 
-Version 0 	 2010-08-03 	 Empty Project 
+Revision 78 	 2010-09-15 	 Prettifying Student profile listing pages 
+Revision 77 	 2010-09-09 	 Warning when navigating away from unsaved edit form 
+Revision 76 	 2010-09-05 	 Cleanup of fabfile.py 
+Revision 75 	 2010-09-05 	 Changing homepage for logged-in users 
+Revision 74 	 2010-09-05 	 Changing theme of docs to natures as readthedocs.org does not support custom themes 
+Revision 73 	 2010-09-04 	 Small change to docs 
+Revision 72 	 2010-09-04 	 Using ADCtheme for documentation 
+Revision 71 	 2010-08-30 	 Renaming README to README.rst 
+Revision 70 	 2010-08-24 	 Chaging URL in main menu 
+Revision 69 	 2010-08-24 	 Logout now logs out of Google Apps also 
+Revision 68 	 2010-08-24 	 Small change to main menu 
+Revision 67 	 2010-08-23 	 Password reset confirm form 
+Revision 66 	 2010-08-23 	 Removing forcePasswordChange as it is not working 
+Revision 65 	 2010-08-23 	 Removing forcePasswordChange as it is not working 
+Revision 64 	 2010-08-23 	 small testing related changes 
+Revision 63 	 2010-08-23 	 Small changes to password reset 
+Revision 62 	 2010-08-22 	 Small change to testing 
+Revision 61 	 2010-08-22 	 Added testcases for password reset and greetings 
+Revision 60 	 2010-08-22 	 Greetings on Birthdays. Not tested 
+Revision 59 	 2010-08-22 	 Added Password Reset. Not tested 
+Revision 58 	 2010-08-22 	 Testing related changes 
+Revision 57 	 2010-08-17 	 Google Apps related changes. Tested 
+Revision 56 	 2010-08-16 	 Small cosmetic changes 
+Revision 55 	 2010-08-16 	 Customizing Admin Dashboard 
+Revision 54 	 2010-08-16 	 To Activate/Deactivate accounts in Google 
+Revision 53 	 2010-08-16 	 Confirmation while deleting Google account 
+Revision 52 	 2010-08-16 	 Small changes to admin 
+Revision 51 	 2010-08-16 	 Changing vidyalaya_email_id to college_email_id 
+Revision 50 	 2010-08-16 	 sending email on activation 
+Revision 49 	 2010-08-16 	 Google Apps realted changes. Not tested 
+Revision 48 	 2010-08-14 	 Adding related_name to profile user 
+Revision 47 	 2010-08-14 	 Mistake in settings 
+Revision 46 	 2010-08-14 	 Updates to requirements 
+Revision 45 	 2010-08-14 	 Adding support to create User accounts in local database and Google Apps 
+Revision 44 	 2010-08-14 	 Adding GoogleAppsManager. Tested 100% 
+Revision 43 	 2010-08-13 	 Changes to Homepage 
+Revision 42 	 2010-08-13 	 Added OpenID support 
+Revision 41 	 2010-08-13 	 Changing django-avatar version in requirements 
+Revision 40 	 2010-08-12 	 Upgraded django-avatar app to 1.1a5 
+Revision 39 	 2010-08-12 	 Making Course and Year of Joining in profile as optional 
+Revision 38 	 2010-08-12 	 Minor cosmetic changes in submenu 
+Revision 37 	 2010-08-12 	 Added 'Browse by Batch' 
+Revision 36 	 2010-08-12 	 another small change to fabfile 
+Revision 35 	 2010-08-12 	 Small change to fabfile 
+Revision 34 	 2010-08-12 	 Remove test_utils apps 
+Revision 33 	 2010-08-12 	 Deployment related changes 
+Revision 32 	 2010-08-12 	 Major revision. Browse by Batch. Lot of cleanup. 
+Revision 31 	 2010-08-11 	 Minor Look & Feel improvments 
+Revision 30 	 2010-08-11 	 Added lot of functional test cases 
+Revision 29 	 2010-08-11 	 Disabling L10N so that DATE_INPUT_FORMATS can be used in ModelForm Date Fields 
+Revision 28 	 2010-08-10 	 Added Sanity test cases 
+Revision 27 	 2010-08-10 	 Adding pysis version to the footer 
+Revision 26 	 2010-08-10 	 Testing related changes 
+Revision 25 	 2010-08-10 	 Minor changes to profile 
+Revision 24 	 2010-08-10 	 Fixing DoesNotExist bug in scripts/create_users.py 
+Revision 23 	 2010-08-10 	 Added django_extensions app. Using django to serve media when DEBUG=True 
+Revision 22 	 2010-08-10 	 Adding favicon support 
+Revision 21 	 2010-08-10 	 Small changes 
+Revision 20 	 2010-08-10 	 Lot of internal cleanup 
+Revision 19 	 2010-08-09 	 Forgot to add GA script to HomePage 
+Revision 18 	 2010-08-09 	 Added Google Analytics support 
+Revision 17 	 2010-08-09 	 Changing landing page to profile edit page 
+Revision 16 	 2010-08-09 	 Chaning PhoneNumber from Int to String 
+Revision 15 	 2010-08-09 	 Daemonize fcgi 
+Revision 14 	 2010-08-09 	 Added 400.html 500.html 
+Revision 13 	 2010-08-09 	 Started using south 
+Revision 12 	 2010-08-09 	 Temporarily disabled announcements app 
+Revision 11 	 2010-08-09 	 Changed README 
+Revision 10 	 2010-08-09 	 Tons of Refactoring. New profile listing and search 
+Revision 9 	 2010-08-08 	 Added announcement support (courtesy: http://github.com/subsume/django-announcements) 
+Revision 8 	 2010-08-07 	 Adding Sphinx Documentation Template 
+Revision 7 	 2010-08-07 	 Lots of new functionality. Tons of Cleanup 
+Revision 6 	 2010-08-06 	 Added Avatars. Lot of UI changes. General Cleanup 
+Revision 5 	 2010-08-05 	 Lot of UI improvements 
+Revision 4 	 2010-08-05 	 Changing the theme to adminiziolite 
+Revision 3 	 2010-08-05 	 Added working version of profile app 
+Revision 2 	 2010-08-03 	 Added some goodies 
+Revision 1 	 2010-08-03 	 Added some goodies 
+Revision 0 	 2010-08-03 	 Empty Project 

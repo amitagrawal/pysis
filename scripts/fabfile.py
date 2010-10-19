@@ -15,6 +15,7 @@ os.environ['PYTHONPATH'] = '.:..:%s/apps' %  settings.PROJECT_ROOT
 env.master_repo = 'ssh://hg@bitbucket.org/dkmurthy/pysis'
 env.remote_repo = '/var/www/pysis'
 env.remote_env = '~/virtualenvs/pysis/bin/'
+env.django_settings = os.environ['DJANGO_SETTINGS_MODULE']
 
 def local(cmd):
     fabric.api.local(cmd, capture=False)
@@ -22,6 +23,7 @@ def local(cmd):
 def run(cmd):
     env.cmd = cmd
     fabric.api.run('source %(remote_env)s/activate && '
+                   'export DJANGO_SETTINGS_MODULE=%(django_settings)s && '
                    'cd %(remote_repo)s && '
                    '%(cmd)s' % env
                   )

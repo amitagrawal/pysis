@@ -1,6 +1,8 @@
 PySIS
 =================
 
+Project Home Page : http://bitbucket.org/dkmurthy/pysis
+
 Student Information System, developed with Django and Python.
 This software is still in development. Not yet ready for production use.
 
