@@ -98,6 +98,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',
     #'announcements.context_processors.announcements',
     'generic_app.context_processors.settings',
+    'grappelli.context_processors.admin_template_path',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -127,8 +128,11 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
-    'admin_tools.dashboard',
     'grappelli',
+    'admin_tools.theming',
+    'admin_tools.menu',
+    'admin_tools.dashboard',
+
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',

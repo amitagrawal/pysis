@@ -1,46 +1,56 @@
 
-Django==1.2.1
-South==0.7.1
-MySQL-python==1.2.3
-PIL==1.1.7
-flup==1.0.3.dev-20100525
+Django>=1.2.3
 
-django-compressor==0.5.3
-django-endless-pagination==0.6
-django-notification==0.1.5
--e git+http://github.com/ericflo/django-avatar.git/@b52c89bbdd39aac4e5abc9e716ef0b2459014858#egg=django_avatar-1.1a5-py2.6-dev
+PIL>=1.1.7
+flup>=1.0.2
+
+django-compressor>=0.5.3
+django-endless-pagination>=0.6
+django-notification>=0.1.5
+-e git+http://github.com/ericflo/django-avatar.git#egg=django_avatar
+
+# For Database
+#===========================
+South>=0.7.1
+MySQL-python>=1.2.3
+#psycopg2 is required if you want to use PostgreSQL
+psycopg2>=2.2.2
 
 # For Admin Interface
-fullhistory==0.3.0-final
-feedparser==4.1
-
- -e svn+http://django-grappelli.googlecode.com/svn/trunk@1093#egg=django_grappelli-2.0-py2.6-dev_r1093
--e hg+http://bitbucket.org/fetzig/grappelli-admin-tools/@4583eb7c9163d62fd4779eb098745a82a72e3ec8#egg=django_admin_tools-tip
+#===========================
+fullhistory>=0.3.0-final
+feedparser>=4.1
+django-admin-tools>=0.3.0
+-e svn+http://django-grappelli.googlecode.com/svn/trunk#egg=django_grappelli
 
 # For openid
--e git+http://github.com/adieu/python-openid.git/@1423472e9a2f0d2ee8aa594a64dcd4824a266448#egg=python_openid-2.2.4-py2.6-dev
+#===========================
+-e git+http://github.com/adieu/python-openid.git#egg=python_openid
 -e hg+http://bitbucket.org/dkmurthy/django-openid-auth#egg=django_openid_auth
 
 # For Google Apps
-gdata==2.0.11
+#===========================
+gdata>=2.0.11
 
 # For Developers
-ipython==0.10
-docutils==0.7
-django-debug-toolbar==0.8.3
-Fabric==0.9.1
-pylint==0.21.1
-nose==0.11.1
-djangosanetesting==0.5.6
-django-extensions==0.5
-Werkzeug==0.6.2
-Sphinx==1.0.3
+#===========================
+ipython>=0.10
+docutils>=0.7
+django-debug-toolbar>=0.8.3
+Fabric>=0.9.1
+pylint>=0.21.1
+nose>=0.11.1
+djangosanetesting>=0.5.6
+django-extensions>=0.5
+Werkzeug>=0.6.2
+Sphinx>=1.0.3
 
 ## The following requirements were added by pip --freeze:
+#===========================
 distribute
-slimmer==0.1.30
-logilab-astng==0.20.1
-logilab-common==0.50.3
-pycrypto==2.2
-wsgiref==0.1.2
-BeautifulSoup==3.1.0.1
+slimmer>=0.1.30
+logilab-astng>=0.20.1
+logilab-common>=0.50.3
+pycrypto>=2.2
+wsgiref>=0.1.2
+BeautifulSoup>=3.1.0.1
