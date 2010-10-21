@@ -186,6 +186,7 @@ DEBUG_TOOLBAR_CONFIG = {
 # Grappelli
 GRAPPELLI_ADMIN_HEADLINE = APPLICATION_NAME
 GRAPPELLI_ADMIN_TITLE = APPLICATION_NAME
+ADMIN_TOOLS_MENU = 'generic_app.menu.CustomMenu'
 ADMIN_TOOLS_INDEX_DASHBOARD = 'generic_app.dashboard.CustomIndexDashboard'
 ADMIN_TOOLS_APP_INDEX_DASHBOARD = 'generic_app.dashboard.CustomAppIndexDashboard'
 

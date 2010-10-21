@@ -1,56 +1,53 @@
 
-Django>=1.2.3
+Django==1.2.3
 
-PIL>=1.1.7
-flup>=1.0.2
-
-django-compressor>=0.5.3
-django-endless-pagination>=0.6
-django-notification>=0.1.5
--e git+http://github.com/ericflo/django-avatar.git#egg=django_avatar
+django-endless-pagination==0.6
+django-notification==0.1.5
 
 # For Database
-#===========================
-South>=0.7.1
-MySQL-python>=1.2.3
-#psycopg2 is required if you want to use PostgreSQL
-psycopg2>=2.2.2
+# ===========================
+South==0.7.2
+MySQL-python==1.2.3
+# psycopg2 is required if you want to use PostgreSQL
+psycopg2==2.2.2
+
+# For Production Server
+# ===========================
+flup==1.0.3.dev-20100525
+django-compressor==0.5.3
 
 # For Admin Interface
-#===========================
-fullhistory>=0.3.0-final
-feedparser>=4.1
-django-admin-tools>=0.3.0
--e svn+http://django-grappelli.googlecode.com/svn/trunk#egg=django_grappelli
+# ===========================
+fullhistory==0.3.0-final
+feedparser==4.1
+django-admin-tools==0.3.0
+-e svn+http://django-grappelli.googlecode.com/svn/trunk@1258#egg=django_grappelli
 
 # For openid
-#===========================
+# ===========================
 -e git+http://github.com/adieu/python-openid.git#egg=python_openid
 -e hg+http://bitbucket.org/dkmurthy/django-openid-auth#egg=django_openid_auth
 
 # For Google Apps
-#===========================
-gdata>=2.0.11
+# ===========================
+gdata==2.0.11
+
+# For Profile Photos
+# ===========================
+PIL==1.1.7
+-e git+http://github.com/ericflo/django-avatar.git@b52c89bbdd39aac4e5abc9e716ef0b2459014858#egg=django_avatar
+
 
 # For Developers
-#===========================
-ipython>=0.10
-docutils>=0.7
-django-debug-toolbar>=0.8.3
-Fabric>=0.9.1
-pylint>=0.21.1
-nose>=0.11.1
-djangosanetesting>=0.5.6
-django-extensions>=0.5
-Werkzeug>=0.6.2
-Sphinx>=1.0.3
-
-## The following requirements were added by pip --freeze:
-#===========================
-distribute
-slimmer>=0.1.30
-logilab-astng>=0.20.1
-logilab-common>=0.50.3
-pycrypto>=2.2
-wsgiref>=0.1.2
-BeautifulSoup>=3.1.0.1
+# ===========================
+ipython==0.10.1
+docutils==0.7
+django-debug-toolbar==0.8.3
+Fabric==0.9.2
+pylint==0.21.3
+nose==0.11.4
+djangosanetesting==0.5.6
+django-extensions==0.5
+Werkzeug==0.6.2
+Sphinx==1.0.4
+BeautifulSoup==3.1.0.1
