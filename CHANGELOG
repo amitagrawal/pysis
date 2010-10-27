@@ -1,3 +1,4 @@
+Revision 84 	 2010-10-27 	 removing version number of gdata from requirements as it is causing errors 
 Revision 83 	 2010-10-27 	 Deployment related cleanup 
 Revision 82 	 2010-10-21 	 Upgrading latest versions of requirements 
 Revision 81 	 2010-10-21 	 Changes to requirements 

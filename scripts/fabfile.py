@@ -65,8 +65,8 @@ def install_requirements():
     run('pip install -r requirements/requirements.txt -q')
 
 def upgrade_db():
-    run('python manage.py syncdb')
-    run('python manage.py migrate accounts')
+    run('django-admin.py syncdb')
+    run('django-admin.py migrate accounts')
 
 def restart_webserver():
     run('sudo supervisorctl restart pysis')
