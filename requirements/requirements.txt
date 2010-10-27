@@ -30,7 +30,7 @@ django-admin-tools==0.3.0
 
 # For Google Apps
 # ===========================
-gdata==2.0.11
+gdata
 
 # For Profile Photos
 # ===========================
