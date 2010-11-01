@@ -1,4 +1,4 @@
-from hashlib import sha1
+import hashlib
 import time
 import random
 import socket
@@ -63,7 +63,7 @@ class GoogleAppsManager(object):
                         first_name, last_name):
         suspended = 'false'
 
-        newhash = sha1()
+        newhash = hashlib.sha1()
         newhash.update(password)
         password = newhash.hexdigest()
         password_hash_function = 'SHA-1'
@@ -117,7 +117,7 @@ class GoogleAppsManager(object):
     def change_password(self, username, new_password):
         user = self.apps.RetrieveUser(username)
 
-        newhash = sha1()
+        newhash = hashlib.sha1()
         newhash.update(new_password)
         user.login.password = newhash.hexdigest()
         user.login.hash_function_name = 'SHA-1'
