@@ -71,6 +71,22 @@ def upgrade_db():
 def restart_webserver():
     run('sudo supervisorctl restart pysis')
 
+
+def docs():
+    with fabric.api.cd('docs'):
+        local('make html')
+
+    with fabric.api.cd('docs/_build/html'):
+        if not os.path.exists('.git'):
+            local('git init')
+            local('git symbolic-ref HEAD refs/heads/gh-pages')
+            local('touch .nojekyll')
+
+        local('git add .')
+        local('git commit -a -m "Auto-commit from fabfile"')
+        local('git push git@github.com:dkmurthy/pysis.git gh-pages')
+
+
 def deploy(skip_tests='no'):
     if skip_tests != 'yes':
         test()
