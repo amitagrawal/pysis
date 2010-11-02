@@ -1,0 +1,214 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Installing &mdash; pysis v0.1.0 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="pysis v0.1.0 documentation" href="index.html" />
+    <link rel="prev" title="PySIS - Student Information System" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="index.html" title="PySIS - Student Information System"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">pysis v0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="installing">
+<h1>Installing<a class="headerlink" href="#installing" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="for-users">
+<h2>For Users<a class="headerlink" href="#for-users" title="Permalink to this headline">¶</a></h2>
+<p>This software is not yet ready for production use.</p>
+</div>
+<div class="section" id="for-developers">
+<h2>For Developers<a class="headerlink" href="#for-developers" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In the following instructions, I am assuming that your OS is Ubuntu 10.04 or higher.</p>
+</div>
+<ol class="arabic">
+<li><p class="first">Install Python and related goodies.</p>
+<div class="highlight-python"><pre>sudo apt-get install python2.7 python-virtualenv virtualenvwrapper python-pip</pre>
+</div>
+</li>
+<li><p class="first">Install MySQL or PostgreSQL database along with headers.</p>
+<div class="highlight-python"><pre>sudo apt-get install mysql-client mysql-server libmysqlclient-dev
+
+or
+
+sudo apt-get install postgresql-9.0  postgresql-server-dev-9.0</pre>
+</div>
+</li>
+<li><p class="first">Install nginx webserver.</p>
+<div class="highlight-python"><pre>sudo apt-get install nginx</pre>
+</div>
+</li>
+<li><p class="first">Install supervisor.</p>
+<div class="highlight-python"><pre>sudo apt-get install supervisor</pre>
+</div>
+</li>
+<li><p class="first">Create directories for this project.</p>
+<div class="highlight-python"><pre>sudo mkdir /virtualenvs
+sudo mkdir /projects
+
+sudo chmod 777 /virtualenvs
+sudo chmod 777 /projects
+
+mkdir /virtualenvs/download_cache</pre>
+</div>
+</li>
+<li><p class="first">Add the following to your ~/.bashrc</p>
+<div class="highlight-python"><pre>export WORKON_HOME=/virtualenvs
+export PIP_DOWNLOAD_CACHE=/virtualenvs/download_cache
+source /usr/local/bin/virtualenvwrapper.sh</pre>
+</div>
+</li>
+<li><p class="first">Refresh your session to make the above changes visible.</p>
+<div class="highlight-python"><pre>source ~/.bashrc</pre>
+</div>
+</li>
+<li><p class="first">Create virtualenv.</p>
+<div class="highlight-python"><pre>mkvirtualenv --no-site-packages -p python2.7 pysis
+workon pysis</pre>
+</div>
+</li>
+<li><p class="first">From now on, I am assuming that you are inside the virtualenv. A Quick test : when you run &#8220;which python&#8221; and it should show &#8220;/virtualenvs/pysis/bin/python&#8221;</p>
+</li>
+<li><p class="first">Clone pysis repository.</p>
+<div class="highlight-python"><pre>hg clone http://bitbucket.org/dkmurthy/pysis /projects/pysis</pre>
+</div>
+</li>
+<li><p class="first">Add /projects to python path.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">add2virtualenv</span> <span class="o">/</span><span class="n">projects</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Install requirements. This will take some time.</p>
+<div class="highlight-python"><pre>pip install -r /projects/pysis/requirements/requirements.txt</pre>
+</div>
+</li>
+<li><p class="first">Add a shortcut to manage the project. Edit your ~/.bashrc and add this line.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">source</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="n">pysis</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">shortcuts</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Refresh your session to make the above changes visible.</p>
+<div class="highlight-python"><pre>source ~/.bashrc</pre>
+</div>
+</li>
+<li><p class="first">Add the nginx configuration.</p>
+<div class="highlight-python"><pre>sudo touch /etc/nginx/common_server_options.nginx.conf
+sudo ln -s /projects/pysis/deploy/pysis_nginx.conf /etc/nginx/sites-enabled/</pre>
+</div>
+</li>
+<li><p class="first">Restart nginx.</p>
+<div class="highlight-python"><pre>sudo service nginx restart</pre>
+</div>
+</li>
+<li><p class="first">Add this project to supervisor. Edit /etc/supervisor/supervisord.conf and add the following lines to the bottom.</p>
+<div class="highlight-python"><pre>[program:pysis]
+command=/virtualenvs/pysis/bin/python /projects/pysis/deploy/pysis_fcgi.py
+user=www-data</pre>
+</div>
+</li>
+<li><p class="first">Reload supervisor.</p>
+<div class="highlight-python"><pre>sudo supervisorctl reload</pre>
+</div>
+</li>
+<li><p class="first">Run &#8220;pysis&#8221; and make sure that no errors are reported.</p>
+</li>
+<li><p class="first">Add &#8220;127.0.1.1 pysis.localhost&#8221; to /etc/hosts.</p>
+</li>
+<li><p class="first">Now point your browser to <a class="reference external" href="http://pysis.localhost">http://pysis.localhost</a> and enjoy.</p>
+</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Installing</a><ul>
+<li><a class="reference internal" href="#for-users">For Users</a></li>
+<li><a class="reference internal" href="#for-developers">For Developers</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">PySIS - Student Information System</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/install.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="index.html" title="PySIS - Student Information System"
+             >previous</a> |</li>
+        <li><a href="index.html">pysis v0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2010, Dakshina Murthy.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.4.
+    </div>
+  </body>
+</html>
