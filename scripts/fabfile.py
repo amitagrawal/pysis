@@ -83,8 +83,8 @@ def docs():
             local('touch .nojekyll')
 
         local('git add .')
-        local('git commit -a -m "Auto-commit from fabfile"')
-        local('git push git@github.com:dkmurthy/pysis.git gh-pages')
+        local('git commit -a -m "Auto-commit from fabfile" || echo')
+        local('git push -f git@github.com:dkmurthy/pysis.git gh-pages')
 
 
 def deploy(skip_tests='no'):

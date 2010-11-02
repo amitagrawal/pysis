@@ -1,3 +1,4 @@
+Revision 87 	 2010-11-01 	 Documentation related changes 
 Revision 86 	 2010-11-01 	 Chaning hashlib import to make pylint happy 
 Revision 85 	 2010-10-27 	 Small correction 
 Revision 84 	 2010-10-27 	 removing version number of gdata from requirements as it is causing errors 
