@@ -12,9 +12,9 @@ For Developers
 .. note::
     In the following instructions, I am assuming that your OS is Ubuntu 10.04 or higher.
 
-#. Install Python and related goodies. ::
+#. Install Python. ::
 
-    sudo apt-get install python2.7 python-virtualenv virtualenvwrapper python-pip
+    sudo apt-get install python2.7
 
 #. Install MySQL or PostgreSQL database along with headers. ::
 
@@ -32,6 +32,13 @@ For Developers
 
     sudo apt-get install supervisor
 
+#. Install pip. ::
+
+    sudo easy_install setuptools pip
+
+#. Install virtualenv. ::
+
+    sudo pip install virtualenv virtualenvwrapper
 
 #. Create directories for this project. ::
 
@@ -85,6 +92,7 @@ For Developers
 
     sudo touch /etc/nginx/common_server_options.nginx.conf
     sudo ln -s /projects/pysis/deploy/pysis_nginx.conf /etc/nginx/sites-enabled/
+    sudo ln -s /projects/pysis/media /var/www/pysis_media
 
 #. Restart nginx. ::
 
