@@ -22,7 +22,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="pysis v0.1.0 documentation" href="index.html" />
-    <link rel="prev" title="PySIS - Student Information System" href="index.html" /> 
+    <link rel="prev" title="PySIS" href="README.html" /> 
   </head>
   <body>
     <div class="related">
@@ -32,7 +32,7 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="index.html" title="PySIS - Student Information System"
+          <a href="README.html" title="PySIS"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">pysis v0.1.0 documentation</a> &raquo;</li> 
       </ul>
@@ -56,8 +56,8 @@
 <p class="last">In the following instructions, I am assuming that your OS is Ubuntu 10.04 or higher.</p>
 </div>
 <ol class="arabic">
-<li><p class="first">Install Python and related goodies.</p>
-<div class="highlight-python"><pre>sudo apt-get install python2.7 python-virtualenv virtualenvwrapper python-pip</pre>
+<li><p class="first">Install Python.</p>
+<div class="highlight-python"><pre>sudo apt-get install python2.7</pre>
 </div>
 </li>
 <li><p class="first">Install MySQL or PostgreSQL database along with headers.</p>
@@ -74,6 +74,14 @@ sudo apt-get install postgresql-9.0  postgresql-server-dev-9.0</pre>
 </li>
 <li><p class="first">Install supervisor.</p>
 <div class="highlight-python"><pre>sudo apt-get install supervisor</pre>
+</div>
+</li>
+<li><p class="first">Install pip.</p>
+<div class="highlight-python"><pre>sudo easy_install setuptools pip</pre>
+</div>
+</li>
+<li><p class="first">Install virtualenv.</p>
+<div class="highlight-python"><pre>sudo pip install virtualenv virtualenvwrapper</pre>
 </div>
 </li>
 <li><p class="first">Create directories for this project.</p>
@@ -97,11 +105,17 @@ source /usr/local/bin/virtualenvwrapper.sh</pre>
 </div>
 </li>
 <li><p class="first">Create virtualenv.</p>
-<div class="highlight-python"><pre>mkvirtualenv --no-site-packages -p python2.7 pysis
-workon pysis</pre>
+<div class="highlight-python"><pre>mkvirtualenv --no-site-packages -p python2.7 pysis</pre>
 </div>
 </li>
-<li><p class="first">From now on, I am assuming that you are inside the virtualenv. A Quick test : when you run &#8220;which python&#8221; and it should show &#8220;/virtualenvs/pysis/bin/python&#8221;</p>
+<li><p class="first">Activate virtualenv.</p>
+<div class="highlight-python"><pre>workon pysis</pre>
+</div>
+</li>
+<li><div class="first admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">From now on, I am assuming that you are inside the virtualenv. A Quick test : when you run &#8220;which python&#8221; and it should show &#8220;/virtualenvs/pysis/bin/python&#8221;</p>
+</div>
 </li>
 <li><p class="first">Clone pysis repository.</p>
 <div class="highlight-python"><pre>hg clone http://bitbucket.org/dkmurthy/pysis /projects/pysis</pre>
@@ -125,9 +139,17 @@ workon pysis</pre>
 <div class="highlight-python"><pre>source ~/.bashrc</pre>
 </div>
 </li>
+<li><p class="first">Edit /projects/pysis/settings/production_settings.py and provide your database credentials under DATABASES.</p>
+</li>
+<li><p class="first">Create tables.</p>
+<div class="highlight-python"><pre>django-admin.py syncdb
+django-admin.py migrate core</pre>
+</div>
+</li>
 <li><p class="first">Add the nginx configuration.</p>
 <div class="highlight-python"><pre>sudo touch /etc/nginx/common_server_options.nginx.conf
-sudo ln -s /projects/pysis/deploy/pysis_nginx.conf /etc/nginx/sites-enabled/</pre>
+sudo ln -s /projects/pysis/deploy/pysis_nginx.conf /etc/nginx/sites-enabled/
+sudo ln -s /projects/pysis/media /var/www/pysis_media</pre>
 </div>
 </li>
 <li><p class="first">Restart nginx.</p>
@@ -170,8 +192,8 @@ user=www-data</pre>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="index.html"
-                        title="previous chapter">PySIS - Student Information System</a></p>
+  <p class="topless"><a href="README.html"
+                        title="previous chapter">PySIS</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/install.txt"
@@ -201,7 +223,7 @@ user=www-data</pre>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="index.html" title="PySIS - Student Information System"
+          <a href="README.html" title="PySIS"
              >previous</a> |</li>
         <li><a href="index.html">pysis v0.1.0 documentation</a> &raquo;</li> 
       </ul>
