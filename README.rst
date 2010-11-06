@@ -38,6 +38,6 @@ Author Information
 -----------------------------------------
 Dakshina Murthy <dkmurthy9@gmail.com>
 
-http://bitbucket.org/dkmurthy
-http://github.com/dkmurthy
+* http://bitbucket.org/dkmurthy
+* http://github.com/dkmurthy
 

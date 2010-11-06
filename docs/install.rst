@@ -64,9 +64,13 @@ For Developers
 #. Create virtualenv. ::
 
     mkvirtualenv --no-site-packages -p python2.7 pysis
+
+#. Activate virtualenv. ::
+
     workon pysis
 
-#. From now on, I am assuming that you are inside the virtualenv. A Quick test : when you run "which python" and it should show "/virtualenvs/pysis/bin/python"
+#. .. note ::
+    From now on, I am assuming that you are inside the virtualenv. A Quick test : when you run "which python" and it should show "/virtualenvs/pysis/bin/python"
 
 #. Clone pysis repository. ::
 
@@ -87,6 +91,13 @@ For Developers
 #. Refresh your session to make the above changes visible. ::
 
     source ~/.bashrc
+
+#. Edit /projects/pysis/settings/production_settings.py and provide your database credentials under DATABASES.
+
+#. Create tables. ::
+
+    django-admin.py syncdb
+    django-admin.py migrate core
 
 #. Add the nginx configuration. ::
 
@@ -111,5 +122,6 @@ For Developers
 #. Run "pysis" and make sure that no errors are reported.
 
 #. Add "127.0.1.1 pysis.localhost" to /etc/hosts.
+
 
 #. Now point your browser to http://pysis.localhost and enjoy.
