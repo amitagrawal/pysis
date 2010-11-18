@@ -12,7 +12,7 @@ env.hosts = [os.environ.get('MYSERVER')]
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pysis.settings.settings'
 os.environ['PYTHONPATH'] = '.:..:%s/apps' %  settings.PROJECT_ROOT
 
-env.master_repo = 'ssh://hg@bitbucket.org/dkmurthy/pysis'
+env.master_repo = 'ssh://hg@bitbucket.org/sramana/pysis'
 env.remote_repo = '/projects/pysis'
 env.remote_env = '/virtualenvs/pysis/bin/'
 env.django_settings = os.environ['DJANGO_SETTINGS_MODULE']
@@ -84,7 +84,7 @@ def docs():
 
         local('git add .')
         local('git commit -a -m "Auto-commit from fabfile" || echo')
-        local('git push -f git@github.com:dkmurthy/pysis.git gh-pages')
+        local('git push -f git@github.com:sramana/pysis.git gh-pages')
 
 
 def deploy(skip_tests='no'):

@@ -74,7 +74,7 @@ For Developers
 
 #. Clone pysis repository. ::
 
-    hg clone http://bitbucket.org/dkmurthy/pysis /projects/pysis
+    hg clone http://bitbucket.org/sramana/pysis /projects/pysis
 
 #. Add /projects to python path. ::
 

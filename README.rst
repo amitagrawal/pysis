@@ -9,14 +9,14 @@ This software is still in development. Not yet ready for production use.
 
 Latest Version
 -----------------------------------------
-The latest version of this project can be found at : http://bitbucket.org/dkmurthy/pysis
+The latest version of this project can be found at : http://bitbucket.org/sramana/pysis
 
 
 Documentation
 -----------------------------------------
 The documentation is distributed along with source repository in docs/ directory (in ReStructuredText format). You can run "make html" in that directory to generate HTML version.
 
-Alternatively, you can browse the online documentation at http://dkmurthy.github.com/pysis
+Alternatively, you can browse the online documentation at http://sramana.github.com/pysis
 
 
 Installation
@@ -36,8 +36,8 @@ Contributions and Feedback are most welcome. Please email the author with your c
 
 Author Information
 -----------------------------------------
-Dakshina Murthy <dkmurthy9@gmail.com>
+Ramana <sramana9@gmail.com>
 
-* http://bitbucket.org/dkmurthy
-* http://github.com/dkmurthy
+* http://bitbucket.org/sramana
+* http://github.com/sramana
 

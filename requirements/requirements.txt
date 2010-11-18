@@ -26,7 +26,7 @@ django-admin-tools==0.3.0
 # For openid
 # ===========================
 -e git+http://github.com/adieu/python-openid.git#egg=python_openid
--e hg+http://bitbucket.org/dkmurthy/django-openid-auth#egg=django_openid_auth
+-e hg+http://bitbucket.org/sramana/django-openid-auth#egg=django_openid_auth
 
 # For Google Apps
 # ===========================
