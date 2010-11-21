@@ -9,7 +9,9 @@ This software is still in development. Not yet ready for production use.
 
 Latest Version
 -----------------------------------------
-The latest version of this project can be found at : http://bitbucket.org/sramana/pysis
+The latest version of this project can be found at : http://bitbucket.org/sramana/pysis.
+
+Currently deployed at http://sis.rmv.ac.in
 
 
 Documentation
@@ -36,7 +38,7 @@ Contributions and Feedback are most welcome. Please email the author with your c
 
 Author Information
 -----------------------------------------
-Ramana <sramana9@gmail.com>
+Sramana <sramana9@gmail.com>
 
 * http://bitbucket.org/sramana
 * http://github.com/sramana
