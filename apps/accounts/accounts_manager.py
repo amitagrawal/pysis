@@ -88,7 +88,7 @@ def get_new_username(first_name,
     username = first_name_without_spaces + '.' + last_name_without_spaces
     if is_unique(username):
         return username
-    
+
 
 def send_introduction_mail(first_name,
                            college_email_id):
@@ -98,7 +98,7 @@ def send_introduction_mail(first_name,
 
     send_html_mail('accounts/introduction_email.html',
                    c, subject, college_email_id)
-    
+
 
 def create_account_in_google_apps(request, profile, password):
 
@@ -107,21 +107,25 @@ def create_account_in_google_apps(request, profile, password):
     last_name = profile.user.last_name
     college_email_id = profile.college_email_id
     nickname = college_email_id.split('@')[0]
-    groupname = profile.register_number[:5]
+
+    if profile.course.name == 'staff':
+        groupname = 'staff'
+    else:
+        groupname = profile.register_number[:5]
 
     if not college_email_id:
         messages.error(request,
              'College Email Id is empty for %s' % username)
         return
-    
+
     if profile.google_account_created:
         messages.error(request,
              'College Email Id is already created for %s' % username)
         return
-    
+
     try:
         gam = GoogleAppsManager()
-        
+
         gam.create_account(username,
                            password,
                            first_name,
@@ -129,12 +133,12 @@ def create_account_in_google_apps(request, profile, password):
                            nickname,
                            groupname
                           )
-        
+
         send_introduction_mail(first_name, college_email_id)
-        
+
         profile.google_account_created = True
         profile.save()
-        
+
     except Exception, e:
         messages.error(request,
             'Error while creating %s. Error : %s' %
@@ -164,14 +168,14 @@ def create_accounts(students):
             user = User.objects.create_user(username=username,
                                             password=password,
                                             email=email)
-    
+
             user.first_name = first_name
             user.last_name = last_name
             user.save()
-    
+
         except IntegrityError:
             print 'Account %s already exists' % username
-    
+
         try:
             profile = Profile.objects.create(user=user,
                                              course=course,
@@ -179,7 +183,7 @@ def create_accounts(students):
         except IntegrityError:
             print 'Profile %s already exists' % username
             return
-    
+
         print 'Successfully Created %s' % username
 
 
