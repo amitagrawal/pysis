@@ -48,7 +48,7 @@ MAIN_MENU_LEFT = [
 MAIN_MENU_RIGHT = [
 
     # (Name, URL)
-    ('Ideas', 'http://vidyalaya.ideascale.com'),
+    ('Ideas', 'http://www.formspring.me/vidyalaya'),
     ('Apps', 'https://www.google.com/a/cpanel/rmv.ac.in/UserHub'),
 ]
 
