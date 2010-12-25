@@ -49,7 +49,6 @@ MAIN_MENU_RIGHT = [
 
     # (Name, URL)
     ('Ideas', 'http://www.formspring.me/vidyalaya'),
-    ('Apps', 'https://www.google.com/a/cpanel/rmv.ac.in/UserHub'),
 ]
 
 MY_PROFILE_MENU = [
