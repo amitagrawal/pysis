@@ -32,7 +32,7 @@ def get_names(full_name):
     if not last_name:
         # if there is no last name, use last part of first name
         last_name = first_name.split()[-1]
-        first_name = first_name.split()[0:-1]
+        first_name = first_name.replace(last_name, '').strip()
 
     if not first_name:
         # if there is no last name, use last part of first name
