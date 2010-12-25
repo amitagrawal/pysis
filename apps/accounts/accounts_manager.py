@@ -29,6 +29,15 @@ def get_names(full_name):
         else:
             first_name = first_name + ' ' + part
 
+    if not last_name:
+        # if there is no last name, use last part of first name
+        last_name = first_name.split()[-1]
+        first_name = first_name.split()[0:-1]
+
+    if not first_name:
+        # if there is no last name, use last part of first name
+        first_name = last_name
+
     first_name = first_name.strip().title()
     last_name = last_name.strip().title()
 

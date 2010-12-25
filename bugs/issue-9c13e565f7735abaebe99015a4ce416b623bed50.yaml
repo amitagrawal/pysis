@@ -1,0 +1,22 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: list index out of range error when last_name is empty
+desc: accounts_manager.py assumes that last_name has only one letter. It will set it to null if there is no one letter word in the name. But last_name is required in many parts of the program.
+type: :bugfix
+component: pysis
+release: 
+reporter: Ramana <sramana9@gmail.com>
+status: :closed
+disposition: :fixed
+creation_time: 2010-12-25 07:38:45.083551 Z
+references: []
+
+id: 9c13e565f7735abaebe99015a4ce416b623bed50
+log_events: 
+- - 2010-12-25 07:38:48.924399 Z
+  - Ramana <sramana9@gmail.com>
+  - created
+  - ""
+- - 2010-12-25 07:39:37.684525 Z
+  - Ramana <sramana9@gmail.com>
+  - closed with disposition fixed
+  - Fixed
