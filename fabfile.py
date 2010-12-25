@@ -14,7 +14,7 @@ os.environ['PYTHONPATH'] = '.:..:%s/apps' %  settings.PROJECT_ROOT
 
 env.master_repo = 'ssh://hg@bitbucket.org/sramana/pysis'
 env.remote_repo = '/projects/pysis'
-env.remote_env = '/virtualenvs/pysis/bin/'
+env.remote_env = '/work/virtualenvs/pysis/bin/'
 env.django_settings = os.environ['DJANGO_SETTINGS_MODULE']
 
 def local(cmd):
