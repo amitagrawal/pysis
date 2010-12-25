@@ -184,6 +184,7 @@ def create_accounts(students):
 
         except IntegrityError:
             print 'Account %s already exists' % username
+            user = User.objects.get(username=username)
 
         try:
             profile = Profile.objects.create(user=user,
@@ -191,7 +192,6 @@ def create_accounts(students):
                                              year_of_joining=year_of_joining)
         except IntegrityError:
             print 'Profile %s already exists' % username
-            return
 
         print 'Successfully Created %s' % username
 
