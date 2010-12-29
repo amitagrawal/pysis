@@ -12,9 +12,9 @@ For Developers
 .. note::
     In the following instructions, I am assuming that your OS is Ubuntu 10.04 or higher.
 
-#. Install Python. ::
+#. Install Python and Mercurial ::
 
-    sudo apt-get install python2.7
+    sudo apt-get install python mercurial
 
 #. Install MySQL or PostgreSQL database along with headers. ::
 
@@ -63,7 +63,7 @@ For Developers
 
 #. Create virtualenv. ::
 
-    mkvirtualenv --no-site-packages -p python2.7 pysis
+    mkvirtualenv --no-site-packages pysis
 
 #. Activate virtualenv. ::
 
@@ -74,7 +74,7 @@ For Developers
 
 #. Clone pysis repository. ::
 
-    hg clone http://bitbucket.org/dkmurthy/pysis /projects/pysis
+    hg clone http://bitbucket.org/sramana/pysis /projects/pysis
 
 #. Add /projects to python path. ::
 

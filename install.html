@@ -56,8 +56,8 @@
 <p class="last">In the following instructions, I am assuming that your OS is Ubuntu 10.04 or higher.</p>
 </div>
 <ol class="arabic">
-<li><p class="first">Install Python.</p>
-<div class="highlight-python"><pre>sudo apt-get install python2.7</pre>
+<li><p class="first">Install Python and Mercurial</p>
+<div class="highlight-python"><pre>sudo apt-get install python mercurial</pre>
 </div>
 </li>
 <li><p class="first">Install MySQL or PostgreSQL database along with headers.</p>
@@ -105,7 +105,7 @@ source /usr/local/bin/virtualenvwrapper.sh</pre>
 </div>
 </li>
 <li><p class="first">Create virtualenv.</p>
-<div class="highlight-python"><pre>mkvirtualenv --no-site-packages -p python2.7 pysis</pre>
+<div class="highlight-python"><pre>mkvirtualenv --no-site-packages pysis</pre>
 </div>
 </li>
 <li><p class="first">Activate virtualenv.</p>
@@ -118,7 +118,7 @@ source /usr/local/bin/virtualenvwrapper.sh</pre>
 </div>
 </li>
 <li><p class="first">Clone pysis repository.</p>
-<div class="highlight-python"><pre>hg clone http://bitbucket.org/dkmurthy/pysis /projects/pysis</pre>
+<div class="highlight-python"><pre>hg clone http://bitbucket.org/sramana/pysis /projects/pysis</pre>
 </div>
 </li>
 <li><p class="first">Add /projects to python path.</p>
