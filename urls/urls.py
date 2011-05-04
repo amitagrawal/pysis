@@ -35,7 +35,7 @@ urlpatterns = patterns('',
         name='logout'),
 
     (r'^favicon\.ico$', 'django.views.generic.simple.redirect_to',
-                        {'url': '%s/images/favicon.ico' % settings.MEDIA_URL}),
+                        {'url': '%s/images/favicon.ico' % settings.STATIC_URL}),
 
     (r'^openid/', include('django_openid_auth.urls')),
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
