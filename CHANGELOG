@@ -1,3 +1,20 @@
+Revision 118 	 2011-05-04 	 Setting EMAIL_BACKEND to locmem in test_settings 
+Revision 117 	 2011-05-04 	 Updating fabfile to make nosetests pass 
+Revision 116 	 2011-05-04 	 Fixing favicon url 
+Revision 115 	 2011-05-04 	 Increasing uWSGI buffer size to 32768 to fix 'invalid request block size' error 
+Revision 114 	 2011-05-04 	 Adding code to serve static files in dev 
+Revision 113 	 2011-05-04 	 Fixing requirements file 
+Revision 112 	 2011-05-04 	 Removing pysis_facgi.py 
+Revision 111 	 2011-05-04 	 Major Rehaul : Using Nginx + uWSGI instead of Nginx + flup + FastCGI for deployment 
+Revision 110 	 2011-05-04 	 Upgrading settings to Django 1.3 version. Primary diff : static and media 
+Revision 109 	 2011-05-04 	 Renaming MEDIA_URL to STATIC_URL in templates as per Django 1.3 nomenclature 
+Revision 108 	 2011-05-04 	 Adding manage.py 
+Revision 107 	 2011-05-04 	 Renaming media to static as per Django 1.3 nomenclature 
+Revision 106 	 2011-05-04 	 Updating requirements 
+Revision 105 	 2011-03-04 	 Adding apache config 
+Revision 104 	 2011-03-02 	 Adding email id to birthday reminders 
+Revision 103 	 2011-03-02 	 Adding email id to birthday reminders 
+Revision 102 	 2010-12-25 	 handling duplicate entries whil bulk loading 
 Revision 101 	 2010-12-25 	 Fix for null last_name 
 Revision 100 	 2010-12-25 	 Fix for null last_name 
 Revision 99 	 2010-12-25 	 Removing link to Apps 

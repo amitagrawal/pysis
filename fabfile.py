@@ -1,29 +1,25 @@
-from pysis.scripts import bootstrap_django
-bootstrap_django.main()
+from fabric.contrib import django
+django.settings_module('pysis.settings.settings')
 
 import os
-import sys
 import fabric
-from fabric.api import env, local
+from fabric.api import env, local, sudo, cd, prefix
 from django.conf import settings
 
 env.hosts = [os.environ.get('MYSERVER')]
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'pysis.settings.settings'
 os.environ['PYTHONPATH'] = '.:..:%s/apps' %  settings.PROJECT_ROOT
 
 env.master_repo = 'ssh://hg@bitbucket.org/sramana/pysis'
-env.remote_repo = '/work/pysis'
 env.remote_env = '/work/virtualenvs/pysis/bin/'
-env.django_settings = os.environ['DJANGO_SETTINGS_MODULE']
+env.project_root = '/work/pysis'
+
 
 def run(cmd):
-    env.cmd = cmd
-    fabric.api.run('source %(remote_env)s/activate && '
-                   'export DJANGO_SETTINGS_MODULE=%(django_settings)s && '
-                   'cd %(remote_repo)s && '
-                   '%(cmd)s' % env
-                  )
+    with cd(env.project_root):
+        with prefix('workon pysis'):
+            fabric.api.run(cmd)
+
 
 def run_pylint():
     local('pylint ' +
@@ -39,7 +35,7 @@ def run_pylint():
 
 def run_nose():
     # use test settings, not actual settings
-    os.environ['DJANGO_SETTINGS_MODULE'] = 'pysis.settings.test_settings'
+    django.settings_module('pysis.settings.test_settings')
 
     local('nosetests -v -d -x ' +
            '--with-doctest ' +
@@ -48,33 +44,43 @@ def run_nose():
            '--with-selenium ' +
            'apps tests')
 
+
 def test():
     run_pylint()
     run_nose()
 
+
 def test_on_server():
-    run('fab -f scripts/fabfile.py test')
+    run('fab test')
+
 
 def push():
     local('hg push %(master_repo)s' % env)
     run('hg fetch %(master_repo)s' % env)
 
+
 def install_requirements():
     run('pip install -r requirements/requirements.txt -q')
 
+
 def upgrade_db():
-    run('django-admin.py syncdb')
-    run('django-admin.py migrate accounts')
+    run('./manage.py syncdb')
+    run('./manage.py migrate accounts')
+
+
+def deploy_static():
+    run('./manage.py collectstatic -v0 --noinput')
+
 
 def restart_webserver():
-    run('sudo supervisorctl restart pysis')
+    sudo('supervisorctl restart pysis')
 
 
 def docs():
-    with fabric.api.cd('docs'):
+    with cd('docs'):
         local('make html')
 
-    with fabric.api.cd('docs/_build/html'):
+    with cd('docs/_build/html'):
         if not os.path.exists('.git'):
             local('git init')
             local('git symbolic-ref HEAD refs/heads/gh-pages')
@@ -90,7 +96,8 @@ def deploy(skip_tests='no'):
         test()
 
     push()
-    upgrade_db()
     install_requirements()
+    upgrade_db()
+    deploy_static()
     restart_webserver()
     test_on_server()
