@@ -8,19 +8,19 @@
     <meta http-equiv="content-language" content="en" />
     <meta name="robots" content="noindex,nofollow" />
 
-    <link rel="shortcut icon" href="{{ MEDIA_URL }}/images/favicon.ico">
+    <link rel="shortcut icon" href="{{ STATIC_URL }}/images/favicon.ico">
 
     {% include "ie6_nomore.html" %}
 
     {% compress css %}
-    <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ MEDIA_URL }}css/reset.css" /> <!-- RESET -->
-    <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ MEDIA_URL }}css/main.css" /> <!-- MAIN STYLE SHEET -->
-    <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ MEDIA_URL }}css/2col.css" title="2col" /> <!-- DEFAULT: 2 COLUMNS -->
-    <link rel="alternate stylesheet" media="screen,projection" type="text/css" href="{{ MEDIA_URL }}css/1col.css" title="1col" /> <!-- ALTERNATE: 1 COLUMN -->
-    <!--[if lte IE 6]><link rel="stylesheet" media="screen,projection" type="text/css" href="{{ MEDIA_URL }}css/main-ie6.css" /><![endif]--> <!-- MSIE6 -->
-    <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ MEDIA_URL }}css/style.css" /> <!-- GRAPHIC THEME -->
-    <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ MEDIA_URL }}css/mystyle.css" /> <!-- WRITE YOUR CSS CODE HERE -->
-    <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ MEDIA_URL }}css/footer.css" />
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ STATIC_URL }}css/reset.css" /> <!-- RESET -->
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ STATIC_URL }}css/main.css" /> <!-- MAIN STYLE SHEET -->
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ STATIC_URL }}css/2col.css" title="2col" /> <!-- DEFAULT: 2 COLUMNS -->
+    <link rel="alternate stylesheet" media="screen,projection" type="text/css" href="{{ STATIC_URL }}css/1col.css" title="1col" /> <!-- ALTERNATE: 1 COLUMN -->
+    <!--[if lte IE 6]><link rel="stylesheet" media="screen,projection" type="text/css" href="{{ STATIC_URL }}css/main-ie6.css" /><![endif]--> <!-- MSIE6 -->
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ STATIC_URL }}css/style.css" /> <!-- GRAPHIC THEME -->
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ STATIC_URL }}css/mystyle.css" /> <!-- WRITE YOUR CSS CODE HERE -->
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ STATIC_URL }}css/footer.css" />
     {% endcompress %}
 
     <title>{% block title %} {{ settings.TITLE }} {% endblock %}</title>
@@ -38,8 +38,8 @@
 
             <!-- Switcher
             <span class="f-left" id="switcher">
-                <a href="#" rel="1col" class="styleswitch ico-col1" title="Display one column"><img src="{{ MEDIA_URL }}design/switcher-1col.gif" alt="1 Column" /></a>
-                <a href="#" rel="2col" class="styleswitch ico-col2" title="Display two columns"><img src="{{ MEDIA_URL }}design/switcher-2col.gif" alt="2 Columns" /></a>
+                <a href="#" rel="1col" class="styleswitch ico-col1" title="Display one column"><img src="{{ STATIC_URL }}design/switcher-1col.gif" alt="1 Column" /></a>
+                <a href="#" rel="2col" class="styleswitch ico-col2" title="Display two columns"><img src="{{ STATIC_URL }}design/switcher-2col.gif" alt="2 Columns" /></a>
             </span>
             -->
 
@@ -123,7 +123,7 @@
 
 
     {% if settings.DEBUG %}
-        <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
     {% else %}
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
     {% endif %}
@@ -148,12 +148,12 @@
 
 
     {% compress js %}
-    <script type="text/javascript" src="{{ MEDIA_URL }}js/switcher.js"></script>
-    <script type="text/javascript" src="{{ MEDIA_URL }}js/toggle.js"></script>
-    <script type="text/javascript" src="{{ MEDIA_URL }}js/ui.core.js"></script>
-    <script type="text/javascript" src="{{ MEDIA_URL }}js/ui.tabs.js"></script>
-    <script type="text/javascript" src="{{ MEDIA_URL }}js/endless.js"></script>
-    <script type="text/javascript" src="{{ MEDIA_URL }}js/endless_on_scroll.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/switcher.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/toggle.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/ui.core.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/ui.tabs.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/endless.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/endless_on_scroll.js"></script>
 
     <script type="text/javascript">
     $(document).ready(function(){
@@ -192,6 +192,3 @@
 
 </body>
 </html>
-
-
-

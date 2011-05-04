@@ -1,8 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
-        <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL}}css/homepage/common.css" />
-        <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL}}css/homepage/index.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL}}css/homepage/common.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL}}css/homepage/index.css" />
         <style type="text/css">
             body {
                 background: #2c4762;
@@ -55,7 +55,7 @@
         <table style="width:100%;">
             <tr>
                 <td style="vertical-align:middle; text-align:center;">
-					<br/> <br/> <br/> <br/> <br/> <br/>
+                    <br/> <br/> <br/> <br/> <br/> <br/>
                     <p id="intro">
                         Everything you want to know...
                         <br/>
@@ -63,29 +63,29 @@
                     </p>
                 </td>
                 <td>
-                	<br/> <br/> <br/> <br/> <br/> <br/>
-					
-                    <div id="signup-box">
-                    	<a style="text-decoration:none;" href="{{ settings.LOGIN_URL }}">
-                        <h2 style=" font-size: 42px;">
-							Login
-						</h2>
-						</a>
-						
-						<br/><br/>
+                    <br/> <br/> <br/> <br/> <br/> <br/>
 
-                    	<a style="text-decoration:none; color: #333;" href="{% url password_reset %}">
+                    <div id="signup-box">
+                        <a style="text-decoration:none;" href="{{ settings.LOGIN_URL }}">
+                        <h2 style=" font-size: 42px;">
+                            Login
+                        </h2>
+                        </a>
+
+                        <br/><br/>
+
+                        <a style="text-decoration:none; color: #333;" href="{% url password_reset %}">
                         <p style=" font-size: 18px; text-align:center;">
-							Forgot Password?
-						</p>
-						</a>
-						
-						<br/>
-						
+                            Forgot Password?
+                        </p>
+                        </a>
+
+                        <br/>
+
                     </div>
-					
+
                 </td>
-					
+
             </tr>
         </table>
 
