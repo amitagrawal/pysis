@@ -7,6 +7,8 @@ INSTALLED_APPS = list(INSTALLED_APPS)
 # django-sane-testing is throwing errors when south is enabled. So disable south
 INSTALLED_APPS.remove('south')
 
+EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
+
 TEST_USERNAME = '09mca099'
 TEST_USER_PASSWORD = 'p'
 
