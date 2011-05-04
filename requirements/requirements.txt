@@ -25,8 +25,8 @@ django-grappelli>=2.3.2
 
 # For openid
 # ===========================
-https://download.github.com/adieu-python-openid-03773fb.tar.gz#egg=python-openid
-https://bitbucket.org/sramana/django-openid-auth/get/4500d4507e91.tar.gz#egg=django-openid-auth
+-e git+git://github.com/adieu/python-openid.git#egg=python-openid
+-e hg+https://sramana@bitbucket.org/sramana/django-openid-auth#egg=django-openid-auth
 
 
 # For Google Apps
@@ -37,7 +37,7 @@ gdata>=2.0.14
 # For Profile Photos
 # ===========================
 PIL==1.1.7
-https://download.github.com/ericflo-django-avatar-1.0.3-111-gbc0a346.tar.gz#egg=django-avatar
+-e git+git://github.com/ericflo/django-avatar.git#egg=django-avatar
 
 
 # For Developers
