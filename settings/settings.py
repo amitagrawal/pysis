@@ -64,20 +64,46 @@ USE_I18N = False
 # calendars according to the current locale
 USE_L10N = False
 
-# Absolute path to the directory that holds media.
-# Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
-#MEDIA_ROOT = PROJECT_ROOT
+# Absolute filesystem path to the directory that will hold user-uploaded files.
+# Example: "/home/media/media.lawrence.com/media/"
+MEDIA_ROOT = '/var/www/pysis_media'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash if there is a path component (optional in other cases).
-# Examples: "http://media.lawrence.com", "http://example.com/media/"
+# trailing slash.
+# Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
 MEDIA_URL = '/media/'
 
-# URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
-# trailing slash.
-# Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/media/admin/'
+# Absolute path to the directory static files should be collected to.
+# Don't put anything in this directory yourself; store your static files
+# in apps' "static/" subdirectories and in STATICFILES_DIRS.
+# Example: "/home/media/media.lawrence.com/static/"
+STATIC_ROOT = '/var/www/pysis_static'
+
+# URL prefix for static files.
+# Example: "http://media.lawrence.com/static/"
+STATIC_URL = '/static/'
+
+# URL prefix for admin static files -- CSS, JavaScript and images.
+# Make sure to use a trailing slash.
+# Examples: "http://foo.com/static/admin/", "/static/admin/".
+ADMIN_MEDIA_PREFIX = STATIC_URL + "grappelli/"
+
+# Additional locations of static files
+STATICFILES_DIRS = (
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    PROJECT_ROOT + '/static',
+)
+
+# List of finder classes that know how to find static files in
+# various locations.
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    'compressor.finders.CompressorFinder',
+)
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'jm_z@@6q3$6=ybua9y7e@ql=n8-21xb56l^auar$%+3y06@gm&'
@@ -90,15 +116,15 @@ TEMPLATE_LOADERS = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.core.context_processors.auth',
+    'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.debug',
     'django.core.context_processors.i18n',
     'django.core.context_processors.media',
+    'django.core.context_processors.static',
     'django.core.context_processors.request',
     'django.contrib.messages.context_processors.messages',
     #'announcements.context_processors.announcements',
     'generic_app.context_processors.settings',
-    'grappelli.context_processors.admin_template_path',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -138,6 +164,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
+    'django.contrib.staticfiles',
     'django.contrib.redirects',
     'django.contrib.admin',
     'django.contrib.admindocs',
@@ -160,6 +187,29 @@ INSTALLED_APPS = (
     'students',
     'greetings',
 )
+
+# A sample logging configuration. The only tangible logging
+# performed by this configuration is to send an email to
+# the site admins on every HTTP 500 error.
+# See http://docs.djangoproject.com/en/dev/topics/logging for
+# more details on how to customize your logging configuration.
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler'
+        }
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    }
+}
 
 FIXTURE_DIRS = (
     os.path.join(PROJECT_ROOT, "fixtures"),
@@ -199,14 +249,15 @@ AVATAR_DEFAULT_URL = 'images/user.png'
 AVATAR_ALLOWED_FILE_EXTS = ('.jpg', '.png')
 AVATAR_MAX_AVATARS_PER_USER = 5
 AVATAR_HASH_FILENAMES = True
+AVATAR_STORAGE_DIR = 'Avatars'
 
 
 # Django-Compressor
-COMPRESS = True
+COMPRESS = False
 
 # Pagination
 ENDLESS_PAGINATION_PER_PAGE = 5
-ENDLESS_PAGINATION_LOADING = '<img src="%s/images/loader.gif" alt="loading" />' % MEDIA_URL
+ENDLESS_PAGINATION_LOADING = '<img src="%s/images/loader.gif" alt="loading" />' % STATIC_URL
 
 
 # Django-openid-auth
