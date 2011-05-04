@@ -6,7 +6,7 @@
 function pysis()
 {
     workon pysis
-    cd /projects/pysis
+    cd /work/pysis
     export DJANGO_SETTINGS_MODULE=pysis.settings.settings
 
     sudo supervisorctl restart pysis

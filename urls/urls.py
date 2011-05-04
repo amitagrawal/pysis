@@ -10,6 +10,10 @@ from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.shortcuts import redirect
 from django.http import HttpResponseRedirect
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf.urls.static import static
+
+
 
 from generic_app.views import display_homepage, logoutuser
 import myprofile
@@ -29,7 +33,7 @@ urlpatterns = patterns('',
         name='login'),
     url(r'^logout/$', logoutuser,
         name='logout'),
-        
+
     (r'^favicon\.ico$', 'django.views.generic.simple.redirect_to',
                         {'url': '%s/images/favicon.ico' % settings.MEDIA_URL}),
 
@@ -43,7 +47,7 @@ urlpatterns = patterns('',
 
     (r'^myprofile/avatar/', include('avatar.urls')),
     (r'^myprofile/', include('myprofile.urls')),
-    
+
     (r'^password/', include('passwords.urls')),
 
     (r'^students/', include('students.urls')),
@@ -55,7 +59,6 @@ urlpatterns = patterns('',
 
 
 if settings.DEBUG:
-    urlpatterns += patterns('',
-        (r'^media/(?P<path>.*)$', 'django.views.static.serve',
-        {'document_root': settings.MEDIA_ROOT}),
-    )
+    urlpatterns += staticfiles_urlpatterns()
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
