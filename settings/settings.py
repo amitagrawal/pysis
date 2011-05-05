@@ -253,7 +253,9 @@ AVATAR_STORAGE_DIR = 'Avatars'
 
 
 # Django-Compressor
-COMPRESS = False
+COMPRESS = True
+COMPRESS_OFFLINE = True
+
 
 # Pagination
 ENDLESS_PAGINATION_PER_PAGE = 5

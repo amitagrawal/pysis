@@ -1,3 +1,4 @@
+Revision 119 	 2011-05-04 	 Cleaning up fabfile 
 Revision 118 	 2011-05-04 	 Setting EMAIL_BACKEND to locmem in test_settings 
 Revision 117 	 2011-05-04 	 Updating fabfile to make nosetests pass 
 Revision 116 	 2011-05-04 	 Fixing favicon url 

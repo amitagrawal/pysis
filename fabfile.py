@@ -6,18 +6,18 @@ import fabric
 from fabric.api import env, local, sudo, cd, prefix
 from django.conf import settings
 
-env.hosts = [os.environ.get('MYSERVER')]
+env.hosts = [os.environ.get('MYSERVER', '')]
 
 os.environ['PYTHONPATH'] = '.:..:%s/apps' %  settings.PROJECT_ROOT
 
 env.master_repo = 'ssh://hg@bitbucket.org/sramana/pysis'
-env.remote_env = '/work/virtualenvs/pysis/bin/'
+env.activate = 'source /work/virtualenvs/pysis/bin/activate'
 env.project_root = '/work/pysis'
 
 
 def run(cmd):
     with cd(env.project_root):
-        with prefix('workon pysis'):
+        with prefix(env.activate):
             fabric.api.run(cmd)
 
 
@@ -72,8 +72,16 @@ def deploy_static():
     run('./manage.py collectstatic -v0 --noinput')
 
 
+def compress_static():
+    run('./manage.py compress')
+
+
 def restart_webserver():
     sudo('supervisorctl restart pysis')
+
+
+def restart_all():
+    sudo('supervisorctl reload')
 
 
 def docs():
@@ -99,5 +107,5 @@ def deploy(skip_tests='no'):
     install_requirements()
     upgrade_db()
     deploy_static()
+    compress_static()
     restart_webserver()
-    test_on_server()
