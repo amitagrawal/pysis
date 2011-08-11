@@ -88,7 +88,8 @@ class GoogleAppsManager(object):
         user.login.user_name = renameduser
         self.apps.UpdateUser(username, user)
 
-        self.apps.DeleteUser(renameduser)
+        # Never, ever delete an account.
+        #self.apps.DeleteUser(renameduser)
 
 
     def suspend_user(self, username):
